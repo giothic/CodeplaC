@@ -6,4 +6,6 @@ import codeplac.codeplac.Model.usersModel;
 
 public interface usersRepository extends JpaRepository<usersModel, Integer> {
 
+    Object findByMatricula(String cpfcnpj);
+
 }
