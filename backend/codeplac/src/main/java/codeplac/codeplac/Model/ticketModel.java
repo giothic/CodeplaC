@@ -30,4 +30,5 @@ public class TicketModel {
   @ManyToOne
   @JoinColumn(name = "evento_id")
   private EventModel evento;
+
 }

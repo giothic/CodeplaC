@@ -5,8 +5,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-// import jakarta.persistence.JoinColumn;
-// import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +25,5 @@ public class GroupModel {
   @ManyToOne
   @JoinColumn(name = "usuario_matricula")
   private UsersModel usuario;
+
 }
