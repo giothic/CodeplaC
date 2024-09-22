@@ -2,21 +2,27 @@ package codeplac.codeplac.Model;
 
 import codeplac.codeplac.Enum.tipoUser;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 
 @Entity
-public class usersModel {
+public class UsersModel {
 
     @Id
     private int matricula;
 
     private String nome;
     private String sobrenome;
+
+    @Enumerated(EnumType.STRING)
     private tipoUser tipoUser;
+
     private String cpf;
     private String email;
     private String telefone;
     private String senha;
+    private String refreshToken;
 
     public int getMatricula() {
         return matricula;
@@ -82,5 +88,12 @@ public class usersModel {
         this.senha = senha;
     }
 
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
 
 }
