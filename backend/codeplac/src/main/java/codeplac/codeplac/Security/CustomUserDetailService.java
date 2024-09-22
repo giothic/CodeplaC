@@ -5,8 +5,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import codeplac.codeplac.Model.usersModel;
-import codeplac.codeplac.Repository.usersRepository;
+import codeplac.codeplac.Model.UsersModel;
+import codeplac.codeplac.Repository.UsersRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,23 +17,31 @@ public class CustomUserDetailService implements UserDetailsService {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailService.class);
 
-    private final usersRepository repository;
+    private final UsersRepository repository;
 
-    public CustomUserDetailService(usersRepository repository) {
+    public CustomUserDetailService(UsersRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String cpfcnpj) throws UsernameNotFoundException {
-        logger.debug("Tentando carregar usuário com CPF: {}", cpfcnpj);
+    public UserDetails loadUserByUsername(String matricula) throws UsernameNotFoundException {
+        logger.debug("Tentando carregar usuário com matrícula: {}", matricula);
         
-        usersModel user = repository.findByMatricula(cpfcnpj)
+        // Tenta encontrar o usuário pela matrícula
+        UsersModel user = repository.findByMatricula(Integer.parseInt(matricula))
             .orElseThrow(() -> {
-                logger.warn("Usuário não encontrado com CPF: {}", cpfcnpj);
-                return new UsernameNotFoundException("Usuário não encontrado com CPF: " + cpfcnpj);
+                logger.warn("Usuário não encontrado com matrícula: {}", matricula);
+                return new UsernameNotFoundException("Usuário não encontrado com matrícula: " + matricula);
             });
 
         logger.debug("Usuário encontrado: {}", user.getMatricula());
-        return new org.springframework.security.core.userdetails.User(user.getMatricula(), user.getSenha(), user.getAuthorities());
+
+        // Retorna o UserDetails com a senha e as roles/authorities
+        return new org.springframework.security.core.userdetails.User(
+            String.valueOf(user.getMatricula()), 
+            user.getSenha(), 
+            user.getTipoUser().getAuthorities()  // Assumindo que tipoUser tem authorities mapeadas
+        );
     }
 }
+

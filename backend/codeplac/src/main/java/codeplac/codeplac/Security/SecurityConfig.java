@@ -1,6 +1,5 @@
 package codeplac.codeplac.Security;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Configuration
 @EnableWebSecurity
@@ -22,27 +22,23 @@ public class SecurityConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
-    private final CustomUserDetailService userDetailsService;
-    private final SecurityFilter securityFilter;
-
-    public SecurityConfig(CustomUserDetailService userDetailsService, SecurityFilter securityFilter) {
-        this.userDetailsService = userDetailsService;
-        this.securityFilter = securityFilter;
-    }
+    @Autowired
+    private SecurityFilter securityFilter; // Adicione esta linha para injetar seu filtro de segurança
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         logger.info("Configuring security filter chain");
 
         http
-                .csrf(csrf -> csrf.disable()) // Desabilita CSRF para simplificar, considere habilitar em produção
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() // Permite que qualquer um acesse o endpoint de cadastro
+                        .requestMatchers(HttpMethod.POST, "/users/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/teste").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/participante/**").hasRole("PARTICIPANTE")
-                        .anyRequest().authenticated() // Requer autenticação para todas as outras requisições
+                        .requestMatchers("/user/**").hasRole("PARTICIPANTE")
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
