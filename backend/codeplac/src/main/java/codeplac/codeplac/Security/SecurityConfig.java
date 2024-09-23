@@ -38,8 +38,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/teste").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/user/**").hasRole("PARTICIPANTE")
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         logger.info("Security filter chain configured");
@@ -54,7 +53,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
         logger.info("Creating AuthenticationManager bean");
         return authenticationConfiguration.getAuthenticationManager();
     }
