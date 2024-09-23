@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import codeplac.codeplac.Repository.UsersRepository;
+import codeplac.codeplac.Repository.usersRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +27,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @SuppressWarnings("unused")
     @Autowired
-    private UsersRepository userRepository;
+    private usersRepository userRepository;
 
     @Autowired
     private UserDetailsService userDetailsService;

@@ -11,7 +11,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
-import codeplac.codeplac.Model.UsersModel;
+import codeplac.codeplac.Model.usersModel;
 import codeplac.codeplac.Repository.UsersRepository;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class TokenService {
         this.userRepository = userRepository;
     }
 
-    public String generateToken(UsersModel user) {
+    public String generateToken(usersModel user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
@@ -44,7 +44,7 @@ public class TokenService {
         }
     }
 
-    public String generateRefreshToken(UsersModel user) {
+    public String generateRefreshToken(usersModel user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()

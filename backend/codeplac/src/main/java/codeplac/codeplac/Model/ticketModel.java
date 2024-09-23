@@ -16,7 +16,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TicketModel {
+
+public class ticketModel {
   @Id
   private int id;
 
@@ -25,10 +26,9 @@ public class TicketModel {
 
   @ManyToOne
   @JoinColumn(name = "usuario_matricula")
-  private UsersModel usuario;
+  private usersModel usuario;
 
   @ManyToOne
   @JoinColumn(name = "evento_id")
-  private EventModel evento;
-
+  private eventModel evento;
 }

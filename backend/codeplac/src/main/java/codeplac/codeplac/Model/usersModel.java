@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsersModel {
+public class usersModel {
 
     @Id
     private int matricula;
@@ -38,12 +38,13 @@ public class UsersModel {
     private String refreshToken;
 
     @OneToMany(mappedBy = "usuario")
-    private List<GroupModel> grupos;
+
+    private List<groupModel> grupos;
 
     @OneToMany(mappedBy = "usuario")
-    private List<TicketModel> ingressos;
+    private List<ticketModel> ingressos;
 
     @OneToMany(mappedBy = "usuario")
-    private List<RegistrationModel> inscricoes;
+    private List<registrationModel> inscricoes;
 
 }

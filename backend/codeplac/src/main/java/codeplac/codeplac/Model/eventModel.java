@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventModel {
+public class eventModel {
   @Id
   private int id;
 
@@ -32,9 +32,9 @@ public class EventModel {
   private eventStatus status;
 
   @OneToMany(mappedBy = "evento")
-  private List<TicketModel> ingressos;
+  private List<ticketModel> ingressos;
 
   @OneToMany(mappedBy = "evento")
-  private List<RegistrationModel> inscricoes;
+  private List<registrationModel> inscricoes;
 
 }

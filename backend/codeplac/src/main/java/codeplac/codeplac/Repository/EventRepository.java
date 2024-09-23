@@ -2,8 +2,8 @@ package codeplac.codeplac.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import codeplac.codeplac.Model.EventModel;
+import codeplac.codeplac.Model.eventModel;
 
-public interface EventRepository extends JpaRepository<EventModel, Integer> {
+public interface eventRepository extends JpaRepository<eventModel, Integer> {
 
 }

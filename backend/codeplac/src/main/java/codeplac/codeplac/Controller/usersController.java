@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import codeplac.codeplac.Exception.Excecao;
-import codeplac.codeplac.Model.UsersModel;
-import codeplac.codeplac.Service.UsersService;
+import codeplac.codeplac.Model.usersModel;
+import codeplac.codeplac.Service.usersService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
-public class UsersController {
+public class usersController {
 
     @Autowired
-    private UsersService usersService;
+    private usersService usersService;
 
     @PostMapping("/register")
-    public ResponseEntity<UsersModel> cadastrarUsuario(@RequestBody UsersModel user) {
+    public ResponseEntity<usersModel> cadastrarUsuario(@RequestBody usersModel user) {
         try {
-            UsersModel savedUser = usersService.createUser(user);
+            usersModel savedUser = usersService.createUser(user);
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
@@ -30,15 +30,15 @@ public class UsersController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<UsersModel>> listarUsuarios() {
-        List<UsersModel> users = usersService.getAllUsers();
+    public ResponseEntity<List<usersModel>> listarUsuarios() {
+        List<usersModel> users = usersService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{matricula}")
-    public ResponseEntity<UsersModel> obterUsuario(@PathVariable int matricula) {
+    public ResponseEntity<usersModel> obterUsuario(@PathVariable int matricula) {
         try {
-            UsersModel user = usersService.getUserByMatricula(matricula);
+            usersModel user = usersService.getUserByMatricula(matricula);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
@@ -46,9 +46,9 @@ public class UsersController {
     }
 
     @PutMapping("/modificar/{matricula}")
-    public ResponseEntity<UsersModel> modificarUsuario(@PathVariable int matricula, @RequestBody UsersModel user) {
+    public ResponseEntity<usersModel> modificarUsuario(@PathVariable int matricula, @RequestBody usersModel user) {
         try {
-            UsersModel updatedUser = usersService.updateUser(matricula, user);
+            usersModel updatedUser = usersService.updateUser(matricula, user);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
