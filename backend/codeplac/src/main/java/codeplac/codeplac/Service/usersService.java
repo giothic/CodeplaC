@@ -2,14 +2,14 @@ package codeplac.codeplac.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;  
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import codeplac.codeplac.Repository.UsersRepository;
 import codeplac.codeplac.Model.UsersModel;
+import codeplac.codeplac.Repository.UsersRepository;
 import codeplac.codeplac.Exception.Excecao;
 
 @Service
@@ -23,14 +23,12 @@ public class UsersService {
 
     public UsersModel createUser(UsersModel user) throws Excecao {
 
-
-        String refreshToken = UUID.randomUUID().toString();  
+        String refreshToken = UUID.randomUUID().toString();
         user.setRefreshToken(refreshToken);
 
         if (usersRepository.existsById(user.getMatricula())) {
             throw new Excecao("Usuário com matrícula já existe.");
         }
-
 
         user.setSenha(passwordEncoder.encode(user.getSenha()));
 
