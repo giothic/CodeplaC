@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import codeplac.codeplac.Model.usersModel;
+import codeplac.codeplac.Model.UsersModel;
 import codeplac.codeplac.Repository.UsersRepository;
 
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class CustomUserDetailService implements UserDetailsService {
         logger.debug("Tentando carregar usuário com matrícula: {}", matricula);
 
         // Tenta encontrar o usuário pela matrícula
-        usersModel user = repository.findByMatricula(Integer.parseInt(matricula))
+        UsersModel user = repository.findByMatricula(Integer.parseInt(matricula))
                 .orElseThrow(() -> {
                     logger.warn("Usuário não encontrado com matrícula: {}", matricula);
                     return new UsernameNotFoundException("Usuário não encontrado com matrícula: " + matricula);

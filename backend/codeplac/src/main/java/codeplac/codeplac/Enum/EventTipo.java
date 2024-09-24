@@ -1,6 +1,6 @@
 package codeplac.codeplac.Enum;
 
-public enum eventTipo {
+public enum EventTipo {
 
   PALESTRA,
   COMPETICAO

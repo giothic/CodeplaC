@@ -1,6 +1,6 @@
 package codeplac.codeplac.Enum;
 
-public enum eventStatus {
+public enum EventStatus {
 
   ATIVO,
   INATIVO

@@ -5,24 +5,30 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "grupocompetidor")
+@Table(name = "ingresso")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class groupModel {
+
+public class TicketModel {
   @Id
   private int id;
 
-  private String grupo_id;
+  private String qr_code;
+  private int validado;
 
   @ManyToOne
   @JoinColumn(name = "usuario_matricula")
-  private usersModel usuario;
+  private UsersModel usuario;
+
+  @ManyToOne
+  @JoinColumn(name = "evento_id")
+  private EventModel evento;
 }

@@ -3,8 +3,8 @@ package codeplac.codeplac.Model;
 import java.time.LocalDate;
 import java.util.List;
 
-import codeplac.codeplac.Enum.eventStatus;
-import codeplac.codeplac.Enum.eventTipo;
+import codeplac.codeplac.Enum.EventStatus;
+import codeplac.codeplac.Enum.EventTipo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class eventModel {
+public class EventModel {
   @Id
   private int id;
 
@@ -28,13 +28,13 @@ public class eventModel {
   private String description;
   private LocalDate data;
   private String local;
-  private eventTipo tipo;
-  private eventStatus status;
+  private EventTipo tipo;
+  private EventStatus status;
 
   @OneToMany(mappedBy = "evento")
-  private List<ticketModel> ingressos;
+  private List<TicketModel> ingressos;
 
   @OneToMany(mappedBy = "evento")
-  private List<registrationModel> inscricoes;
+  private List<RegistrationModel> inscricoes;
 
 }

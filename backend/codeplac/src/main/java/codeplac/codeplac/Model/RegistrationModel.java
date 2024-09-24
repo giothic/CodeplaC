@@ -11,24 +11,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "ingresso")
+@Table(name = "inscricao")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class ticketModel {
+public class RegistrationModel {
   @Id
   private int id;
 
-  private String qr_code;
-  private int validado;
-
-  @ManyToOne
-  @JoinColumn(name = "usuario_matricula")
-  private usersModel usuario;
+  private String codigo_grupo;
 
   @ManyToOne
   @JoinColumn(name = "evento_id")
-  private eventModel evento;
+  private EventModel evento;
+
+  @ManyToOne
+  @JoinColumn(name = "usuario_matricula")
+  private UsersModel usuario;
 }

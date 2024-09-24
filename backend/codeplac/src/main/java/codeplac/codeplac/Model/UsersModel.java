@@ -2,7 +2,7 @@ package codeplac.codeplac.Model;
 
 import java.util.List;
 
-import codeplac.codeplac.Enum.userTipo;
+import codeplac.codeplac.Enum.UserTipo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class usersModel {
+public class UsersModel {
 
     @Id
     private int matricula;
@@ -29,7 +29,7 @@ public class usersModel {
     private String sobrenome;
 
     @Enumerated(EnumType.STRING)
-    private userTipo tipoUser;
+    private UserTipo tipoUser;
 
     private String cpf;
     private String email;
@@ -39,12 +39,12 @@ public class usersModel {
 
     @OneToMany(mappedBy = "usuario")
 
-    private List<groupModel> grupos;
+    private List<GroupModel> grupos;
 
     @OneToMany(mappedBy = "usuario")
-    private List<ticketModel> ingressos;
+    private List<TicketModel> ingressos;
 
     @OneToMany(mappedBy = "usuario")
-    private List<registrationModel> inscricoes;
+    private List<RegistrationModel> inscricoes;
 
 }

@@ -8,20 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import codeplac.codeplac.Model.usersModel;
-import codeplac.codeplac.Repository.usersRepository;
+import codeplac.codeplac.Model.UsersModel;
+import codeplac.codeplac.Repository.UsersRepository;
 import codeplac.codeplac.Exception.Excecao;
 
 @Service
-public class usersService {
+public class UsersService {
 
     @Autowired
-    private usersRepository usersRepository;
+    private UsersRepository usersRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public usersModel createUser(usersModel user) throws Excecao {
+    public UsersModel createUser(UsersModel user) throws Excecao {
 
         String refreshToken = UUID.randomUUID().toString();
         user.setRefreshToken(refreshToken);
@@ -35,12 +35,12 @@ public class usersService {
         return usersRepository.save(user);
     }
 
-    public List<usersModel> getAllUsers() {
+    public List<UsersModel> getAllUsers() {
         return usersRepository.findAll();
     }
 
-    public usersModel getUserByMatricula(int matricula) throws Excecao {
-        Optional<usersModel> user = usersRepository.findById(matricula);
+    public UsersModel getUserByMatricula(int matricula) throws Excecao {
+        Optional<UsersModel> user = usersRepository.findById(matricula);
         if (user.isPresent()) {
             return user.get();
         } else {
@@ -57,7 +57,7 @@ public class usersService {
         }
     }
 
-    public usersModel updateUser(int matricula, usersModel user) throws Excecao {
+    public UsersModel updateUser(int matricula, UsersModel user) throws Excecao {
         if (usersRepository.existsById(matricula)) {
             user.setMatricula(matricula);
             return usersRepository.save(user);
