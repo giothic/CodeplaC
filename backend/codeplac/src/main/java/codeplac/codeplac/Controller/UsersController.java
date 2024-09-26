@@ -29,7 +29,7 @@ public class UsersController {
         }
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/list")
     public ResponseEntity<List<UsersModel>> listarUsuarios() {
         List<UsersModel> users = usersService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
@@ -45,7 +45,7 @@ public class UsersController {
         }
     }
 
-    @PutMapping("/modificar/{matricula}")
+    @PutMapping("/modify/{matricula}")
     public ResponseEntity<UsersModel> modificarUsuario(@PathVariable int matricula, @RequestBody UsersModel user) {
         try {
             UsersModel updatedUser = usersService.updateUser(matricula, user);
@@ -55,7 +55,7 @@ public class UsersController {
         }
     }
 
-    @DeleteMapping("/apagar/{matricula}")
+    @DeleteMapping("/destroy/{matricula}")
     public ResponseEntity<Void> apagarUsuario(@PathVariable int matricula) {
         try {
             boolean deleted = usersService.deleteUser(matricula);

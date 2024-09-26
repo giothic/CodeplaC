@@ -48,19 +48,19 @@ public class UsersService {
         }
     }
 
-    public boolean deleteUser(int matricula) throws Excecao {
+    public UsersModel updateUser(int matricula, UsersModel user) throws Excecao {
         if (usersRepository.existsById(matricula)) {
-            usersRepository.deleteById(matricula);
-            return true;
+            user.setMatricula(matricula);
+            return usersRepository.save(user);
         } else {
             throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
         }
     }
 
-    public UsersModel updateUser(int matricula, UsersModel user) throws Excecao {
+    public boolean deleteUser(int matricula) throws Excecao {
         if (usersRepository.existsById(matricula)) {
-            user.setMatricula(matricula);
-            return usersRepository.save(user);
+            usersRepository.deleteById(matricula);
+            return true;
         } else {
             throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
         }
