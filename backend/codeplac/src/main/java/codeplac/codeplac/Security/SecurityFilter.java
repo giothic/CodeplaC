@@ -1,7 +1,5 @@
 package codeplac.codeplac.Security;
 
-
-
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +29,6 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    
     @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(@NotNull HttpServletRequest request, 

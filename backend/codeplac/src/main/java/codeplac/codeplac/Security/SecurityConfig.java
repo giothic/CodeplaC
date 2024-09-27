@@ -45,6 +45,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(new Http403ForbiddenEntryPoint()))
+
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         logger.info("Security filter chain configured");
@@ -60,7 +61,8 @@ public class SecurityConfig {
 
     
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
         logger.info("Creating AuthenticationManager bean");
         return authenticationConfiguration.getAuthenticationManager();
     }

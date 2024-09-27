@@ -2,7 +2,6 @@ package codeplac.codeplac.Security;
 
 import java.time.Instant;
 
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +12,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
+
 import codeplac.codeplac.Model.UsersModel;
 import codeplac.codeplac.Repository.UsersRepository;
 import org.slf4j.Logger;
@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 public class TokenService {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenService.class);
-    
+
     @Value("${api.security.token.secret}")
     private String secret;
 
@@ -103,15 +103,12 @@ public class TokenService {
         return Instant.now().plusSeconds(refreshExpiration);
     }
 
-
     // Gera e armazena o token de acesso
     @Transactional
     public String generateAndStoreAccessToken(UsersModel user) {
         String accessToken = generateToken(user);
         updateAccessToken(String.valueOf(user.getMatricula()), accessToken);
         return accessToken;
+
     }
-
-
-
 }
