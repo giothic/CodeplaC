@@ -17,4 +17,9 @@ public interface UsersRepository extends JpaRepository<UsersModel, Integer> {
     void updateRefreshToken(String matricula, String refreshToken);
 
     Optional<UsersModel> findByMatricula(int matricula);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE UsersModel u SET u.accessToken = :accessToken WHERE u.matricula = :matricula")
+    void updateAccessToken(String matricula, String accessToken);
 }

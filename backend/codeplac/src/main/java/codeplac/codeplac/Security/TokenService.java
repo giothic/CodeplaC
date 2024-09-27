@@ -2,6 +2,7 @@ package codeplac.codeplac.Security;
 
 import java.time.Instant;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ import org.slf4j.LoggerFactory;
 public class TokenService {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenService.class);
-
+    
     @Value("${api.security.token.secret}")
     private String secret;
 
@@ -38,6 +39,7 @@ public class TokenService {
         this.userRepository = userRepository;
     }
 
+    // Gera o token de acesso
     public String generateToken(UsersModel user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -109,6 +111,10 @@ public class TokenService {
         String accessToken = generateToken(user);
         updateAccessToken(String.valueOf(user.getMatricula()), accessToken);
         return accessToken;
+    }
 
+    // Atualiza o token de acesso no banco de dados
+    private void updateAccessToken(String matricula, String accessToken) {
+        userRepository.updateAccessToken(matricula, accessToken);
     }
 }
