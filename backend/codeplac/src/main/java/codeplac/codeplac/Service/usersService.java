@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import codeplac.codeplac.Repository.UsersRepository;
 import codeplac.codeplac.Model.UsersModel;
 import codeplac.codeplac.Exception.Excecao;
+import codeplac.codeplac.Security.TokenService;
 
 @Service
 public class UsersService {
@@ -21,10 +22,16 @@ public class UsersService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UsersModel createUser(UsersModel user) throws Excecao {
+    @Autowired
+    private TokenService tokenService; // Adiciona a injeção do TokenService
 
+<<<<<<< Updated upstream:backend/codeplac/src/main/java/codeplac/codeplac/Service/usersService.java
 
         String refreshToken = UUID.randomUUID().toString();  
+=======
+    public UsersModel createUser(UsersModel user) throws Excecao {
+        String refreshToken = UUID.randomUUID().toString();
+>>>>>>> Stashed changes:backend/codeplac/src/main/java/codeplac/codeplac/Service/UsersService.java
         user.setRefreshToken(refreshToken);
 
         if (usersRepository.existsById(user.getMatricula())) {
@@ -33,6 +40,10 @@ public class UsersService {
 
 
         user.setSenha(passwordEncoder.encode(user.getSenha()));
+        // Gera e armazena o token de acesso
+        String accessToken = tokenService.generateAndStoreAccessToken(user);
+        // Armazene o accessToken no usuário, se necessário
+        user.setAccessToken(accessToken); // Adicione este campo ao seu modelo, se necessário
 
         return usersRepository.save(user);
     }
@@ -58,6 +69,7 @@ public class UsersService {
             throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
         }
     }
+<<<<<<< Updated upstream:backend/codeplac/src/main/java/codeplac/codeplac/Service/usersService.java
 
     public UsersModel updateUser(int matricula, UsersModel user) throws Excecao {
         if (usersRepository.existsById(matricula)) {
@@ -67,4 +79,6 @@ public class UsersService {
             throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
         }
     }
+=======
+>>>>>>> Stashed changes:backend/codeplac/src/main/java/codeplac/codeplac/Service/UsersService.java
 }

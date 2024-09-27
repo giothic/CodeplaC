@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import codeplac.codeplac.Service.AuthService;
+import codeplac.codeplac.DTO.LoginRequest; 
+import codeplac.codeplac.DTO.LoginResponse;
 
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Model.UsersModel;
@@ -20,6 +23,9 @@ public class UsersController {
 
     @Autowired
     private UsersService usersService;
+
+    @Autowired
+    private AuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<UsersModel> cadastrarUsuario(@RequestBody UsersModel user) {
@@ -70,4 +76,18 @@ public class UsersController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
     }
+<<<<<<< Updated upstream:backend/codeplac/src/main/java/codeplac/codeplac/Controller/usersController.java
 }
+=======
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        try {
+            String token = authService.authenticate(loginRequest.getMatricula(), loginRequest.getPassword());
+            return ResponseEntity.ok(new LoginResponse(token));
+        } catch (Excecao e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage(), e);
+        }
+    }
+}
+>>>>>>> Stashed changes:backend/codeplac/src/main/java/codeplac/codeplac/Controller/UsersController.java

@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ public class SecurityConfig {
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
     @Autowired
-    private SecurityFilter securityFilter; // Adicione esta linha para injetar seu filtro de segurança
+    private SecurityFilter securityFilter; // Injeta seu filtro de segurança
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -33,13 +34,23 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/users/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/teste").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/group/create").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/event/create").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/registration/create").hasRole("PARTICIPANT")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+<<<<<<< Updated upstream
                         .requestMatchers("/user/**").hasRole("PARTICIPANTE")
                         .anyRequest().authenticated()
                 )
+=======
+                        .requestMatchers("/user/**").hasRole("PARTICIPANT")
+                        .anyRequest().authenticated())
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(new Http403ForbiddenEntryPoint()))
+>>>>>>> Stashed changes
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         logger.info("Security filter chain configured");
