@@ -41,16 +41,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/event/create").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/registration/create").hasRole("PARTICIPANT")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-<<<<<<< Updated upstream
-                        .requestMatchers("/user/**").hasRole("PARTICIPANTE")
-                        .anyRequest().authenticated()
-                )
-=======
                         .requestMatchers("/user/**").hasRole("PARTICIPANT")
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(new Http403ForbiddenEntryPoint()))
->>>>>>> Stashed changes
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         logger.info("Security filter chain configured");
@@ -64,6 +58,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         logger.info("Creating AuthenticationManager bean");

@@ -31,6 +31,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    
+    @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(@NotNull HttpServletRequest request, 
                                      @NotNull HttpServletResponse response, 

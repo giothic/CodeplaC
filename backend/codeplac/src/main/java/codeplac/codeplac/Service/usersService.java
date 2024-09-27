@@ -25,13 +25,9 @@ public class UsersService {
     @Autowired
     private TokenService tokenService; // Adiciona a injeção do TokenService
 
-<<<<<<< Updated upstream:backend/codeplac/src/main/java/codeplac/codeplac/Service/usersService.java
-
-        String refreshToken = UUID.randomUUID().toString();  
-=======
     public UsersModel createUser(UsersModel user) throws Excecao {
         String refreshToken = UUID.randomUUID().toString();
->>>>>>> Stashed changes:backend/codeplac/src/main/java/codeplac/codeplac/Service/UsersService.java
+
         user.setRefreshToken(refreshToken);
 
         if (usersRepository.existsById(user.getMatricula())) {

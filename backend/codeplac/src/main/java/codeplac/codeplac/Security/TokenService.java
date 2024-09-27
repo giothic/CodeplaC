@@ -38,7 +38,6 @@ public class TokenService {
         this.userRepository = userRepository;
     }
 
-    // Gera o token de acesso
     public String generateToken(UsersModel user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -103,8 +102,7 @@ public class TokenService {
     private Instant generateRefreshExpirationDate() {
         return Instant.now().plusSeconds(refreshExpiration);
     }
-<<<<<<< Updated upstream
-=======
+
 
     // Gera e armazena o token de acesso
     @Transactional
@@ -114,9 +112,6 @@ public class TokenService {
         return accessToken;
     }
 
-    // Atualiza o token de acesso no banco de dados
-    private void updateAccessToken(String matricula, String accessToken) {
-        userRepository.updateAccessToken(matricula, accessToken);
-    }
->>>>>>> Stashed changes
+
+
 }
