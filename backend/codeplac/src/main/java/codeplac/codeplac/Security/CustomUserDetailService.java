@@ -35,6 +35,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
         logger.debug("Usuário encontrado: {}", user.getMatricula());
 
+        
         // Retorna o UserDetails com a senha e as roles/authorities
         return new org.springframework.security.core.userdetails.User(
                 String.valueOf(user.getMatricula()),

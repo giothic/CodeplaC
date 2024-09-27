@@ -10,10 +10,16 @@ import jakarta.transaction.Transactional;
 
 public interface UsersRepository extends JpaRepository<UsersModel, Integer> {
 
+    
     @Modifying
     @Transactional
     @Query("UPDATE UsersModel u SET u.refreshToken = :refreshToken WHERE u.matricula = :matricula")
     void updateRefreshToken(String matricula, String refreshToken);
 
     Optional<UsersModel> findByMatricula(int matricula);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE UsersModel u SET u.accessToken = :accessToken WHERE u.matricula = :matricula")
+    void updateAccessToken(String matricula, String accessToken);
 }
