@@ -6,6 +6,8 @@ import java.util.List;
 import codeplac.codeplac.Enum.EventStatus;
 import codeplac.codeplac.Enum.EventTipo;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -28,7 +30,10 @@ public class EventModel {
   private String description;
   private LocalDate data;
   private String local;
+
+  @Enumerated(EnumType.STRING)
   private EventTipo tipo;
+  @Enumerated(EnumType.STRING)
   private EventStatus status;
 
   @OneToMany(mappedBy = "evento")
