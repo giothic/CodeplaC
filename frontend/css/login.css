@@ -1,11 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
-
-
 * {
     margin: 0;
     padding: 0;
-
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     color: #fff;
@@ -15,6 +12,12 @@ p {
     cursor: pointer;
     font-weight: 600;
     color: #5EB2CF;
+}
+
+h6 {
+    cursor: pointer;
+    font-weight: 60;
+    color: #cfcfcf;
 }
 
 h1 {
@@ -39,6 +42,7 @@ input {
     font-weight: 600;
     color: #1c1c1c;
     padding-left: 3px;
+    transition: border-color 0.3s;
 }
 
 button {
@@ -48,102 +52,109 @@ button {
     border: none;
     border-radius: 5px;
     background: #246277;
+    color: #fff; 
+    font-weight: bold; 
+    transition: background-color 0.3s, transform 0.2s; 
+}
+
+button:hover {
+    background-color: #173f4d; 
+    transform: translateY(-2px); 
 }
 
 body {
     width: 100%;
-    height: 100vh;
+    height: 100vh; 
     background-image: url('../img/fundo.png');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover; 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+#container {
+    width: 320px;
+    height: 520px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px -1px #000000; 
+    background: #08171C;
+    display: flex;
+    align-items: center;
+}   
+
+#container .banner {
+    width: 520px;
+    height: 520px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: linear-gradient(45deg, #143844, #08171C);
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#container .box-login {
+    width: 320px;
+    height: 520px;
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-login .box {
+    width: 80%;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.box .social {
+    width: 240px;
+    height: 42px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.social img {
+    cursor: pointer;
+}
+
+.box-login .box-account {
+    width: 80%;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#bubble {
+    cursor: pointer;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 1px solid #483D8B;
+    background: slateblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 768px) {
     #container {
-        width: 320px;
-        height: 520px;
-        border-radius: 10px;
-        -webkit-box-shadow: 0px 0px 6px -1px #000000; 
-        box-shadow: 0px 0px 6px -1px #000000;
-        background: #08171C;
-
-        display: flex;
-        align-items: center;
-    }   
-
-        #container .banner {
-            width: 520px;
-            height: 520px;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            background: linear-gradient(45deg, #143844, #08171C);
-
-
-            display: none;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-        }
-
-        #container .box-login {
-            width: 320px;
-            height: 520px;
-            border-radius: 10px;
-            background: #fff;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-            .box-login .box {
-                width: 80%;
-                height: 320px;
-
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                align-items: center;
-            }
-
-                .box .social {
-                    width: 240px;
-                    height: 42px;
-
-                    display: flex;
-                    justify-content: space-evenly;
-                    align-items: center;
-                }
-
-                    .social img {
-                        cursor: pointer;
-                    }
-
-            .box-login .box-account {
-                width: 80%;
-                height: 360px;
-
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                align-items: center;
-            }
-    
-    #bubble {
-        cursor: pointer;
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        right: 15px;
-        bottom: 15px;
-        border-radius: 50%;
-        border: 1px solid #483D8B;
-        background: slateblue;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 90%; 
+        height: auto; 
     }
+}
