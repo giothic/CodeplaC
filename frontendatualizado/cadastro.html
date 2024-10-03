@@ -1,146 +1,97 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cadastro.css">
     <title>Cadastro - CodeplaC</title>
+    <style>
+        /* Estilo básico para ocultar elementos */
+        .hidden {
+            display: none; /* Oculta os campos */
+        }
+
+        .form-container {
+            position: relative; /* Para permitir a sobreposição */
+        }
+
+        /* Estilo opcional para o dropdown */
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <!-- header -->
-    <header style="background-image: url('img/');">
-        <div class="container">
-            <nav>
-                <a href="index.html">
-                    <img src="img/logoprincipalparaosite.png" alt="Logo">
-                </a>
-                <ul class="ul">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="media.html">Média</a></li>
-                    <li class="dropdown">
-                        <a href="eventos.html" class="dropbtn">Eventos</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="historico.html">Histórico</a></li>
-                            <li><a href="galeria.html">Galeria</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="equipe.html">Equipe</a></li>
-                    <li class="dropdown">
-                        <a href="login.html" class="dropbtn">Login</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="cadastro.html">Cadastro</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="btn" href="contatos.html">Contatos</a></li>
-                </ul>
-                <div class="menu-icon" onclick="openMenu()">
-                    <i class="fa fa-bars"></i>
-                </div>
-                <div class="close-icon" onclick="closeMenu()">
-                    <i class="fa fa-times-circle" aria-hidden="true"></i>
-                </div>
-            </nav>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Olá! Seja bem-vindo</h1>
+            <p>Cadastre-se para participar dos nossos eventos e desenvolver suas habilidades.</p>
+            <img src="img/ilustracao-do-conceito-de-codificacao.png" alt="Ilustração de programação">
         </div>
-        <!-- end container-->
-    </header>
-    <!-- end header -->
-
-    <!-- Registration Form -->
-    <section class="register-section">
-        <div class="container">
-            <h2>Registrar-se</h2>
-            <div class="button-group">
-                <button type="button" id="participantBtn">Participante</button>
-                <button type="button" id="competitorBtn">Competidor</button>
+        <div class="right-panel">
+            <div class="logo">
+                <img src="img/logo_icone.png" alt="Logo CodeplaC">
             </div>
-            <form action="submit_cadastro.php" method="POST" id="registrationForm">
-                <div class="form-group">
-                    <label for="name">Nome Completo</label>
-                    <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirmar Senha</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirme sua senha" required>
-                </div>
-                
-                <div id="competitorGroup" style="display:none;">
-                    <h3>Adicione informações do grupo:</h3>
-                    <div class="form-group">
-                        <label for="groupName">Nome do Grupo</label>
-                        <input type="text" id="groupName" name="groupName" placeholder="Digite o nome do grupo" required>
+            <h2>Crie sua conta:</h2>
+            <div class="form-container">
+                <form action="/cadastrar" method="POST">
+                    <select id="tipo-conta" name="tipo-conta" onchange="toggleFormFields()" required>
+                        <option value="" disabled selected>Escolha o tipo de conta</option>
+                        <option value="usuario">Criar conta de usuário</option>
+                        <option value="adm">Criar conta de administrador</option>
+                    </select>
+                    
+                    <div id="user-fields" class="hidden">
+                        <input type="text" id="matricula" name="matricula" placeholder="Matrícula" required>
+                        <input type="text" id="nome" name="nome" placeholder="Nome" required>
+                        <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required>
                     </div>
-                    <h3>Adicione até 6 membros do grupo:</h3>
-                    <div class="form-group">
-                        <label for="member1">Membro 1</label>
-                        <input type="text" id="member1" name="member1" placeholder="Nome do membro" required>
+                    
+                    <div id="admin-fields" class="hidden">
+                        <input type="text" id="nome-adm" name="nome-adm" placeholder="Nome do Administrador" required>
+                        <input type="text" id="token" name="token" placeholder="Token de Registro" required>
                     </div>
-                    <div class="form-group">
-                        <label for="member2">Membro 2</label>
-                        <input type="text" id="member2" name="member2" placeholder="Nome do membro">
-                    </div>
-                    <div class="form-group">
-                        <label for="member3">Membro 3</label>
-                        <input type="text" id="member3" name="member3" placeholder="Nome do membro">
-                    </div>
-                    <div class="form-group">
-                        <label for="member4">Membro 4</label>
-                        <input type="text" id="member4" name="member4" placeholder="Nome do membro">
-                    </div>
-                    <div class="form-group">
-                        <label for="member5">Membro 5</label>
-                        <input type="text" id="member5" name="member5" placeholder="Nome do membro">
-                    </div>
-                    <div class="form-group">
-                        <label for="member6">Membro 6</label>
-                        <input type="text" id="member6" name="member6" placeholder="Nome do membro">
-                    </div>
-                </div>
 
-                <button type="submit" class="btn">Registrar</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <img src="img/uniceplacsimboloAzul.png" alt="simbolo" class="footer-logo">
-            <p>&copy;2024 Desenvolvido pela equipe CodeplaC.<br> 
-            <ul class="footer-links">
-                <li><a href="privacidade.html">Privacidade</a></li>
-                <li><a href="termos.html">Termos</a></li>
-                <li><a href="politicadecookies.html">Política de Cookies</a></li>
-            </ul>
-            <div class="social-icons">
-                <!-- ícones de mídia social -->
+                    <div id="auth-fields" class="hidden">
+                        <input type="email" id="email" name="email" placeholder="E-mail" required>
+                        <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+                        <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                    </div>
+                    
+                    <button type="submit">Cadastrar</button>
+                </form>
             </div>
+            <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
         </div>
-    </footer>
-    
-    <script src="js/main.js"></script>
+    </div>
+
     <script>
-        const participantBtn = document.getElementById('participantBtn');
-        const competitorBtn = document.getElementById('competitorBtn');
-        const competitorGroup = document.getElementById('competitorGroup');
+        function toggleFormFields() {
+            const tipoConta = document.getElementById('tipo-conta').value;
+            const userFields = document.getElementById('user-fields');
+            const adminFields = document.getElementById('admin-fields');
+            const authFields = document.getElementById('auth-fields');
 
-        participantBtn.addEventListener('click', () => {
-            competitorGroup.style.display = 'none';
-            document.getElementById('registrationForm').reset(); // Reset form fields
-        });
+            // Oculta todos os campos
+            userFields.classList.add('hidden');
+            adminFields.classList.add('hidden');
+            authFields.classList.add('hidden');
 
-        competitorBtn.addEventListener('click', () => {
-            competitorGroup.style.display = 'block';
-            document.getElementById('registrationForm').reset(); // Reset form fields
-        });
+            // Mostra os campos relevantes com base no tipo de conta selecionado
+            if (tipoConta === 'usuario') {
+                userFields.classList.remove('hidden');
+                authFields.classList.remove('hidden');
+            } else if (tipoConta === 'adm') {
+                adminFields.classList.remove('hidden');
+                authFields.classList.remove('hidden');
+            }
+        }
     </script>
 </body>
 </html>
