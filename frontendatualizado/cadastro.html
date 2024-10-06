@@ -5,27 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro.css">
     <title>Cadastro - CodeplaC</title>
-    <style>
-        /* Estilo básico para ocultar elementos */
-        .hidden {
-            display: none; /* Oculta os campos */
-        }
-
-        .form-container {
-            position: relative; /* Para permitir a sobreposição */
-        }
-
-        /* Estilo opcional para o dropdown */
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -40,12 +19,14 @@
             </div>
             <h2>Crie sua conta:</h2>
             <div class="form-container">
-                <form action="/cadastrar" method="POST">
-                    <select id="tipo-conta" name="tipo-conta" onchange="toggleFormFields()" required>
-                        <option value="" disabled selected>Escolha o tipo de conta</option>
-                        <option value="usuario">Criar conta de usuário</option>
-                        <option value="adm">Criar conta de administrador</option>
-                    </select>
+                <form method="POST" id="registrationForm">
+                    <div class="custom-select">
+                        <div class="select-selected">Escolha o tipo de conta</div>
+                        <div class="select-items select-hide">
+                            <div data-value="usuario">Usuário</div>
+                            <div data-value="adm">Administrador</div>
+                        </div>
+                    </div>
                     
                     <div id="user-fields" class="hidden">
                         <input type="text" id="matricula" name="matricula" placeholder="Matrícula" required>
@@ -54,44 +35,25 @@
                     </div>
                     
                     <div id="admin-fields" class="hidden">
-                        <input type="text" id="nome-adm" name="nome-adm" placeholder="Nome do Administrador" required>
-                        <input type="text" id="token" name="token" placeholder="Token de Registro" required>
+                        <input type="text" id="matriculaAdm" name="matricula" placeholder="Matrícula" required>
+                        <input type="text" id="nomeAdm" name="nome" placeholder="Nome" required>
+                        <input type="text" id="sobrenomeAdm" name="sobrenome" placeholder="Sobrenome" required>
                     </div>
 
                     <div id="auth-fields" class="hidden">
                         <input type="email" id="email" name="email" placeholder="E-mail" required>
                         <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+                        <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
                         <input type="password" id="senha" name="senha" placeholder="Senha" required>
                     </div>
                     
-                    <button type="submit">Cadastrar</button>
+                    <button id="cadastrarButton" type="button">Cadastrar</button>
                 </form>
             </div>
             <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
         </div>
     </div>
 
-    <script>
-        function toggleFormFields() {
-            const tipoConta = document.getElementById('tipo-conta').value;
-            const userFields = document.getElementById('user-fields');
-            const adminFields = document.getElementById('admin-fields');
-            const authFields = document.getElementById('auth-fields');
-
-            // Oculta todos os campos
-            userFields.classList.add('hidden');
-            adminFields.classList.add('hidden');
-            authFields.classList.add('hidden');
-
-            // Mostra os campos relevantes com base no tipo de conta selecionado
-            if (tipoConta === 'usuario') {
-                userFields.classList.remove('hidden');
-                authFields.classList.remove('hidden');
-            } else if (tipoConta === 'adm') {
-                adminFields.classList.remove('hidden');
-                authFields.classList.remove('hidden');
-            }
-        }
-    </script>
+    <script src="js/cadastro.js"></script>
 </body>
 </html>

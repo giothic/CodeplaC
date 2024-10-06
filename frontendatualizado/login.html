@@ -1,64 +1,63 @@
 <!DOCTYPE html>
-<html lang="pt=br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
-    <!--CSS-->
-    <link rel="stylesheet" href="/frontend/css/login.css">
-    <link rel="stylesheet" href="/frontend/css/login-media.css">
-
-    <!--JS & jQuery-->
-    <script type="text/javascript" src="js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="/css/login-media.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="container">
-        <div class="banner">
-            <h1>
-                Olá!<br>
-                Seja bem vindo.
-            </h1>
-            <img src="/frontend/img/login.png" width="275" weight="auto" alt="imagem-login">
-            <p style="color: #fff; font-weight: 400; font-family: 'Roboto', sans-serif;">
-                Bem-vindo ao CodeplaC! Acesse e participe dos nossos eventos.
-                <br>Estamos aqui para ajudar você a desenvolver suas habilidades
-                <br>e se destacar no mundo da programação.
-            </p>
-        </div>
-
-        <div class="box-login">
-            <div class="logo">
-                <img src="/frontend/img/logo_icone.png" width="100" weight="auto">
+    <main>
+        <div id="container">
+            <div class="banner">
+                <h1>
+                    Olá!<br>
+                    Seja bem-vindo.
+                </h1>
+                <img src="./img/logo_icone.png" width="275" alt="Imagem de login que representa o acesso à plataforma">
+                <p style="color: #fff; font-weight: 400; font-family: 'Roboto', sans-serif;">
+                    Bem-vindo ao CodeplaC! Acesse e participe dos nossos eventos.
+                    <br>Estamos aqui para ajudar você a desenvolver suas habilidades
+                    <br>e se destacar no mundo da programação.
+                </p>
             </div>
 
-            <div class="box">
-                <h2>Acesse sua conta:</h2>
-                <input type="text" name="username" id="username" placeholder="Matrícula">
-                <input type="password" name="password" id="password" placeholder="Senha">
-                
-                <a href="password.html">
-                    <p>Esqueceu a sua senha?</p>
-                </a>
+            <div class="box-login">
+                <div class="logo">
+                    <img src="./img/logo_icone.png" width="100" alt="Logo do CodeplaC">
+                </div>
 
-                <button>Login</button>
-                
-                <a href="account.html">
-                    <p>Criar uma conta</p>
-                </a>
+                <div class="box">
+                    <h2>Acesse sua conta:</h2>
+                    <input type="text" name="username" id="username" placeholder="Matrícula">
+                    <input type="password" name="password" id="password" placeholder="Senha">
 
-                <div class="social">
-                    <img src="img/google.png" alt="google">
-                    <img src="img/github.png" alt="github">
+                    <a href="password.html" title="Recuperar senha">
+                        <p>Esqueceu a sua senha?</p>
+                    </a>
+
+                    <button id="loginButton">Login</button>
+
+                    <a href="cadastro.html" title="Criar uma nova conta">
+                        <p>Criar uma conta</p>
+                    </a>
+
+                    <div class="social">
+                        <img src="img/google.png" alt="Login com Google">
+                        <img src="img/github.png" alt="Login com GitHub">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+    <script src="./js/login.js"></script>
 </body>
 </html>
