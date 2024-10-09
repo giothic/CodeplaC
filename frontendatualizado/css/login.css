@@ -147,3 +147,63 @@ body {
         justify-content: center;
         align-items: center;
     }
+
+    .custom-select {
+        position: relative; /* Necessário para a posição absoluta das opções */
+        width: 100%;
+        text-align: center;
+    }
+    
+    .select-selected {
+        background-color: #ffffff; /* Cor de fundo */
+        padding: 10px; /* Espaçamento interno */
+        border: none; /* Borda */
+        border-radius: 5px; /* Cantos arredondados */
+        cursor: pointer; /* Cursor de ponteiro */
+        font-size: 1.2rem; /* Aumenta o tamanho da fonte */
+        color: #246277; /* Cor do texto */
+        transition: border-color 0.3s; /* Transição suave */
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="%23246277" stroke-width="2"><path d="M4 6l4 4 4-4" fill="none" /></svg>'); /* Seta personalizada */
+        background-repeat: no-repeat; /* Evita repetição da imagem */
+        background-position: right 10px center; /* Posiciona a seta à direita */
+        background-size: 12px; /* Tamanho da seta */
+        text-align: center;
+    }
+    
+    .select-selected:focus {
+        outline: none; /* Remove o contorno padrão */
+        border-color: none; /* Cor da borda ao focar */
+    }
+    
+    .select-items {
+        position: absolute; /* Para permitir sobreposição */
+        left: 50%; /* Centraliza em relação ao pai */
+        transform: translateX(-50%); /* Centraliza corretamente no eixo X */
+        align-items: center;
+        background-color: #ffffff; /* Cor de fundo */
+        border: none; /* Sem borda */
+        border-radius: 5px; /* Bordas arredondadas */
+        z-index: 99; /* Para garantir que as opções fiquem acima de outros elementos */
+        max-height: 200px; /* Altura máxima do dropdown */
+        overflow-y: auto; /* Adiciona rolagem vertical se necessário */
+        min-width: 200px; /* Largura mínima opcional */
+        top: 0%; /* Posiciona logo abaixo do seletor */
+        margin-top: 10px; /* Espaçamento entre o seletor e o dropdown */
+    }
+    
+    
+    .select-items div {
+        padding: 10px; /* Espaçamento interno */
+        cursor: pointer; /* Cursor de ponteiro */
+        transition: background-color 0.3s; /* Transição suave ao passar o mouse */
+        font-size: 1.2rem; /* Aumenta o tamanho da fonte das opções */
+        color: #246277; /* Cor do texto das opções */
+    }
+    
+    .select-items div:hover {
+        background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+    }
+    
+    .select-hide {
+        display: none; /* Esconde as opções por padrão */
+    }

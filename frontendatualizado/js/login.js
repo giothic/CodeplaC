@@ -41,3 +41,28 @@ document.getElementById('loginButton').addEventListener('click', function(event)
     event.preventDefault(); 
     login(); 
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const selected = document.querySelector(".select-selected");
+    const items = document.querySelector(".select-items");
+    
+    selected.addEventListener("click", function() {
+        items.classList.toggle("select-hide");
+    });
+
+    items.querySelectorAll("div").forEach(item => {
+        item.addEventListener("click", function() {
+            selected.textContent = this.textContent; // Altera o texto do selecionado
+            selected.setAttribute("data-value", this.getAttribute("data-value")); // Salva o valor selecionado
+            items.classList.add("select-hide"); // Fecha as opções
+
+            toggleFormFields(); // Chama a função para mostrar/ocultar os campos
+        });
+    });
+
+    document.addEventListener("click", function(event) {
+        if (!selected.contains(event.target) && !items.contains(event.target)) {
+            items.classList.add("select-hide"); // Fecha o dropdown se clicar fora
+        }
+    });
+});

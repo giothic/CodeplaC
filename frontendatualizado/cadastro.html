@@ -20,40 +20,23 @@
             <h2>Crie sua conta:</h2>
             <div class="form-container">
                 <form method="POST" id="registrationForm">
-                    <div class="custom-select">
-                        <div class="select-selected">Escolha o tipo de conta</div>
-                        <div class="select-items select-hide">
-                            <div data-value="usuario">Usuário</div>
-                            <div data-value="adm">Administrador</div>
-                        </div>
-                    </div>
-                    
-                    <div id="user-fields" class="hidden">
-                        <input type="text" id="matricula" name="matricula" placeholder="Matrícula" required>
+                    <div id="user-fields">
+                        <input type="text" id="matricula" name="matricula" placeholder="Matrícula" required><br>
                         <input type="text" id="nome" name="nome" placeholder="Nome" required>
                         <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required>
                     </div>
-                    
-                    <div id="admin-fields" class="hidden">
-                        <input type="text" id="matriculaAdm" name="matricula" placeholder="Matrícula" required>
-                        <input type="text" id="nomeAdm" name="nome" placeholder="Nome" required>
-                        <input type="text" id="sobrenomeAdm" name="sobrenome" placeholder="Sobrenome" required>
-                    </div>
-
-                    <div id="auth-fields" class="hidden">
+                    <div id="auth-fields">
                         <input type="email" id="email" name="email" placeholder="E-mail" required>
                         <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
                         <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
                         <input type="password" id="senha" name="senha" placeholder="Senha" required>
                     </div>
-                    
                     <button id="cadastrarButton" type="button">Cadastrar</button>
                 </form>
             </div>
             <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
         </div>
     </div>
-
     <script src="js/cadastro.js"></script>
 </body>
 </html>
