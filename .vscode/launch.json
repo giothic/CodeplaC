@@ -1,14 +1,20 @@
 {
-	"configurations": [
-		{
-			"type": "java",
-			"name": "Spring Boot-CodeplacApplication<codeplac>",
-			"request": "launch",
-			"cwd": "${workspaceFolder}",
-			"mainClass": "codeplac.codeplac.CodeplacApplication",
-			"projectName": "codeplac",
-			"args": "",
-			"envFile": "${workspaceFolder}/.env"
-		}
-	]
+    "configurations": [
+		
+        {
+            "type": "java",
+            "name": "Spring Boot-CodeplacApplication<codeplac>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "codeplac.codeplac.CodeplacApplication",
+            "projectName": "codeplac",
+            "args": "",
+            "env": {
+                "DATABASE_URL": "jdbc:mysql://154.12.249.13:3306/codeplac_banco",
+                "DATABASE_USERNAME": "codeplac_dev0202",
+                "DATABASE_PASSWORD": "]$lqopCg?89O"
+            },
+            "envFile": "${workspaceFolder}/.env" // Se você também estiver usando um arquivo .env
+        }
+    ]
 }
