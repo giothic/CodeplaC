@@ -39,7 +39,6 @@ public class UsersModel {
     private String accessToken;
 
     @OneToMany(mappedBy = "usuario")
-
     private List<GroupModel> grupos;
 
     @OneToMany(mappedBy = "usuario")
