@@ -2,12 +2,12 @@ package codeplac.codeplac;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class CodeplacApplication {
+public class CodeplacApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CodeplacApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(CodeplacApplication.class, args);
+    }
 }
