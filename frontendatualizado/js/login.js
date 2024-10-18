@@ -9,7 +9,7 @@ function login() {
         return;
     }
 
-    fetch("http://localhost:8080/auth/login", {
+    fetch("https://codeplac-c7hy.onrender.com/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -27,8 +27,6 @@ function login() {
         }
     })
     .then(data => {
-
-        alert("Login bem-sucedido! Redirecionando...");
         window.location.href = "https://www.codeplac.com.br/"; 
     })
     .catch(error => {

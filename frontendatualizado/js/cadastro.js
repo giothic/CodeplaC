@@ -30,7 +30,7 @@ function cadastrar() {
     console.log("Enviando requisição para o servidor...");
 
     // Fazer a requisição POST para o servidor
-    fetch("http://localhost:8080/auth/register", {
+    fetch("https://codeplac-c7hy.onrender.com/auth/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
