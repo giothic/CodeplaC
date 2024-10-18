@@ -47,7 +47,6 @@ function cadastrar() {
         }
     })
     .then(data => {
-        alert("Cadastro bem-sucedido! Redirecionando...");
         window.location.href = "https://www.codeplac.com.br/";
     })
     .catch(error => {
