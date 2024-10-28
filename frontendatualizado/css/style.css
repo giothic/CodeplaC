@@ -19,17 +19,17 @@ body {
     padding: 0 5%;
 }
 
-.btn {
+.btndestaque {
     background-color: #347ebb;
     color: white;
-    padding: 15px 20px;
+    padding: 8px 8px;
     border-radius: 25px;
     cursor: pointer;
     display: inline-block;
     transition: 0.1s;
 }
 
-.btn:hover {
+.btndestaque:hover {
     background-color: #35a3a7;
 }
 
@@ -1126,4 +1126,30 @@ a:hover {
 .post span {
     font-size: 0.9em;
     color: #777;
+}
+
+/* Estilizando a scrollbar para navegadores WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 8px; /* Largura da scrollbar */
+    height: 8px; /* Altura da scrollbar (para scroll horizontal) */
+}
+
+::-webkit-scrollbar-track {
+    background: #141124;
+    border-radius: 10px; /* Bordas arredondadas do track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #236b9b; /* Cor do thumb (parte que arrasta) */
+    border-radius: 10px; /* Bordas arredondadas do thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #35a3a7; /* Cor do thumb ao passar o mouse */
+}
+
+/* Estilizando a scrollbar para Firefox */
+.scrollable-element {
+    scrollbar-width: thin; /* "auto" ou "thin" para largura */
+    scrollbar-color: transparent;
 }

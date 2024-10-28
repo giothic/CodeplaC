@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/usuario.css">
+    <title>CodeplaC</title>
+</head>
+<body>
+    <!-- header -->
+    <header style="background-image: url('img/basedefundositeindex.jpg');">
+        <div class="container">
+            <nav>
+                <a href="index.html">
+                    <img src="img/logoprincipalparaosite.png" alt="Logo">
+                </a>
+                <ul class="ul">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="media.html">Média</a></li>
+                    <li class="dropdown">
+                        <a href="eventos.html" class="dropbtn">Eventos</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="historico.html">Histórico</a></li>
+                            <li><a href="galeria.html">Galeria</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="equipe.html">Equipe</a></li>
+                    <li class="dropdown">
+                        <a href="login.html" class="dropbtn">Login</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="cadastro.html">Cadastro</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="btn" href="contatos.html">Contatos</a></li>
+                </ul>
+                <div class="menu-icon" onclick="openMenu()">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <div class="close-icon" onclick="closeMenu()">
+                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                </div>
+            </nav>
+            <section class="banner">
+            </section>
+        </div>
+        <!-- end container-->
+    </header>
+
+    <!-- Main content with user info and events -->
+    <main>
+        <div class="user-info">
+            <div class="profile-picture">
+                <!-- Imagem do perfil ou ícone -->
+                <span></span>
+            </div>
+            <div class="user-name">
+                Nome do Usuário
+            </div>
+        </div>
+
+        <div class="user-profile-container">
+                <div class="additional-info">
+                    <h2>Informações</h2>
+                    <ul>
+                        <li>Matrícula: *matricula do usuário*</li>
+                        <li>E-mail: *email cadastrado*</li>
+                        <li>Telefone: *número cadastrado*</li>
+                        <li>CPF: *cpf cadastrado*</li>
+                    </ul>
+                </div>
+            <div class="user-events-container">
+                <h2>Eventos Participados</h2>
+                <ul class="events-list">
+                    <li>Evento 1 - *Data*</li>
+                    <li>Evento 2 - *Data*</li>
+                    <li>Evento 3 - *Data*</li>
+                </ul>
+            </div>
+        </div>
+        <button class="edit-button">Editar</button>
+    </main>
+</body>
+</html>
