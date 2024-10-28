@@ -36,3 +36,33 @@ function togglePassword() {
     var type = passwordField.getAttribute("type") === "password" ? "text" : "password";
     passwordField.setAttribute("type", type);
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    
+    if (isLoggedIn) {
+        // Remove a seção de login
+        const loginSection = document.getElementById("loginSection"); // Suponha que sua seção de login tenha esse ID
+        if (loginSection) {
+            loginSection.style.display = 'none'; // Oculta a seção de login
+        }
+        
+        // Adiciona o ícone do usuário
+        const userIcon = document.createElement("div");
+        userIcon.innerHTML = '<i class="fa fa-user-circle" aria-hidden="true"></i>'; // Altere para o ícone que você quiser
+        userIcon.className = "user-icon"; // Adicione uma classe para estilização
+        document.querySelector("nav").appendChild(userIcon); // Adicione onde desejar, aqui adiciona ao nav
+        
+        // Você pode também adicionar um evento de clique para o ícone do usuário
+        userIcon.addEventListener("click", function() {
+            // Redireciona para a página de perfil ou exibe um menu
+            window.location.href = "perfil.html"; // Alterar para a sua página de perfil
+        });
+    }
+});
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    location.reload();  // Atualiza a página para aplicar as mudanças
+}

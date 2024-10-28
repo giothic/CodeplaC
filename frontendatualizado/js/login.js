@@ -1,6 +1,4 @@
-
 function login() {
-
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -27,13 +25,16 @@ function login() {
         }
     })
     .then(data => {
-        window.location.href = "https://www.codeplac.com.br/"; 
+        // Armazene uma variável de login no localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        // Redirecione ou apenas atualize a página
+        location.reload();  // Atualiza a página para aplicar as mudanças
     })
     .catch(error => {
-
         alert(error.message);
     });
 }
+
 
 document.getElementById('loginButton').addEventListener('click', function(event) {
     event.preventDefault(); 
