@@ -107,9 +107,10 @@
         height: 140px;
         border-radius: 50%;
         overflow: hidden;
-        border: 9px solid #1d283d;
+
+        box-shadow: 0 0 0 9px #1d283d; /* Define a "borda" externa */
         position: absolute;
-        top: 30%;
+        top: 200px;
         left: 50%;
         transform: translate(-50%, -50%);
         background-image: url('../img/giovannafoto.jpeg');
@@ -119,6 +120,17 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 15px;
+    }
+
+    .botoes{
+        
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
     }
 
     .profile-picture img {
@@ -131,22 +143,42 @@
     .user-name {
         font-size: 1.5em;
         font-weight: bold;
-        color: #333;
-        margin-top: 70px; /* Ajusta para ficar logo abaixo da foto */
+        color: #f5f5f5;
+        margin-top: 90px; /* Ajusta para ficar logo abaixo da foto */
         text-align: center;
+    }
+
+
+    .logout-button{
+        display: block;
+        margin: 22px 22px;
+        padding: 10px 20px;
+        background-color: #8b0000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 80px;
+        height: 40px;
+    }
+
+    .logout-button:hover{
+        background-color: #700000;
     }
 
 
 
     .edit-button {
         display: block;
-        margin: 15px auto;
+        margin: 22px 22px;
         padding: 10px 20px;
         background-color: #007bff;
         color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        width: 80px;
+        height: 40px;
     }
 
     .edit-button:hover {
