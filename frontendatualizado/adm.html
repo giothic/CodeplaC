@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administração</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/adm.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet" />
 </head>
 <body>
     <!-- Header -->
@@ -16,13 +19,8 @@
                     <img src="img/logoparaadministracaosite.png" alt="Logo">
                 </a>
                 <ul class="ul">
-                    <li class="dropdown">
-                        <a href="index.html" class="dropbtn">Home</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sobre.html">Sobre</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="media.html">Média</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="media.html">Ranking</a></li>
                     <li class="dropdown">
                         <a href="eventos.html" class="dropbtn">Eventos</a>
                         <ul class="dropdown-menu">
@@ -31,13 +29,9 @@
                         </ul>
                     </li>
                     <li><a href="equipe.html">Equipe</a></li>
-                    <li class="dropdown">
-                        <a href="login.html" class="dropbtn">Login</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="cadastro.html">Cadastro</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="btn" href="contatos.html">Contatos</a></li>
+                    <li><a href="contatos.html">Contatos</a></li>
+                    <li class="btndestaque hidden"><a href="login.html">Login</a></li>
+                    <li class="usuario-icon hidden" id="userIcon"><a href="usuario.html"><i class="ri-user-line"></i></a></li>
                 </ul>
                 <div class="menu-icon" onclick="openMenu()">
                     <i class="fa fa-bars"></i>
