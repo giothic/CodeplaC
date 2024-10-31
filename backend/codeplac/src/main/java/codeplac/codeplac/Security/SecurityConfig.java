@@ -23,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -49,8 +48,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/event/create").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/registration/create").hasRole("PARTICIPANT")
                         .requestMatchers(HttpMethod.GET, "/auth/list").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/auth/{matricula}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/auth/modify/{matricula}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/auth/{matricula}").hasAnyRole("ADMIN", "PARTICIPANT")
+                        .requestMatchers(HttpMethod.PUT, "/auth/modify/{matricula}").hasAnyRole("ADMIN", "PARTICIPANT")
                         .requestMatchers(HttpMethod.DELETE, "/auth/destroy/{matricula}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/event/list").permitAll()
                         .requestMatchers(HttpMethod.GET, "/event/{id}").permitAll()
@@ -84,7 +83,7 @@ public class SecurityConfig {
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowCredentials(true);
-    
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
@@ -96,7 +95,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
