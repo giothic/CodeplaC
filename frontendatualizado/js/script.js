@@ -39,7 +39,7 @@ function togglePassword() {
 
 // Verifica o estado de login ao carregar a página
 document.addEventListener("DOMContentLoaded", function() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Verifica se está logado como string
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'false'; // Verifica se está logado como string
 
     // Se o usuário estiver logado
     if (isLoggedIn) {
@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
         loginButton.classList.remove('hidden'); // Mostra o botão de login
     }
 });
+
 
 // Função para logout
 function logout() {
