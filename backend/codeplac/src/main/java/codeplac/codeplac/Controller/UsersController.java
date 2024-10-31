@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import codeplac.codeplac.Service.AuthService;
-import codeplac.codeplac.DTO.LoginRequest; 
+import codeplac.codeplac.DTO.LoginRequest;
 import codeplac.codeplac.DTO.LoginResponse;
 
 import codeplac.codeplac.Exception.Excecao;
@@ -75,12 +75,11 @@ public class UsersController {
         }
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         try {
             String token = authService.authenticate(loginRequest.getMatricula(), loginRequest.getPassword());
-            return ResponseEntity.ok(new LoginResponse(token));
+            return ResponseEntity.ok(new LoginResponse(loginRequest.getMatricula(), token));
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage(), e);
         }
