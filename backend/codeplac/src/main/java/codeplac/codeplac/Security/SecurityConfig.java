@@ -77,10 +77,10 @@ public class SecurityConfig {
         return http.build();
     }
 
-        @Bean
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("https://www.codeplac.com.br/", "http://127.0.0.1:5500/"));
+        config.setAllowedOrigins(Arrays.asList("https://www.codeplac.com.br", "http://127.0.0.1:5500"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowCredentials(true);

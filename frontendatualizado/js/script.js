@@ -30,38 +30,31 @@ galleryItems.forEach((item, index) => {
     });
 });
 
-// Senha ver, não ver pá
+// Função para alternar a visibilidade da senha
 function togglePassword() {
     var passwordField = document.getElementById("password");
     var type = passwordField.getAttribute("type") === "password" ? "text" : "password";
     passwordField.setAttribute("type", type);
 }
 
-
+// Verifica o estado de login ao carregar a página
 document.addEventListener("DOMContentLoaded", function() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'false'; // Verifica se está logado como string
+
+    // Se o usuário estiver logado
     if (isLoggedIn) {
-        // Remove a seção de login
-        const loginSection = document.getElementById("loginSection"); // Suponha que sua seção de login tenha esse ID
-        if (loginSection) {
-            loginSection.style.display = 'none'; // Oculta a seção de login
-        }
-        
-        // Adiciona o ícone do usuário
-        const userIcon = document.createElement("div");
-        userIcon.innerHTML = '<i class="fa fa-user-circle" aria-hidden="true"></i>'; // Altere para o ícone que você quiser
-        userIcon.className = "user-icon"; // Adicione uma classe para estilização
-        document.querySelector("nav").appendChild(userIcon); // Adicione onde desejar, aqui adiciona ao nav
-        
-        // Você pode também adicionar um evento de clique para o ícone do usuário
-        userIcon.addEventListener("click", function() {
-            // Redireciona para a página de perfil ou exibe um menu
-            window.location.href = "perfil.html"; // Alterar para a sua página de perfil
-        });
+        // Mostra o ícone do usuário
+        const userIcon = document.getElementById("userIcon");
+        userIcon.classList.remove('hidden'); // Mostra o ícone do usuário
+    } else {
+        // Se o usuário não estiver logado, mostra o botão de login
+        const loginButton = document.querySelector('.btndestaque'); // Usando a classe btndestaque
+        loginButton.classList.remove('hidden'); // Mostra o botão de login
     }
 });
 
+
+// Função para logout
 function logout() {
     localStorage.removeItem('isLoggedIn');
     location.reload();  // Atualiza a página para aplicar as mudanças
