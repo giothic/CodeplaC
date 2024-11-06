@@ -28,7 +28,7 @@ function login() {
 			localStorage.setItem("matricula", data.matricula);
 			localStorage.setItem("token", data.token);
 
-			location.replace("/frontendatualizado/index.html");
+			location.replace("/index.html");
 		})
 		.catch((error) => {
 			alert(error.message);
