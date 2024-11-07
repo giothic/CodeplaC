@@ -80,7 +80,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOriginPatterns(Arrays.asList("https://www.codeplac.com.br", "http://127.0.0.1:5500"));
+        config.setAllowedOriginPatterns(
+                Arrays.asList("https://codeplac.com.br", "https://www.codeplac.com.br", "http://127.0.0.1:5500"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowCredentials(true);
