@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Equipe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontendatualizado/css/inscricao.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Inscreva sua Equipe</h1>
+            <p>Preencha os dados ao lado para se inscrever no evento e criar sua equipe.</p>
+            <img src="/frontendatualizado/img/logo_icone.png" alt="Logo da Equipe">
+        </div>
+
+        <div class="right-panel">
+            <div class="header">
+                <h2>Formulário de Inscrição</h2>
+                <p id="counterInfo">Número de inscrições: 0 de 6</p> <!-- Contador de inscrições -->
+            </div>
+            
+            <a href="/frontendatualizado/usuario.html" class="back-button">Voltar para o Perfil</a>
+
+            <form id="registrationForm">
+                <div class="team-info">
+                    <label for="teamName">Nome da Equipe</label>
+                    <input type="text" id="teamName" name="teamName" placeholder="Nome da Equipe" required>
+
+                    <div class="members">
+                        <div class="members-group">
+                            <label for="leaderMatricula">Matrícula do Líder</label>
+                            <input type="text" id="leaderMatricula" name="leaderMatricula" placeholder="Matrícula do Líder" required>
+
+                            <label for="member2">Membro 2 (Matrícula)</label>
+                            <input type="text" id="member2" name="member2" placeholder="Matrícula do Membro 2" required>
+
+                            <label for="member3">Membro 3 (Matrícula)</label>
+                            <input type="text" id="member3" name="member3" placeholder="Matrícula do Membro 3" required>
+                        </div>
+
+                        <div class="members-group">
+                            <label for="member4">Membro 4 (Matrícula)</label>
+                            <input type="text" id="member4" name="member4" placeholder="Matrícula do Membro 4" required>
+
+                            <label for="member5">Membro 5 (Matrícula)</label>
+                            <input type="text" id="member5" name="member5" placeholder="Matrícula do Membro 5" required>
+
+                            <label for="member6">Membro 6 (Matrícula)</label>
+                            <input type="text" id="member6" name="member6" placeholder="Matrícula do Membro 6" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitButton" disabled>Inscrever</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/frontendatualizado/js/inscricao.js"></script>
+</body>
+</html>
