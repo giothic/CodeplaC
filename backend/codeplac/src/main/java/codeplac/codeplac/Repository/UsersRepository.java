@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import codeplac.codeplac.Model.UsersModel;
 import jakarta.transaction.Transactional;
 
-public interface UsersRepository extends JpaRepository<UsersModel, Integer> {
+public interface UsersRepository extends JpaRepository<UsersModel, String> {
 
     
     @Modifying
@@ -22,4 +22,5 @@ public interface UsersRepository extends JpaRepository<UsersModel, Integer> {
     @Transactional
     @Query("UPDATE UsersModel u SET u.accessToken = :accessToken WHERE u.matricula = :matricula")
     void updateAccessToken(String matricula, String accessToken);
+
 }

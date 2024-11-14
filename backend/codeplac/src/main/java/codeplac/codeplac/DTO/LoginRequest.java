@@ -3,9 +3,10 @@ package codeplac.codeplac.DTO;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+
 @Setter
+@Getter
 public class LoginRequest {
-    private int matricula;
+    private String matricula;
     private String password;
 }

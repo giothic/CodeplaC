@@ -46,7 +46,7 @@ public class UsersService {
         return usersRepository.findAll();
     }
 
-    public UsersModel getUserByMatricula(int matricula) throws Excecao {
+    public UsersModel getUserByMatricula(String matricula) throws Excecao {
         Optional<UsersModel> user = usersRepository.findById(matricula);
         if (user.isPresent()) {
             return user.get();
@@ -56,7 +56,7 @@ public class UsersService {
     }
 
 
-    public boolean deleteUser(int matricula) throws Excecao {
+    public boolean deleteUser(String matricula) throws Excecao {
         if (usersRepository.existsById(matricula)) {
             usersRepository.deleteById(matricula);
             return true;
@@ -65,7 +65,7 @@ public class UsersService {
         }
     }
 
-    public UsersModel updateUser(int matricula, UsersModel user) throws Excecao {
+    public UsersModel updateUser(String matricula, UsersModel user) throws Excecao {
         if (usersRepository.existsById(matricula)) {
             user.setMatricula(matricula);
             return usersRepository.save(user);

@@ -21,7 +21,7 @@ public class AuthService {
     @Autowired
     private TokenService tokenService;
 
-    public String authenticate(int matricula, String password) throws Excecao {
+    public String authenticate(String matricula, String password) throws Excecao {
         System.out.println("Matrícula: " + matricula); // Log da matrícula
         UsersModel user = usersService.getUserByMatricula(matricula);
         

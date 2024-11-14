@@ -3,6 +3,7 @@ package codeplac.codeplac.Model;
 import java.util.List;
 
 import codeplac.codeplac.Enum.UserTipo;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,7 +24,8 @@ import lombok.Setter;
 public class UsersModel {
 
     @Id
-    private int matricula;
+        @Column(unique = true)
+    private String matricula;
 
     private String nome;
     private String sobrenome;

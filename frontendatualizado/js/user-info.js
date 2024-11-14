@@ -4,7 +4,7 @@ function getUserData() {
 	const userMatricula = localStorage.getItem("matricula");
 	const userToken = localStorage.getItem("token");
 
-	fetch(`https://codeplac-c7hy.onrender.com/auth/${userMatricula}`, {
+	fetch(`https://codeplac-c7hy.onrender.com/users/${userMatricula}`, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",

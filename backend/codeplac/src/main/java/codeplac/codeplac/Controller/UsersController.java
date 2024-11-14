@@ -36,7 +36,7 @@ public class UsersController {
     }
 
     @GetMapping("/{matricula}")
-    public ResponseEntity<UsersModel> obterUsuario(@PathVariable int matricula) {
+    public ResponseEntity<UsersModel> obterUsuario(@PathVariable String matricula) {
         try {
             UsersModel user = usersService.getUserByMatricula(matricula);
             return new ResponseEntity<>(user, HttpStatus.OK);
@@ -46,7 +46,7 @@ public class UsersController {
     }
 
     @PutMapping("/modify/{matricula}")
-    public ResponseEntity<UsersModel> modificarUsuario(@PathVariable int matricula, @RequestBody UsersModel user) {
+    public ResponseEntity<UsersModel> modificarUsuario(@PathVariable String matricula, @RequestBody UsersModel user) {
         try {
             UsersModel updatedUser = usersService.updateUser(matricula, user);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
@@ -56,7 +56,7 @@ public class UsersController {
     }
 
     @DeleteMapping("/destroy/{matricula}")
-    public ResponseEntity<Void> apagarUsuario(@PathVariable int matricula) {
+    public ResponseEntity<Void> apagarUsuario(@PathVariable String matricula) {
         try {
             boolean deleted = usersService.deleteUser(matricula);
             if (deleted) {
