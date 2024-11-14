@@ -24,7 +24,7 @@ import codeplac.codeplac.Service.TicketService;
 public class TicketController {
 
   @Autowired
-  TicketService ticketService;
+  private TicketService ticketService;
 
   @PostMapping("/generate")
   public ResponseEntity<TicketModel> criarTicket(@RequestBody TicketModel ticket) {
