@@ -27,6 +27,7 @@ body {
     cursor: pointer;
     display: inline-block;
     transition: 0.3s;
+    -webkit-transition: background-color 0.3s ease, color 0.3s ease; /* para Safari */
 }
 
 .btndestaque:hover {
@@ -89,8 +90,8 @@ nav ul li a::after {
     position: absolute;
     bottom: -10%;
     left: 0%;
-    transition: 0.4s;
-  
+    transition: width 0.4s ease; /* Para ser compatível a outros web */
+    -webkit-transition: width 0.4s ease; /* para Safari */
 }
 
 nav ul li a:hover::after{
@@ -98,7 +99,7 @@ nav ul li a:hover::after{
     width: 100%;
     
 
-    
+
 }
 
 
@@ -179,8 +180,10 @@ nav .close-icon {
     font-size: 96px;
     background-image: linear-gradient(#FFFFFF, #ffffff);
     background-clip: text;
-    -webkit-background-clip: text;
+    -webkit-background-clip: text; /* para Safari */
     color: transparent;
+    transition: font-size 0.4s ease, text-shadow 0.4s ease;
+    -webkit-transition: font-size 0.4s ease, text-shadow 0.4s ease; /* para Safari */
 }
 .banner-text h1:hover{
 
@@ -204,6 +207,8 @@ nav .close-icon {
     font-weight: bold;
     margin: 18px 0;
     font-style: italic;
+    transition: font-size 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    -webkit-transition: font-size 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; /* para Safari */
 
 }
 .banner-text p:hover{
@@ -255,11 +260,8 @@ nav .close-icon {
     text-align: center;
     text-decoration: none;
     border-radius: 30px;
-    transition: background-color 0.3s;
-    transition: 0.4s;
-    
-    
-    
+    transition: background-color 0.3s, padding 0.4s, font-size 0.4s, text-shadow 0.4s;
+    -webkit-transition: background-color 0.3s, padding 0.4s, font-size 0.4s, text-shadow 0.4s; /* para Safari */
   }
   
   .btn:hover {
@@ -967,7 +969,8 @@ a {
     color: #ffffff;
     line-height: 1.6;
     margin-bottom: 20px;
-    text-align: justify; /* Alinha o texto ao centro */
+    text-align: justify; /* Alinha o texto até as margens laterais */
+    -webkit-font-smoothing: antialiased; /* Suaviza o texto no Safari */
 }
 
 /* Seção de Pódio */
@@ -1282,7 +1285,8 @@ a {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 
                 0 0 25px rgba(255, 253, 255, 0.4), 
                 0 0 35px rgba(255, 255, 255, 0.3);
-    animation: glow 2s ease-in-out infinite; 
+    animation: glow 2s ease-in-out infinite;
+    -webkit-animation: glow 2s ease-in-out infinite; /* para Safari */ 
   }
   
   /* Animação efeito pulsante video*/
@@ -1299,3 +1303,147 @@ a {
     }
   }
   
+  @-webkit-keyframes glow { /* para Safari */
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 
+                    0 0 25px rgba(255, 255, 255, 0.4), 
+                    0 0 35px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 
+                    0 0 35px rgba(255, 255, 255, 0.6), 
+                    0 0 45px rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* pop-up */
+.popup-container {
+    position: relative; 
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #e0f7fa;
+    border: 3px solid #ffffff; 
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+    animation: fadeInUp 0.7s forwards ease-out;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Exibir e animar o pop-up */
+.popup-container.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Animação de entrada */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Animação para balançar o pop-up */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+.popup-content {
+    text-align: center;
+    padding: 15px;
+}
+
+.popup-title {
+    color: #006064;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    animation: fadeInText 1s ease forwards;
+    opacity: 0;
+}
+
+.popup-text {
+    color: #004d40;
+    font-size: 1em;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    animation: fadeInText 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.close-btn {
+    color: #004d40;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute; 
+    top: 10px;
+    right: 10px;
+    z-index: 20; 
+}
+
+.redirect-btn {
+    padding: 12px 24px;
+    background-color: #00838f;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+.redirect-btn:hover {
+    background-color: #005662;
+}
+
+.popup-container:hover {
+    animation: shake 0.5s ease forwards;
+}
+
+/* Responsividade para celulares */
+@media screen and (max-width: 768px) {
+    .popup-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .popup-title {
+        font-size: 1.5em;
+    }
+
+    .popup-text {
+        font-size: 0.9em;
+    }
+
+    .redirect-btn {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
+}
+
+/* Safari */
+@supports (-webkit-overflow-scrolling: touch) {
+    .popup-container {
+        -webkit-animation: fadeInUp 0.7s forwards ease-out; 
+        animation: fadeInUp 0.7s forwards ease-out;
+    }
+}
