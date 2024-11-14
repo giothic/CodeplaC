@@ -104,6 +104,22 @@ input {
     transition: border-color 0.3s ease;
 }
 
+input.error {
+    border-color: red;
+}
+
+.erroMensagem {
+    font-size: 10px; /* Tamanho da fonte */
+    color: red; /* Cor da mensagem */
+    margin-top: 0px; /* Espaço entre o input e a mensagem */
+    max-width: 165px;
+
+}
+
+#auth-fields{
+    display: flex;
+}
+
 input:focus {
     border-bottom: 2px solid #246277;
 }

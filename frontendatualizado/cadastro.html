@@ -32,11 +32,17 @@
                         <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required>
                     </div>
                     <div id="auth-fields">
-                        <input type="email" id="email" name="email" placeholder="E-mail" required>
+                        <div>
+                        <input type="email" id="email" name="email" required pattern="^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$" placeholder="E-mail" required>
+                        <span id="erroEmail" class="erroMensagem" style="color: red; display: none;">Formato de e-mail inválido.</span>
                         <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+                        <span id="erroCpf" class="erroMensagem" style="color: red; display: none;">CPF inválido.</span>
+                        </div>
+                        <div>
                         <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
+                        <span id="erroTelefone" class="erroMensagem" style="color: red; display: none;">Telefone inválido.</span>
                         <input type="password" id="senha" name="senha" placeholder="Senha" required>
-                    </div>
+                    </div></div>
                     <button id="cadastrarButton" type="button">Cadastrar</button>
                 </form>
             </div>
