@@ -1,21 +1,13 @@
 function openPopup() {
-    const popup = document.getElementById("popup");
-    popup.style.display = "block"; 
-    setTimeout(() => {
-        popup.classList.add("show");
-    }, 10);
+    document.getElementById("popup").style.display = "block";
 }
 
 function closePopup() {
-    const popup = document.getElementById("popup");
-    popup.classList.remove("show"); 
-    setTimeout(() => {
-        popup.style.display = "none"; 
-    }, 500); 
+    document.getElementById("popup").style.display = "none";
 }
 
 function redirectToEvent() {
-    window.location.href = "https://www.codeplac.com.br/eventos.html"; 
+    window.location.href = ""; 
 }
 
 window.onload = function() {
