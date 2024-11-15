@@ -1341,56 +1341,62 @@ a {
 }
 
 #openModalBtn {
-    width: 60px;
+    width: 60px; 
     height: 60px;
-    background-color: #3a6279;
-    color: #ffffff;
-    border-radius: 50%;
+    background-color: #3a6279; 
+    color: #ffffff; 
+    border-radius: 50%; 
     display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    border: none; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    position: relative; /* Necessário para a borda */
+    overflow: hidden; /* Para garantir que o contorno não ultrapasse o botão */
 }
 
-/* Efeito de explosão grande e azul */
+/* Efeito de hover */
+#openModalBtn:hover {
+    background-color: #d1d1d1; 
+    transform: scale(1.1); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+    z-index: -1; /* Coloca o contorno abaixo do botão */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Efeito de brilho sutil */
+}
+
+/* Efeito de explosão no clique */
 @keyframes explode {
     0% {
-        transform: scale(1);
-        background-color: #3a6279; /* Cor inicial */
+        transform: scale(1); /* Tamanho normal */
     }
     50% {
-        transform: scale(2); /* O botão explode para um tamanho grande */
-        background-color: #0298ca; /* Azul brilhante */
+        transform: scale(1.5); /* Expansão do botão */
     }
     100% {
-        transform: scale(0); /* Desaparece ao final */
-        opacity: 0;
+        transform: scale(1); /* Retorna ao tamanho normal */
     }
 }
 
+/* Estilo do botão ao clicar */
 #openModalBtn:active {
-    animation: explode 0.4s ease-out forwards;
+    animation: explode 0.3s ease; /* Aplica a animação de explosão */
 }
 
-/* Ajustes visuais para o hover */
-#openModalBtn:hover {
-    background-color: #d1d1d1;
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-#openModalBtn:focus {
-    outline: none;
+#openModalBtn.active {
+    background-color: #0298ca;
+    color: #ffffff; 
 }
 
 #modalFooterBtn {
     position: absolute;
-    bottom: 315px;
+    bottom: 315px; 
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%);  
     margin-top: 5px;
+}
+
+#openModalBtn:focus {
+    outline: none; 
 }
