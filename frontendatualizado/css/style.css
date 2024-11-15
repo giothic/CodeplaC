@@ -1316,80 +1316,81 @@ a {
     }
 }
 
-/* pop-up */
-/* Estilo do container do pop-up */
-.popup-container {
-    display: none; /* Inicialmente oculto */
-    position: fixed;
-    top: 100px; /* Centraliza o pop-up abaixo do header */
+
+/* Estilo do modal */
+.modal-content {
+    background: linear-gradient(135deg, #0078a0, #00aaff); 
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    animation: slideDown 0.7s ease;
+}
+
+/* Animação de deslizamento */
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+#modalFooterBtn {
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#openModalBtn {
+    width: 60px;
+    height: 60px;
+    background-color: #3a6279;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Efeito de explosão grande e azul */
+@keyframes explode {
+    0% {
+        transform: scale(1);
+        background-color: #3a6279; /* Cor inicial */
+    }
+    50% {
+        transform: scale(2); /* O botão explode para um tamanho grande */
+        background-color: #0298ca; /* Azul brilhante */
+    }
+    100% {
+        transform: scale(0); /* Desaparece ao final */
+        opacity: 0;
+    }
+}
+
+#openModalBtn:active {
+    animation: explode 0.4s ease-out forwards;
+}
+
+/* Ajustes visuais para o hover */
+#openModalBtn:hover {
+    background-color: #d1d1d1;
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+#openModalBtn:focus {
+    outline: none;
+}
+
+#modalFooterBtn {
+    position: absolute;
+    bottom: 315px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-}
-
-/* Estilo do conteúdo do pop-up */
-.popup-content {
-    position: relative;
-    max-width: 400px;
-    margin: auto;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    animation: slideDown 0.5s ease-in-out; /* Animação ao aparecer */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Animação do pop-up */
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Botão de fechar */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    color: #333;
-}
-
-/* Título e texto do pop-up */
-.popup-title {
-    font-size: 24px;
-    color: #0078a0; /* Azul meio ciano */
-    margin-bottom: 10px;
-}
-
-.popup-text {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-/* Botão de redirecionamento */
-.redirect-btn {
-    background-color: #00aaff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.redirect-btn:hover {
-    background-color: #0078a0;
+    margin-top: 5px;
 }

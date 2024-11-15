@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    
     <title>CodeplaC</title>
 </head>
 <body>
@@ -42,6 +44,14 @@
                 <div class="banner-text">
                     <h1>CodeplaC</h1>
                     <p>Competição de programação em C</p>
+                    <!-- Botão colocado abaixo da frase -->
+<div id="modalFooterBtn" class="d-flex justify-content-center align-items-center" style="margin-top: 20px; display: block;">
+    <button type="button" id="openModalBtn" class="btn btn-secondary">
+        <!-- Ícone de desligar -->
+        <i class="fa-solid fa-power-off"></i>
+    </button>
+</div>
+
                 </div>
             </section>
         </div>
@@ -50,15 +60,26 @@
     <!-- end header -->
 </body>
 </html>
-<!-- Estrutura do Pop-up -->
-<div id="popup" class="popup-container">
-    <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">X</span>
-        <h2 class="popup-title">Evento de Programação - CodeplaC</h2>
-        <p class="popup-text">Participe do evento de programação CodeplaC em dezembro! Não perca!</p>
-        <button class="redirect-btn" onclick="redirectToEvent()">Cadastre sua equipe!</button>
+<!-- Modal do Evento -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">🎉 Evento de Programação - CodeplaC 🎉</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Prepare-se para o maior evento de programação! Junte-se a nós em dezembro para uma experiência única no CodeplaC. Não perca a chance de mostrar suas habilidades e competir com os melhores!</p>
+                <p>Para mais informações, acesse a página de eventos.</p>
+                <a href="https://www.codeplac.com.br/eventos.html" class="btn btn-primary" target="_blank">Veja os detalhes do evento!</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
     </div>
 </div>
+
      <!-- codeplac-->
      <section class="codeplac1">
         <!-- container -->
@@ -208,3 +229,4 @@ Além da plataforma de inscrição, também oferecemos aos alunos a possibilidad
     
      <script src="js/script.js"></script>
      <script src="js/popup.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
