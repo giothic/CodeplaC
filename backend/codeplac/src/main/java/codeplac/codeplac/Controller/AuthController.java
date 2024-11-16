@@ -25,6 +25,7 @@ public class AuthController {
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
     try {
       String token = authService.authenticate(loginRequest.getMatricula(), loginRequest.getPassword());
+
       return ResponseEntity.ok(new LoginResponse(loginRequest.getMatricula(), token));
     } catch (Excecao e) {
       throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage(), e);

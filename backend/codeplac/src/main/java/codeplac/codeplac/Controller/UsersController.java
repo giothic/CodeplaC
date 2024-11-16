@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import codeplac.codeplac.DTO.UserCreate;
+import codeplac.codeplac.DTO.UserResponse;
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Model.UsersModel;
 import codeplac.codeplac.Service.UsersService;
@@ -20,9 +22,10 @@ public class UsersController {
     private UsersService usersService;
 
     @PostMapping("/register")
-    public ResponseEntity<UsersModel> cadastrarUsuario(@RequestBody UsersModel user) {
+    public ResponseEntity<UserResponse> cadastrarUsuario(@RequestBody UserCreate user) {
         try {
-            UsersModel savedUser = usersService.createUser(user);
+            UserResponse savedUser = usersService.createUser(user);
+
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);

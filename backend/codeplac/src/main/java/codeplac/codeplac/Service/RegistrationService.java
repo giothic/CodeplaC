@@ -34,11 +34,15 @@ public class RegistrationService {
   }
 
   public RegistrationModel updateRegistration(int id, RegistrationModel registration) throws Excecao {
-    if (registrationRepository.existsById(id)) {
-      registration.setCodigo_grupo(registration.getCodigo_grupo());
-      registration.setEvento(registration.getEvento());
-      registration.setUsuario(registration.getUsuario());
-      return registrationRepository.save(registration);
+    Optional<RegistrationModel> optionalRegistration = registrationRepository.findById(id);
+
+    if (optionalRegistration.isPresent()) {
+      RegistrationModel existingRegistration = optionalRegistration.get();
+
+      if (registration.getCodigoGrupo() != null)
+        existingRegistration.setCodigoGrupo(registration.getCodigoGrupo());
+
+      return registrationRepository.save(existingRegistration);
     } else {
       throw new Excecao("Inscrição não encontrado com id: " + id);
     }
@@ -47,6 +51,7 @@ public class RegistrationService {
   public boolean deleteRegistration(int id) throws Excecao {
     if (registrationRepository.existsById(id)) {
       registrationRepository.deleteById(id);
+      return true;
     }
 
     throw new Excecao("Inscrição não encontrado com id: " + id);
