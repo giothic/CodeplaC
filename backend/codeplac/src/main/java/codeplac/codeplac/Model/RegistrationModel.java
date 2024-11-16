@@ -1,5 +1,6 @@
 package codeplac.codeplac.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,16 +22,17 @@ import lombok.Setter;
 
 public class RegistrationModel {
   @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id_Inscricao")
+  private int idInscricao;
 
-  private String codigo_grupo;
-
-  @ManyToOne
-  @JoinColumn(name = "evento_id")
-  private EventModel evento;
+  private String codigoGrupo;
 
   @ManyToOne
   @JoinColumn(name = "usuario_matricula")
   private UsersModel usuario;
+
+  @ManyToOne
+  @JoinColumn(name = "evento_id_Evento")
+  private EventModel evento;
 }

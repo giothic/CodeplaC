@@ -14,24 +14,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "ingresso")
+@Table(name = "classificacao")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class TicketModel {
+public class RankingModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_Ingresso")
-  private int idIngresso;
+  @Column(name = "id_Classificacao")
+  private int idClassificacao;
 
-  private String qrCode;
-  private Byte validacao;
+  private float pontuacao;
 
   @ManyToOne
-  @JoinColumn(name = "usuario_matricula")
-  private UsersModel usuario;
+  @JoinColumn(name = "equipe_id_Equipe")
+  private GroupModel equipe;
 
   @ManyToOne
   @JoinColumn(name = "evento_id_Evento")

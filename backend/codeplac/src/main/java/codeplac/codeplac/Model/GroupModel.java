@@ -1,11 +1,16 @@
 package codeplac.codeplac.Model;
 
+import java.time.Instant;
+import java.util.List;
+
+import codeplac.codeplac.Utils.JsonListConverter;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
@@ -13,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "grupocompetidor")
+@Table(name = "equipe")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,11 +26,21 @@ import lombok.Setter;
 public class GroupModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  @Column(name = "id_Equipe")
+  private int idEquipe;
 
-  private String grupo_id;
+  private Instant dataInscricao;
 
-  @ManyToOne
-  @JoinColumn(name = "usuario_matricula")
-  private UsersModel usuario;
+  @Column(columnDefinition = "json")
+  @Convert(converter = JsonListConverter.class)
+  private List<Member> membros;
+
+  private String nomeEquipe;
+  private String nomeLider;
+
+  @OneToMany(mappedBy = "equipe")
+  private List<RankingModel> classificacoes;
+
+  @OneToMany(mappedBy = "equipe")
+  private List<UsersModel> usuarios;
 }

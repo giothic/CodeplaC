@@ -34,10 +34,21 @@ public class GroupService {
     }
 
     public GroupModel updateGroup(int id, GroupModel groupModel) throws Excecao {
-        if (groupRepository.existsById(id)) {
-            groupModel.setGrupo_id(groupModel.getGrupo_id());
+        Optional<GroupModel> optionalGroup = groupRepository.findById(id);
 
-            return groupRepository.save(groupModel);
+        if (optionalGroup.isPresent()) {
+            GroupModel existingGroup = optionalGroup.get();
+
+            if (groupModel.getDataInscricao() != null)
+                existingGroup.setDataInscricao(groupModel.getDataInscricao());
+            if (groupModel.getMembros() != null)
+                existingGroup.setMembros(groupModel.getMembros());
+            if (groupModel.getNomeEquipe() != null)
+                existingGroup.setNomeEquipe(groupModel.getNomeEquipe());
+            if (groupModel.getNomeLider() != null)
+                existingGroup.setNomeLider(groupModel.getNomeLider());
+
+            return groupRepository.save(existingGroup);
         } else {
             throw new Excecao("Grupo não encontrado com id: " + id);
         }

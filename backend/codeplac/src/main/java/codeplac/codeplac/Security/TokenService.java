@@ -2,7 +2,7 @@ package codeplac.codeplac.Security;
 
 import java.time.Instant;
 
-
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 
 import codeplac.codeplac.Model.UsersModel;
-import codeplac.codeplac.Repository.UsersRepository;
+// import codeplac.codeplac.Repository.UsersRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 public class TokenService {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenService.class);
-    
+
     @Value("${api.security.token.secret}")
     private String secret;
 
@@ -33,11 +33,8 @@ public class TokenService {
     @Value("${api.security.token.refresh.expiration}")
     private long refreshExpiration; // Tempo de expiração do refresh token em segundos
 
-    private final UsersRepository userRepository;
-
-    public TokenService(UsersRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    // @Autowired
+    // private UsersRepository userRepository;
 
     // Gera o token de acesso
     public String generateToken(UsersModel user) {
@@ -45,7 +42,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("CodeplaC")
-                    .withSubject(String.valueOf(user.getMatricula()))
+                    .withSubject(user.getMatricula())
                     .withExpiresAt(generateAccessExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException e) {
@@ -91,9 +88,9 @@ public class TokenService {
 
     // Atualiza o refresh token no banco de dados
     @Transactional
-    public void updateRefreshToken(String matricula, String refreshToken) {
-        userRepository.updateRefreshToken(matricula, refreshToken);
-    }
+    // public void updateRefreshToken(String matricula, String refreshToken) {
+    // // userRepository.updateRefreshToken(matricula, refreshToken);
+    // }
 
     // Gera a data de expiração para o token de acesso
     private Instant generateAccessExpirationDate() {
@@ -109,12 +106,12 @@ public class TokenService {
     @Transactional
     public String generateAndStoreAccessToken(UsersModel user) {
         String accessToken = generateToken(user);
-        updateAccessToken(String.valueOf(user.getMatricula()), accessToken);
+        // updateAccessToken(String.valueOf(user.getMatricula()), accessToken);
         return accessToken;
     }
 
     // Atualiza o token de acesso no banco de dados
-    private void updateAccessToken(String matricula, String accessToken) {
-        userRepository.updateAccessToken(matricula, accessToken);
-    }
+    // private void updateAccessToken(String matricula, String accessToken) {
+    // userRepository.updateAccessToken(matricula, accessToken);
+    // }
 }

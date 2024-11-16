@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 public enum UserTipo {
 
     ADMIN(Set.of(new SimpleGrantedAuthority("ROLE_ADMIN"))),
-    PARTICIPANT(Set.of(new SimpleGrantedAuthority("ROLE_PARTICIPANT")));
+    Participante(Set.of(new SimpleGrantedAuthority("ROLE_Participante")));
 
     private final Set<GrantedAuthority> authorities;
 

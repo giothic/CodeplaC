@@ -34,15 +34,25 @@ public class EventService {
     }
 
     public EventModel updateEvent(int id, EventModel eventModel) throws Excecao {
-        if (eventRepository.existsById(id)) {
-            eventModel.setData(eventModel.getData());
-            eventModel.setNome(eventModel.getNome());
-            eventModel.setDescription(eventModel.getDescription());
-            eventModel.setLocal(eventModel.getLocal());
-            eventModel.setTipo(eventModel.getTipo());
-            eventModel.setStatus(eventModel.getStatus());
+        Optional<EventModel> optionalEvent = eventRepository.findById(id);
 
-            return eventRepository.save(eventModel);
+        if (optionalEvent.isPresent()) {
+            EventModel existingEvent = optionalEvent.get();
+
+            if (eventModel.getAno() != null)
+                existingEvent.setAno(eventModel.getAno());
+            if (eventModel.getBimestre() != null)
+                existingEvent.setBimestre(eventModel.getBimestre());
+            if (eventModel.getDataEvento() != null)
+                existingEvent.setDataEvento(eventModel.getDataEvento());
+            if (eventModel.getLugar() != null)
+                existingEvent.setLugar(eventModel.getLugar());
+            if (eventModel.getPeriodo() != null)
+                existingEvent.setPeriodo(eventModel.getPeriodo());
+            if (eventModel.getTipo() != null)
+                existingEvent.setTipo(eventModel.getTipo());
+
+            return eventRepository.save(existingEvent);
         } else {
             throw new Excecao("Evento não encontrado com id: " + id);
         }

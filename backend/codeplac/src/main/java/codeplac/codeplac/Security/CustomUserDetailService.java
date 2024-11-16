@@ -27,7 +27,7 @@ public class CustomUserDetailService implements UserDetailsService {
         logger.debug("Tentando carregar usuário com matrícula: {}", matricula);
 
         // Tenta encontrar o usuário pela matrícula
-        UsersModel user = repository.findByMatricula(Integer.parseInt(matricula))
+        UsersModel user = repository.findByMatricula(matricula)
                 .orElseThrow(() -> {
                     logger.warn("Usuário não encontrado com matrícula: {}", matricula);
                     return new UsernameNotFoundException("Usuário não encontrado com matrícula: " + matricula);
@@ -37,9 +37,9 @@ public class CustomUserDetailService implements UserDetailsService {
 
         // Retorna o UserDetails com a senha e as roles/authorities
         return new org.springframework.security.core.userdetails.User(
-                String.valueOf(user.getMatricula()),
+                user.getMatricula(),
                 user.getSenha(),
-                user.getTipoUser().getAuthorities() // Assumindo que tipoUser tem authorities mapeadas
+                user.getTipo().getAuthorities() // Assumindo que tipoUser tem authorities mapeadas
         );
     }
 }

@@ -34,10 +34,17 @@ public class TicketService {
   }
 
   public TicketModel updateTicket(int id, TicketModel ticket) throws Excecao {
-    if (ticketRepository.existsById(id)) {
-      ticket.setEvento(ticket.getEvento());
-      ticket.setValidado(ticket.getValidado());
-      return ticketRepository.save(ticket);
+    Optional<TicketModel> optionalTicket = ticketRepository.findById(id);
+
+    if (optionalTicket.isPresent()) {
+      TicketModel existingTicket = optionalTicket.get();
+
+      if (ticket.getQrCode() != null)
+        existingTicket.setQrCode(ticket.getQrCode());
+      if (ticket.getValidacao() != null)
+        existingTicket.setValidacao(ticket.getValidacao());
+
+      return ticketRepository.save(existingTicket);
     } else {
       throw new Excecao("Ticket não encontrado com id: " + id);
     }
@@ -46,6 +53,7 @@ public class TicketService {
   public boolean deleteTicket(int id) throws Excecao {
     if (ticketRepository.existsById(id)) {
       ticketRepository.deleteById(id);
+      return true;
     }
 
     throw new Excecao("Ticket não encontrado com id: " + id);
