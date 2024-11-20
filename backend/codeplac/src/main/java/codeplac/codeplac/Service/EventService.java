@@ -49,8 +49,8 @@ public class EventService {
                 existingEvent.setLugar(eventModel.getLugar());
             if (eventModel.getPeriodo() != null)
                 existingEvent.setPeriodo(eventModel.getPeriodo());
-            if (eventModel.getTipo() != null)
-                existingEvent.setTipo(eventModel.getTipo());
+            if (eventModel.getTipoEvento() != null)
+                existingEvent.setTipoEvento(eventModel.getTipoEvento());
 
             return eventRepository.save(existingEvent);
         } else {

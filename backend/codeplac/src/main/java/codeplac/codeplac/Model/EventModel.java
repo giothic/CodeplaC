@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import codeplac.codeplac.Enum.EventPeriodo;
+import codeplac.codeplac.Enum.EventTipo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -27,7 +28,7 @@ public class EventModel {
   @Column(name = "id_Evento")
   private int idEvento;
 
-  private int ano;
+  private Integer ano;
   private String bimestre;
 
   @Column(name = "dataEvento")
@@ -38,8 +39,9 @@ public class EventModel {
   @Enumerated(EnumType.STRING)
   private EventPeriodo periodo;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "tipoEvento")
-  private String tipoEvento;
+  private EventTipo tipoEvento;
 
   @OneToMany(mappedBy = "evento")
   private List<TicketModel> ingressos;
