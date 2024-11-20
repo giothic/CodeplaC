@@ -26,7 +26,7 @@ public class RegistrationModel {
   @Column(name = "id_Inscricao")
   private int idInscricao;
 
-  @Column(name = "codigoGrupo")
+  @Column(name = "codigo_grupo")
   private String codigoGrupo;
 
   @ManyToOne

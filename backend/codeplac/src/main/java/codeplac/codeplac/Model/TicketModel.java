@@ -26,7 +26,7 @@ public class TicketModel {
   @Column(name = "id_Ingresso")
   private int idIngresso;
 
-  @Column(name = "qrCode")
+  @Column(name = "qr_code")
   private String qrCode;
 
   private Byte validacao;
