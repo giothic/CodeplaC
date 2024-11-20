@@ -10,22 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import codeplac.codeplac.Model.GroupModel;
 import codeplac.codeplac.Model.UsersModel;
-import codeplac.codeplac.Repository.GroupRepository;
 import codeplac.codeplac.Repository.UsersRepository;
 import codeplac.codeplac.Security.TokenService;
 import codeplac.codeplac.DTO.UserRequestRegister;
 import codeplac.codeplac.DTO.UserRequestUpdate;
-import codeplac.codeplac.DTO.ResponsesDTO.User.UserGroupDTO;
 import codeplac.codeplac.DTO.ResponsesDTO.User.UserResponse;
 import codeplac.codeplac.Exception.Excecao;
 
 @Service
 public class UsersService {
-
-    @Autowired
-    private GroupRepository groupRepository;
 
     @Autowired
     private UsersRepository usersRepository;
@@ -41,13 +35,10 @@ public class UsersService {
             throw new Excecao("Usuário com matrícula já existe.");
         }
 
-        GroupModel group = groupRepository.findById(user.getEquipeId())
-                .orElseThrow(() -> new RuntimeException("Equipe não encontrada"));
-
         UsersModel newUser = new UsersModel();
         newUser.setCpf(user.getCpf());
         newUser.setEmail(user.getEmail());
-        newUser.setEquipe(group);
+        newUser.setEquipes(new ArrayList<>());
         newUser.setNome(user.getNome());
         newUser.setSobrenome(user.getSobrenome());
         newUser.setTelefone(user.getTelefone());
@@ -63,7 +54,7 @@ public class UsersService {
 
         usersRepository.save(newUser);
 
-        return createUserResponse(newUser, group);
+        return createUserResponse(newUser);
     }
 
     public List<UserResponse> getAllUsers() {
@@ -71,7 +62,7 @@ public class UsersService {
         List<UserResponse> usersResponseList = new ArrayList<>();
 
         for (UsersModel userModel : usersModelList) {
-            usersResponseList.add(createUserResponse(userModel, userModel.getEquipe()));
+            usersResponseList.add(createUserResponse(userModel));
         }
 
         return usersResponseList;
@@ -80,7 +71,7 @@ public class UsersService {
     public UserResponse getUserByMatricula(String matricula) throws Excecao {
         Optional<UsersModel> optionalUser = usersRepository.findById(matricula);
         if (optionalUser.isPresent()) {
-            UserResponse userResponse = createUserResponse(optionalUser.get(), optionalUser.get().getEquipe());
+            UserResponse userResponse = createUserResponse(optionalUser.get());
 
             return userResponse;
         } else {
@@ -118,7 +109,7 @@ public class UsersService {
 
             usersRepository.save(existingUser);
 
-            UserResponse userResponse = createUserResponse(existingUser, existingUser.getEquipe());
+            UserResponse userResponse = createUserResponse(existingUser);
 
             return userResponse;
         } else {
@@ -126,11 +117,7 @@ public class UsersService {
         }
     }
 
-    private UserResponse createUserResponse(UsersModel user, GroupModel group) {
-        UserGroupDTO groupDTO = new UserGroupDTO(
-                group.getIdEquipe(),
-                group.getNomeEquipe(),
-                group.getNomeLider());
+    private UserResponse createUserResponse(UsersModel user) {
 
         UserResponse userResponse = new UserResponse(
                 user.getMatricula(),
@@ -139,8 +126,7 @@ public class UsersService {
                 user.getSobrenome(),
                 user.getTelefone(),
                 user.getRefreshToken(),
-                user.getAccessToken(),
-                groupDTO);
+                user.getAccessToken());
 
         return userResponse;
     }

@@ -13,5 +13,4 @@ public class UserResponse {
   private String telefone;
   private String refreshToken;
   private String accessToken;
-  private UserGroupDTO equipe;
 }

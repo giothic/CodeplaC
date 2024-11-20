@@ -9,7 +9,8 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -26,15 +27,11 @@ import lombok.Setter;
 public class UsersModel {
 
     @Id
-    @Column(name = "matricula", length = 10)
+    @Column(name = "matricula", length = 7)
     private String matricula;
 
-    private String cpf;
-    private String email;
     private String nome;
-    private String senha;
     private String sobrenome;
-    private String telefone;
 
     @Column(name = "refreshToken")
     private String refreshToken;
@@ -46,13 +43,18 @@ public class UsersModel {
     @Enumerated(EnumType.STRING)
     private UserTipo tipoUsuario;
 
+    private String cpf;
+    private String email;
+    private String telefone;
+    private String senha;
+
     @OneToMany(mappedBy = "usuario")
     private List<TicketModel> ingressos;
 
     @OneToMany(mappedBy = "usuario")
     private List<RegistrationModel> inscricoes;
 
-    @ManyToOne
-    @JoinColumn(name = "equipe_id_Equipe")
-    private GroupModel equipe;
+    @ManyToMany
+    @JoinTable(name = "usuario_equipe", joinColumns = @JoinColumn(name = "usuario_matricula"), inverseJoinColumns = @JoinColumn(name = "equipe_id_Equipe"))
+    private List<GroupModel> equipes;
 }
