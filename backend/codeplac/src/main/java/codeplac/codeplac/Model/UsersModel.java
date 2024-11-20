@@ -33,13 +33,13 @@ public class UsersModel {
     private String nome;
     private String sobrenome;
 
-    @Column(name = "refreshToken")
+    @Column(name = "refresh_token")
     private String refreshToken;
 
-    @Column(name = "accessToken")
+    @Column(name = "access_token")
     private String accessToken;
 
-    @Column(name = "tipoUsuario")
+    @Column(name = "tipo_usuario")
     @Enumerated(EnumType.STRING)
     private UserTipo tipoUsuario;
 

@@ -1,13 +1,13 @@
 package codeplac.codeplac.Model;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import codeplac.codeplac.Utils.JsonListConverter;
 import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,16 +32,16 @@ public class GroupModel {
   @Column(name = "id_Equipe")
   private int idEquipe;
 
-  @Column(name = "dataInscricao")
-  private Instant dataInscricao;
+  @CreationTimestamp
+  @Column(name = "data_inscricao")
+  private LocalDateTime dataInscricao;
 
-  @Convert(converter = JsonListConverter.class)
-  private List<Member> membros;
+  private String membros;
 
-  @Column(name = "nomeEquipe")
+  @Column(name = "nome_equipe")
   private String nomeEquipe;
 
-  @Column(name = "nomeLider")
+  @Column(name = "nome_lider")
   private String nomeLider;
 
   @OneToMany(mappedBy = "equipe")

@@ -125,6 +125,7 @@ public class UsersService {
                 user.getNome(),
                 user.getSobrenome(),
                 user.getTelefone(),
+                user.getCpf(),
                 user.getRefreshToken(),
                 user.getAccessToken());
 

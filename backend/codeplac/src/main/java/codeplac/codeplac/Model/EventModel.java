@@ -31,7 +31,7 @@ public class EventModel {
   private Integer ano;
   private String bimestre;
 
-  @Column(name = "dataEvento")
+  @Column(name = "data_evento")
   private LocalDate dataEvento;
 
   private String lugar;
@@ -40,7 +40,7 @@ public class EventModel {
   private EventPeriodo periodo;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "tipoEvento")
+  @Column(name = "tipo_evento")
   private EventTipo tipoEvento;
 
   @OneToMany(mappedBy = "evento")
