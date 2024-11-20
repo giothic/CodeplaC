@@ -11,6 +11,6 @@ public class UserResponse {
   private String matricula;
   private String email;
   private String nome;
-  private String telefone;
+  private Integer telefone;
   private GroupDTO equipe;
 }

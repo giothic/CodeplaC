@@ -3,6 +3,8 @@ package codeplac.codeplac.Model;
 import java.time.Instant;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import codeplac.codeplac.Utils.JsonListConverter;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -10,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -41,6 +44,7 @@ public class GroupModel {
   @OneToMany(mappedBy = "equipe")
   private List<RankingModel> classificacoes;
 
-  @OneToMany(mappedBy = "equipe")
+  @JsonIgnore
+  @ManyToMany(mappedBy = "equipes")
   private List<UsersModel> usuarios;
 }
