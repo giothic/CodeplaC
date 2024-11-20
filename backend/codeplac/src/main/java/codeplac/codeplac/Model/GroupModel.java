@@ -36,7 +36,7 @@ public class GroupModel {
   @Column(name = "data_inscricao")
   private LocalDateTime dataInscricao;
 
-  private String membros;
+  private List<String> membros; 
 
   @Column(name = "nome_equipe")
   private String nomeEquipe;
