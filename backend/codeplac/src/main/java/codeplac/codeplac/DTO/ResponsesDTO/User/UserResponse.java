@@ -11,6 +11,7 @@ public class UserResponse {
   private String nome;
   private String sobrenome;
   private String telefone;
+  private String cpf;
   private String refreshToken;
   private String accessToken;
 }
