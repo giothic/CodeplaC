@@ -26,6 +26,7 @@ public class RegistrationModel {
   @Column(name = "id_Inscricao")
   private int idInscricao;
 
+  @Column(name = "codigoGrupo")
   private String codigoGrupo;
 
   @ManyToOne

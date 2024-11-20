@@ -39,7 +39,7 @@ public class CustomUserDetailService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getMatricula(),
                 user.getSenha(),
-                user.getTipo().getAuthorities() // Assumindo que tipoUser tem authorities mapeadas
+                user.getTipoUsuario().getAuthorities() // Assumindo que tipoUser tem authorities mapeadas
         );
     }
 }
