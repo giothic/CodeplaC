@@ -41,7 +41,7 @@ public class GroupModel {
   @Column(name = "nome_equipe")
   private String nomeEquipe;
 
-  @Column(name = "nome-lider")
+  @Column(name = "nome_lider")
   private String nomeLider;
 
   @OneToMany(mappedBy = "equipe")
