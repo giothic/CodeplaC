@@ -1,16 +1,16 @@
-package codeplac.codeplac.DTO;
+package codeplac.codeplac.DTO.ResponsesDTO.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 public class UserResponse {
   private String matricula;
   private String email;
   private String nome;
-  private Integer telefone;
-  private GroupDTO equipe;
+  private String sobrenome;
+  private String telefone;
+  private String refreshToken;
+  private String accessToken;
 }

@@ -27,15 +27,19 @@ public class EventModel {
   @Column(name = "id_Evento")
   private int idEvento;
 
-  private Integer ano;
+  private int ano;
   private String bimestre;
+
+  @Column(name = "dataEvento")
   private LocalDate dataEvento;
+
   private String lugar;
 
   @Enumerated(EnumType.STRING)
   private EventPeriodo periodo;
 
-  private String tipo;
+  @Column(name = "tipoEvento")
+  private String tipoEvento;
 
   @OneToMany(mappedBy = "evento")
   private List<TicketModel> ingressos;

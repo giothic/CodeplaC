@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import codeplac.codeplac.DTO.UserCreate;
-import codeplac.codeplac.DTO.UserResponse;
+import codeplac.codeplac.DTO.UserRequestRegister;
+import codeplac.codeplac.DTO.UserRequestUpdate;
+import codeplac.codeplac.DTO.ResponsesDTO.User.UserResponse;
 import codeplac.codeplac.Exception.Excecao;
-import codeplac.codeplac.Model.UsersModel;
 import codeplac.codeplac.Service.UsersService;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class UsersController {
     private UsersService usersService;
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponse> cadastrarUsuario(@RequestBody UserCreate user) {
+    public ResponseEntity<UserResponse> cadastrarUsuario(@RequestBody UserRequestRegister user) {
         try {
             UserResponse savedUser = usersService.createUser(user);
 
@@ -33,15 +33,15 @@ public class UsersController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<UsersModel>> listarUsuarios() {
-        List<UsersModel> users = usersService.getAllUsers();
+    public ResponseEntity<List<UserResponse>> listarUsuarios() {
+        List<UserResponse> users = usersService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{matricula}")
-    public ResponseEntity<UsersModel> obterUsuario(@PathVariable String matricula) {
+    public ResponseEntity<UserResponse> obterUsuario(@PathVariable String matricula) {
         try {
-            UsersModel user = usersService.getUserByMatricula(matricula);
+            UserResponse user = usersService.getUserByMatricula(matricula);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
@@ -49,9 +49,10 @@ public class UsersController {
     }
 
     @PutMapping("/modify/{matricula}")
-    public ResponseEntity<UsersModel> modificarUsuario(@PathVariable String matricula, @RequestBody UsersModel user) {
+    public ResponseEntity<UserResponse> modificarUsuario(@PathVariable String matricula,
+            @RequestBody UserRequestUpdate user) {
         try {
-            UsersModel updatedUser = usersService.updateUser(matricula, user);
+            UserResponse updatedUser = usersService.updateUser(matricula, user);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);

@@ -1,13 +1,11 @@
-package codeplac.codeplac.DTO;
+package codeplac.codeplac.DTO.ResponsesDTO.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
-public class GroupDTO {
+public class UserGroupDTO {
   private int idEquipe;
   private String nomeEquipe;
   private String nomeLider;
