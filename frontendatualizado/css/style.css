@@ -17,6 +17,7 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 5%;
+    margin-bottom: 100px;
 }
 
 .btndestaque {
@@ -210,18 +211,24 @@ nav ul li:hover .dropdown-menu {
   }
   
   .btn {
+    margin: auto;
     display: flex;
     justify-content: center;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    background-color: #007bff;
+    background-color: #0c3846;
+    border: none;
     text-align: center;
     text-decoration: none;
     border-radius: 30px;
     transition: background-color 0.3s, padding 0.4s, font-size 0.4s, text-shadow 0.4s;
     -webkit-transition: background-color 0.3s, padding 0.4s, font-size 0.4s, text-shadow 0.4s; /* para Safari */
+  }
+
+  .btn:focus{
+        outline: none;
   }
   
   .btn:hover {
@@ -1170,49 +1177,50 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh; 
+    height: 100vh; 
   }
   
   .video-container iframe {
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 
-                0 0 25px rgba(255, 253, 255, 0.4), 
-                0 0 35px rgba(255, 255, 255, 0.3);
-    animation: glow 2s ease-in-out infinite;
-    -webkit-animation: glow 2s ease-in-out infinite; /* para Safari */ 
-  }
-  
-  /* Animação efeito pulsante video*/
-  @keyframes glow {
-    0%, 100% {
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 
-                  0 0 25px rgba(255, 255, 255, 0.4), 
-                  0 0 35px rgba(255, 255, 255, 0.3);
-    }
-    50% {
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 
-                  0 0 35px rgba(255, 255, 255, 0.6), 
-                  0 0 45px rgba(255, 255, 255, 0.4);
-    }
-  }
-  
-  @-webkit-keyframes glow { /* para Safari */
-    0%, 100% {
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 
-                    0 0 25px rgba(255, 255, 255, 0.4), 
-                    0 0 35px rgba(255, 255, 255, 0.3);
-    }
-    50% {
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 
-                    0 0 35px rgba(255, 255, 255, 0.6), 
-                    0 0 45px rgba(255, 255, 255, 0.4);
-    }
+    box-shadow: 0 0 15px rgba(52, 109, 167, 0.2), 
+    0 0 25px rgba(52, 109, 167, 0.1), 
+    0 0 35px rgba(52, 109, 167, 0.05);
+animation: glow 2s ease-in-out infinite;
+-webkit-animation: glow 2s ease-in-out infinite; /* para Safari */}
+
+/* Animação efeito pulsante video */
+@keyframes glow {
+0%, 100% {
+box-shadow: 0 0 15px rgba(52, 109, 167, 0.2), 
+            0 0 25px rgba(52, 109, 167, 0.1), 
+            0 0 35px rgba(52, 109, 167, 0.05);
 }
+50% {
+box-shadow: 0 0 25px rgba(52, 109, 167, 0.4), 
+            0 0 35px rgba(52, 109, 167, 0.3), 
+            0 0 45px rgba(52, 109, 167, 0.2);
+}
+}
+
+@-webkit-keyframes glow { /* para Safari */
+0%, 100% {
+box-shadow: 0 0 15px rgba(52, 109, 167, 0.2), 
+            0 0 25px rgba(52, 109, 167, 0.1), 
+            0 0 35px rgba(52, 109, 167, 0.05);
+}
+50% {
+box-shadow: 0 0 25px rgba(52, 109, 167, 0.4), 
+            0 0 35px rgba(52, 109, 167, 0.3), 
+            0 0 45px rgba(52, 109, 167, 0.2);
+}
+}
+
+
 
 
 /* Estilo do modal */
 .modal-content {
-    background: linear-gradient(135deg, #0078a0, #00aaff); 
+    background: #154959; 
     color: white;
     border-radius: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
@@ -1236,7 +1244,8 @@ a {
 #openModalBtn {
     width: 60px; 
     height: 60px;
-    background-color: #3a6279; 
+    background-color: #0c3846;
+    border: none; 
     color: #ffffff; 
     border-radius: 50%; 
     display: flex;
