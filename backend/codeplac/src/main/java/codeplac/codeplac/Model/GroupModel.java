@@ -29,13 +29,16 @@ public class GroupModel {
   @Column(name = "id_Equipe")
   private int idEquipe;
 
+  @Column(name = "dataInscricao")
   private Instant dataInscricao;
 
-  @Column(columnDefinition = "json")
   @Convert(converter = JsonListConverter.class)
   private List<Member> membros;
 
+  @Column(name = "nomeEquipe")
   private String nomeEquipe;
+
+  @Column(name = "nomeLider")
   private String nomeLider;
 
   @OneToMany(mappedBy = "equipe")

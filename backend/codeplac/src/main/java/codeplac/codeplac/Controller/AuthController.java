@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import codeplac.codeplac.DTO.LoginRequest;
-import codeplac.codeplac.DTO.LoginResponse;
+import codeplac.codeplac.DTO.ResponsesDTO.Auth.LoginResponse;
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Service.AuthService;
 

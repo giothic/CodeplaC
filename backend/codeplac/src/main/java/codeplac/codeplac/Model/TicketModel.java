@@ -26,7 +26,9 @@ public class TicketModel {
   @Column(name = "id_Ingresso")
   private int idIngresso;
 
+  @Column(name = "qrCode")
   private String qrCode;
+
   private Byte validacao;
 
   @ManyToOne

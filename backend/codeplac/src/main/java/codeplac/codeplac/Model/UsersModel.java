@@ -2,11 +2,8 @@ package codeplac.codeplac.Model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import codeplac.codeplac.Enum.UserTipo;
 import jakarta.persistence.Column;
-// import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,7 +26,7 @@ import lombok.Setter;
 public class UsersModel {
 
     @Id
-    @Column(name = "matricula", length = 8)
+    @Column(name = "matricula", length = 10)
     private String matricula;
 
     private String cpf;
@@ -39,8 +36,15 @@ public class UsersModel {
     private String sobrenome;
     private String telefone;
 
+    @Column(name = "refreshToken")
+    private String refreshToken;
+
+    @Column(name = "accessToken")
+    private String accessToken;
+
+    @Column(name = "tipoUsuario")
     @Enumerated(EnumType.STRING)
-    private UserTipo tipo;
+    private UserTipo tipoUsuario;
 
     @OneToMany(mappedBy = "usuario")
     private List<TicketModel> ingressos;
@@ -48,7 +52,6 @@ public class UsersModel {
     @OneToMany(mappedBy = "usuario")
     private List<RegistrationModel> inscricoes;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "equipe_id_Equipe")
     private GroupModel equipe;

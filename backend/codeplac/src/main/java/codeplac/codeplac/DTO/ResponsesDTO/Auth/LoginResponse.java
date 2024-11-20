@@ -1,4 +1,4 @@
-package codeplac.codeplac.DTO;
+package codeplac.codeplac.DTO.ResponsesDTO.Auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

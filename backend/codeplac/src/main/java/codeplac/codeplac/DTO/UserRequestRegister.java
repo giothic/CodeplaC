@@ -6,15 +6,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserCreate {
+public class UserRequestRegister {
   private String matricula;
-
   private String cpf;
   private String email;
   private String nome;
   private String senha;
   private String sobrenome;
   private String telefone;
-  private UserTipo tipo;
+  private UserTipo tipoUsuario;
   private int equipeId;
 }
