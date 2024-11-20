@@ -48,7 +48,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/users/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/group/create").permitAll()
                         .requestMatchers(HttpMethod.POST, "/event/create").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/registration/create").hasRole("Participante")
+                        .requestMatchers(HttpMethod.POST, "/registration/create").hasRole("PARTICIPANT")
                         .requestMatchers(HttpMethod.GET, "/users/list").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/{matricula}").hasAnyRole("ADMIN", "PARTICIPANT")
                         .requestMatchers(HttpMethod.PUT, "/users/modify/{matricula}").hasAnyRole("ADMIN", "PARTICIPANT")
