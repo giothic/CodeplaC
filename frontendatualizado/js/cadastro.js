@@ -18,16 +18,17 @@ function cadastrar() {
         return;
     }
 
-    const dadosCadastro = {
-        matricula: matricula,
-        nome: nome,
-        sobrenome: sobrenome,
-        tipoUser: "PARTICIPANT",
-        cpf: cpf, // CPF sem máscara
-        email: email,
-        telefone: telefone, // Telefone sem máscara
-        senha: senha
-    };
+const dadosCadastro = {
+    matricula: String(matricula).padStart(7, "0"), // Garante que a matrícula seja uma string de 7 caracteres
+    nome: nome,
+    sobrenome: sobrenome,
+    tipo_usuario: "PARTICIPANT",
+    cpf: cpf, // CPF sem máscara
+    email: email,
+    telefone: telefone, // Telefone sem máscara
+    senha: senha
+};
+
 
     // Envio ao servidor
     console.log("Dados de cadastro:", JSON.stringify(dadosCadastro));
@@ -149,7 +150,7 @@ document.getElementById('matricula').addEventListener('input', function(event) {
 document.getElementById('email').addEventListener('input', function(event) {
     const email = event.target.value;
     const erroEmail = document.getElementById('erroEmail');
-    const emailPattern = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+    const emailPattern = /^[\w\.\-]+@[a-zA-Z\d\.\-]+\.[a-zA-Z]{2,}$/;
 
     if (!emailPattern.test(email)) {
         event.target.classList.add('error');

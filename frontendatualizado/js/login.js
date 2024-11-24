@@ -28,7 +28,7 @@ function login() {
 			localStorage.setItem("matricula", data.matricula);
 			localStorage.setItem("token", data.token);
 
-			location.replace("/index.html");
+			location.replace("https://www.codeplac.com.br");
 		})
 		.catch((error) => {
 			alert(error.message);
