@@ -314,7 +314,7 @@ nav ul li:hover .dropdown-menu {
     color: hsl(0, 0%, 100%);
 }
 
-/publico alvo/
+/*publico alvo*/
 .codeplac2-img img {
     width: 550px; 
     height: auto; 
@@ -1245,7 +1245,6 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
     width: 60px; 
     height: 60px;
     background-color: #0c3846;
-    border: none; 
     color: #ffffff; 
     border-radius: 50%; 
     display: flex;
@@ -1253,6 +1252,7 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
     align-items: center;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    border: none; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
     position: relative; /* Necessário para a borda */
     overflow: hidden; /* Para garantir que o contorno não ultrapasse o botão */
