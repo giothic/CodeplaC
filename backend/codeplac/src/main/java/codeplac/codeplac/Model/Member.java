@@ -10,5 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
-  private String nome;
+  private String matricula;
 }

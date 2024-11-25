@@ -52,7 +52,7 @@ public class UsersController {
             @PathVariable String matricula,
             @RequestParam String field,
             @RequestParam String password,
-            @RequestBody UserRequestUpdate user) {
+            @RequestBody UsersModel user) {
         try {
             UserResponse updatedUser = usersService.updateUser(matricula, user, field, password);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);

@@ -7,7 +7,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import codeplac.codeplac.Utils.JsonListConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,15 +30,17 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GroupModel {
   @Id
+  @Column(name = "id_equipe")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_Equipe")
   private int idEquipe;
 
   @CreationTimestamp
   @Column(name = "data_inscricao")
   private LocalDateTime dataInscricao;
 
-  private List<String> membros; 
+  @Column(columnDefinition = "json")
+  @Convert(converter = JsonListConverter.class)
+  private List<Member> membros;
 
   @Column(name = "nome_equipe")
   private String nomeEquipe;

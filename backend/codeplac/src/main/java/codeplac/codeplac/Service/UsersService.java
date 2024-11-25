@@ -86,7 +86,7 @@ public class UsersService {
         }
     }
 
-    public UserResponse updateUser(String matricula, UserRequestUpdate user, String field, String password)
+    public UserResponse updateUser(String matricula, UsersModel user, String field, String password)
             throws Excecao {
         Optional<UsersModel> optionalUser = usersRepository.findByMatricula(matricula);
 

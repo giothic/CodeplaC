@@ -21,8 +21,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RankingModel {
   @Id
+  @Column(name = "id_classificacao")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_Classificacao")
   private int idClassificacao;
 
   private float pontuacao;

@@ -23,17 +23,17 @@ import lombok.Setter;
 public class RegistrationModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_Inscricao")
+  @Column(name = "id_inscricao")
   private int idInscricao;
 
   @Column(name = "codigo_grupo")
   private String codigoGrupo;
 
   @ManyToOne
-  @JoinColumn(name = "usuario_matricula")
-  private UsersModel usuario;
-
-  @ManyToOne
   @JoinColumn(name = "evento_id_Evento")
   private EventModel evento;
+
+  @ManyToOne
+  @JoinColumn(name = "usuario_matricula")
+  private UsersModel usuario;
 }
