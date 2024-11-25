@@ -6,10 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import codeplac.codeplac.DTO.UserRequestRegister;
-import codeplac.codeplac.DTO.UserRequestUpdate;
 import codeplac.codeplac.DTO.ResponsesDTO.User.UserResponse;
 import codeplac.codeplac.Exception.Excecao;
+import codeplac.codeplac.Model.UsersModel;
 import codeplac.codeplac.Service.UsersService;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class UsersController {
     private UsersService usersService;
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponse> cadastrarUsuario(@RequestBody UserRequestRegister user) {
+    public ResponseEntity<UserResponse> cadastrarUsuario(@RequestBody UsersModel user) {
         try {
             UserResponse savedUser = usersService.createUser(user);
 
@@ -61,7 +60,6 @@ public class UsersController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
-    
 
     @DeleteMapping("/destroy/{matricula}")
     public ResponseEntity<Void> apagarUsuario(@PathVariable String matricula) {
