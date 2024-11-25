@@ -49,15 +49,19 @@ public class UsersController {
     }
 
     @PutMapping("/modify/{matricula}")
-    public ResponseEntity<UserResponse> modificarUsuario(@PathVariable String matricula,
+    public ResponseEntity<UserResponse> modificarUsuario(
+            @PathVariable String matricula,
+            @RequestParam String field,
+            @RequestParam String password,
             @RequestBody UserRequestUpdate user) {
         try {
-            UserResponse updatedUser = usersService.updateUser(matricula, user);
+            UserResponse updatedUser = usersService.updateUser(matricula, user, field, password);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (Excecao e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
+    
 
     @DeleteMapping("/destroy/{matricula}")
     public ResponseEntity<Void> apagarUsuario(@PathVariable String matricula) {

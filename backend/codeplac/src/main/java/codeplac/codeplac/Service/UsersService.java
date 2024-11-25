@@ -88,34 +88,44 @@ public class UsersService {
         }
     }
 
-    public UserResponse updateUser(String matricula, UserRequestUpdate user) throws Excecao {
+    public UserResponse updateUser(String matricula, UserRequestUpdate user, String field, String password) throws Excecao {
         Optional<UsersModel> optionalUser = usersRepository.findByMatricula(matricula);
-
+    
         if (optionalUser.isPresent()) {
             UsersModel existingUser = optionalUser.get();
-
-            if (user.getEmail() != null)
-                existingUser.setEmail(user.getEmail());
-            if (user.getNome() != null)
-                existingUser.setNome(user.getNome());
-            if (user.getSobrenome() != null)
-                existingUser.setSobrenome(user.getSobrenome());
-            if (user.getSenha() != null)
-                existingUser.setSenha(passwordEncoder.encode(user.getSenha()));
-            if (user.getSobrenome() != null)
-                existingUser.setSobrenome(user.getSobrenome());
-            if (user.getTelefone() != null)
-                existingUser.setTelefone(user.getTelefone());
-
+    
+            if (!passwordEncoder.matches(password, existingUser.getSenha())) {
+                throw new Excecao("Senha incorreta.");
+            }
+    
+            switch (field) {
+                case "email":
+                    if (user.getEmail() != null) existingUser.setEmail(user.getEmail());
+                    break;
+                case "nome":
+                    if (user.getNome() != null) existingUser.setNome(user.getNome());
+                    break;
+                case "sobrenome":
+                    if (user.getSobrenome() != null) existingUser.setSobrenome(user.getSobrenome());
+                    break;
+                case "telefone":
+                    if (user.getTelefone() != null) existingUser.setTelefone(user.getTelefone());
+                    break;
+                case "senha":
+                    if (user.getSenha() != null) existingUser.setSenha(passwordEncoder.encode(user.getSenha()));
+                    break;
+                default:
+                    throw new Excecao("Campo inválido: " + field);
+            }
+    
             usersRepository.save(existingUser);
-
-            UserResponse userResponse = createUserResponse(existingUser);
-
-            return userResponse;
+    
+            return createUserResponse(existingUser);
         } else {
             throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
         }
     }
+    
 
     private UserResponse createUserResponse(UsersModel user) {
 
