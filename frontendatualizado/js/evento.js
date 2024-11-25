@@ -1,6 +1,8 @@
 window.addEventListener("DOMContentLoaded", getEventData);
 
 function getEventData() {
+	let eventData;
+
 	fetch("https://codeplac-c7hy.onrender.com/event/list", {
 		method: "GET",
 		headers: {
@@ -14,15 +16,16 @@ function getEventData() {
 				throw new Error("Falha na busca de eventos.");
 			}
 		})
-		.then((data) => {
-			renderEvents(data);
-		})
+		.then((data) => (eventData = data))
 		.catch((error) => {
 			alert(error.message);
+		})
+		.finally(() => {
+			renderEvents(eventData);
 		});
 }
 
-function renderEvents(data) {
+function renderEvents(data = []) {
 	const eventList = document.querySelector("#eventos-lista");
 
 	if (data.length == 0) {
