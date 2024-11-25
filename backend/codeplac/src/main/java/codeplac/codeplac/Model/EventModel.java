@@ -9,6 +9,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -25,7 +27,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EventModel {
   @Id
-  @Column(name = "id_Evento")
+  @Column(name = "id_evento")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int idEvento;
 
   private Integer ano;
@@ -34,6 +37,8 @@ public class EventModel {
   @Column(name = "data_evento")
   private LocalDate dataEvento;
 
+  private String nome;
+  private String descricao;
   private String lugar;
 
   @Enumerated(EnumType.STRING)

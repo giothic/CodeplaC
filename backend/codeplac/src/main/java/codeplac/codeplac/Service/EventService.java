@@ -1,11 +1,13 @@
 package codeplac.codeplac.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import codeplac.codeplac.DTO.ResponsesDTO.Event.EventResponse;
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Model.EventModel;
 import codeplac.codeplac.Repository.EventRepository;
@@ -16,30 +18,39 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    public EventModel createEvent(EventModel eventModel) {
-        return eventRepository.save(eventModel);
+    public EventResponse createEvent(EventModel eventModel) {
+        eventRepository.save(eventModel);
+
+        return createEventResponse(eventModel);
     }
 
-    public List<EventModel> getAllEvents() {
-        return eventRepository.findAll();
+    public List<EventResponse> getAllEvents() {
+        List<EventModel> events = eventRepository.findAll();
+        List<EventResponse> eventsResponse = new ArrayList<>();
+
+        for (EventModel eventModel : events) {
+            eventsResponse.add(createEventResponse(eventModel));
+        }
+
+        return eventsResponse;
     }
 
-    public EventModel getEventById(int id) throws Excecao {
-        Optional<EventModel> event = eventRepository.findById(id);
-        if (event.isPresent()) {
-            return event.get();
+    public EventResponse getEventById(int id) throws Excecao {
+        Optional<EventModel> optionalEvent = eventRepository.findById(id);
+        if (optionalEvent.isPresent()) {
+            return createEventResponse(optionalEvent.get());
         }
 
         throw new Excecao("Evento não encontrado com id: " + id);
     }
 
-    public EventModel updateEvent(int id, EventModel eventModel) throws Excecao {
+    public EventResponse updateEvent(int id, EventModel eventModel) throws Excecao {
         Optional<EventModel> optionalEvent = eventRepository.findById(id);
 
         if (optionalEvent.isPresent()) {
             EventModel existingEvent = optionalEvent.get();
 
-            if (eventModel.getAno() != null)
+            if (eventModel.getAno() != 0)
                 existingEvent.setAno(eventModel.getAno());
             if (eventModel.getBimestre() != null)
                 existingEvent.setBimestre(eventModel.getBimestre());
@@ -52,7 +63,9 @@ public class EventService {
             if (eventModel.getTipoEvento() != null)
                 existingEvent.setTipoEvento(eventModel.getTipoEvento());
 
-            return eventRepository.save(existingEvent);
+            eventRepository.save(existingEvent);
+
+            return createEventResponse(existingEvent);
         } else {
             throw new Excecao("Evento não encontrado com id: " + id);
         }
@@ -65,5 +78,20 @@ public class EventService {
         }
 
         throw new Excecao("Evento não encontrado com id: " + id);
+    }
+
+    private EventResponse createEventResponse(EventModel event) {
+        EventResponse eventResponse = new EventResponse(
+                event.getIdEvento(),
+                event.getNome(),
+                event.getDescricao(),
+                event.getAno(),
+                event.getBimestre(),
+                event.getDataEvento(),
+                event.getLugar(),
+                event.getPeriodo(),
+                event.getTipoEvento());
+
+        return eventResponse;
     }
 }
