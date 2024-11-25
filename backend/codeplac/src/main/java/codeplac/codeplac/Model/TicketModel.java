@@ -23,7 +23,7 @@ import lombok.Setter;
 public class TicketModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_Ingresso")
+  @Column(name = "id_ingresso")
   private int idIngresso;
 
   @Column(name = "qr_code")
@@ -32,10 +32,10 @@ public class TicketModel {
   private Byte validacao;
 
   @ManyToOne
-  @JoinColumn(name = "usuario_matricula")
-  private UsersModel usuario;
-
-  @ManyToOne
   @JoinColumn(name = "evento_id_Evento")
   private EventModel evento;
+
+  @ManyToOne
+  @JoinColumn(name = "usuario_matricula")
+  private UsersModel usuario;
 }

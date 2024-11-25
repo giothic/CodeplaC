@@ -27,37 +27,47 @@
 						<img src="img/logoprincipalparaosite.png" alt="Logo" />
 					</a>
 					<!-- Ícone do menu (barras) -->
-    <div class="menu-icon" onclick="openMenu()">
-        <i class="fa fa-bars"></i>
-    </div>
+					<div class="menu-icon" onclick="openMenu()">
+						<i class="fa fa-bars"></i>
+					</div>
 
-    <!-- Ícone do menu (fechar) -->
-    <div class="close-icon" onclick="closeMenu()" style="display: none;">
-        <i class="fa fa-times-circle" aria-hidden="true"></i>
-    </div>
-	<ul class="ul">
-        <li class="dropdown">
-            <a href="https://www.codeplac.com.br" class="dropdown">Home</a>
-            <ul class="dropdown-menu">
-                <li><a href="https://www.codeplac.com.br/sobre">Sobre</a></li>
-            </ul>
-        </li>
-        <li><a href="https://www.codeplac.com.br/media">Ranking</a></li>
-        <li class="dropdown">
-            <a href="" class="dropdown">Atividades</a>
-            <ul class="dropdown-menu">
-                <li><a href="https://www.codeplac.com.br/eventos">Eventos</a></li>
-                <li><a href="https://www.codeplac.com.br/historico">Histórico</a></li>
-                <li><a href="https://www.codeplac.com.br/galeria">Galeria</a></li>
-            </ul>
-        </li>
-        <li><a href="https://www.codeplac.com.br/equipe">Equipe</a></li>
-        <li><a href="https://www.codeplac.com.br/contatos">Contatos</a></li>
-        <li class="btndestaque hidden"><a href="https://www.codeplac.com.br/login">Login</a></li>
-        <li class="usuario-icon hidden" id="userIcon">
-            <a href="https://www.codeplac.com.br/usuario"><i class="ri-user-line"></i></a>
-        </li>
-    </ul>
+					<!-- Ícone do menu (fechar) -->
+					<div class="close-icon" onclick="closeMenu()" style="display: none">
+						<i class="fa fa-times-circle" aria-hidden="true"></i>
+					</div>
+					<ul class="ul">
+						<li class="dropdown">
+							<a href="https://www.codeplac.com.br" class="dropdown">Home</a>
+							<ul class="dropdown-menu">
+								<li><a href="https://www.codeplac.com.br/sobre">Sobre</a></li>
+							</ul>
+						</li>
+						<li><a href="https://www.codeplac.com.br/media">Ranking</a></li>
+						<li class="dropdown">
+							<a href="" class="dropdown">Atividades</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="https://www.codeplac.com.br/eventos">Eventos</a>
+								</li>
+								<li>
+									<a href="https://www.codeplac.com.br/historico">Histórico</a>
+								</li>
+								<li>
+									<a href="https://www.codeplac.com.br/galeria">Galeria</a>
+								</li>
+							</ul>
+						</li>
+						<li><a href="https://www.codeplac.com.br/equipe">Equipe</a></li>
+						<li><a href="https://www.codeplac.com.br/contatos">Contatos</a></li>
+						<li class="btndestaque hidden">
+							<a href="https://www.codeplac.com.br/login">Login</a>
+						</li>
+						<li class="usuario-icon hidden" id="userIcon">
+							<a href="https://www.codeplac.com.br/usuario"
+								><i class="ri-user-line"></i
+							></a>
+						</li>
+					</ul>
 					<div class="menu-icon" onclick="openMenu()">
 						<i class="fa fa-bars"></i>
 					</div>
@@ -79,32 +89,7 @@
 		<!-- Descrição dos Eventos -->
 		<section class="eventos">
 			<div class="container">
-				<div class="eventos-lista">
-					<div class="evento-item">
-						<h4>Competição de Programação - Código Desafio</h4>
-						<p>Provável Data: 02 de dezembro</p>
-						<p>
-							Descrição: Junte-se a nós para um dia emocionante de programação,
-							onde você poderá mostrar suas habilidades e competir por prêmios
-							incríveis!
-						</p>
-						<a href="inscricao.html" class="btn">Inscreva sua equipe!</a>
-					</div>
-
-					<div class="evento-item">
-						<h4>Em andamento</h4>
-						<p>Data: 22 de Outubro de 2024</p>
-						<p>Descrição: ----</p>
-						<a href="inscricao.html" class="btn">fechado</a>
-					</div>
-
-					<div class="evento-item">
-						<h4>Em andamento</h4>
-						<p>Data: 29 de Outubro de 2024</p>
-						<p>Descrição: ----</p>
-						<a href="inscricao.html" class="btn">fechado</a>
-					</div>
-				</div>
+				<div class="eventos-lista" id="eventos-lista"></div>
 			</div>
 			<!-- end container -->
 		</section>
@@ -129,6 +114,7 @@
 			</div>
 		</footer>
 		<script src="js/responsivocel.js"></script>
+		<script src="js/evento.js"></script>
 		<script src="js/script.js"></script>
 	</body>
 </html>

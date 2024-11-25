@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import codeplac.codeplac.DTO.ResponsesDTO.Event.EventResponse;
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Model.EventModel;
 import codeplac.codeplac.Service.EventService;
@@ -27,17 +28,17 @@ public class EventController {
     EventService eventService;
 
     @PostMapping("/create")
-    public ResponseEntity<EventModel> criarEvento(@RequestBody EventModel event) {
+    public ResponseEntity<EventResponse> criarEvento(@RequestBody EventModel event) {
         return new ResponseEntity<>(eventService.createEvent(event), HttpStatus.CREATED);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<EventModel>> listarEventos() {
+    public ResponseEntity<List<EventResponse>> listarEventos() {
         return new ResponseEntity<>(eventService.getAllEvents(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EventModel> obterEvento(@PathVariable int id) {
+    public ResponseEntity<EventResponse> obterEvento(@PathVariable int id) {
         try {
             return new ResponseEntity<>(eventService.getEventById(id), HttpStatus.OK);
         } catch (Excecao e) {
@@ -46,7 +47,7 @@ public class EventController {
     }
 
     @PutMapping("/modify/{id}")
-    public ResponseEntity<EventModel> modificarEvento(@PathVariable int id,
+    public ResponseEntity<EventResponse> modificarEvento(@PathVariable int id,
             @RequestBody EventModel event) {
         try {
             return new ResponseEntity<>(eventService.updateEvent(id, event), HttpStatus.OK);

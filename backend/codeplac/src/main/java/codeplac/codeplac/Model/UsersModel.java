@@ -32,6 +32,10 @@ public class UsersModel {
 
     private String nome;
     private String sobrenome;
+    private String cpf;
+    private String email;
+    private String telefone;
+    private String senha;
 
     @Column(name = "refresh_token")
     private String refreshToken;
@@ -42,11 +46,6 @@ public class UsersModel {
     @Column(name = "tipo_usuario")
     @Enumerated(EnumType.STRING)
     private UserTipo tipoUsuario;
-
-    private String cpf;
-    private String email;
-    private String telefone;
-    private String senha;
 
     @OneToMany(mappedBy = "usuario")
     private List<TicketModel> ingressos;

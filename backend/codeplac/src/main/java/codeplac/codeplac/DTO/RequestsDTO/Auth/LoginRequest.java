@@ -1,4 +1,4 @@
-package codeplac.codeplac.DTO;
+package codeplac.codeplac.DTO.RequestsDTO.Auth;
 
 import lombok.Getter;
 import lombok.Setter;
