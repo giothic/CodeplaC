@@ -50,7 +50,7 @@ public class EventService {
         if (optionalEvent.isPresent()) {
             EventModel existingEvent = optionalEvent.get();
 
-            if (eventModel.getAno() != 0)
+            if (eventModel.getAno() != null)
                 existingEvent.setAno(eventModel.getAno());
             if (eventModel.getBimestre() != null)
                 existingEvent.setBimestre(eventModel.getBimestre());
