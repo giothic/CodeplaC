@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
         <link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-16x16.png">
 <meta name="msapplication-TileColor" content="#ffffff">
@@ -52,6 +53,12 @@
                 <div class="banner-text">
                     <h1>CodeplaC</h1>
                     <p>Competição de programação em C</p>
+                    <!-- Botão colocado abaixo da frase -->
+<div id="modalFooterBtn" class="d-flex justify-content-center align-items-center" style="margin-top: 20px; display: block;">
+    <button type="button" id="openModalBtn" class="btn btn-secondary">
+        <i class="fa-solid fa-power-off"></i> <!-- Ícone de desligar -->
+    </button>
+</div>
                     
 </div>
                 </div>
@@ -67,20 +74,20 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="eventModalLabel">🎉 Evento de Programação - CodeplaC 🎉</h5><br>
+                <h5 class="modal-title" id="eventModalLabel">🎉 Evento de Programação - CodeplaC 🎉</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Prepare-se para o maior evento de programação! Junte-se a nós em dezembro para uma experiência única no CodeplaC. Não perca a chance de mostrar suas habilidades e competir com os melhores!</p>
-                <p>Para mais informações, acesse a página de eventos.</p><br>
-                <a href="https://www.codeplac.com.br/eventos" class="btn btn-primary">Veja os detalhes do evento!</a>
-            </div><br>
+                <p>Para mais informações, acesse a página de eventos.</p>
+                <a href="https://www.codeplac.com.br/eventos.html" class="btn btn-primary" target="_blank">Veja os detalhes do evento!</a>
+            </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
 </div>
-
 
 
      <!-- codeplac-->
