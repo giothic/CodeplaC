@@ -256,3 +256,183 @@
     scrollbar-width: thin; /* "auto" ou "thin" para largura */
     scrollbar-color: #888 #f1f1f1; /* Cor do thumb e do track */
 }
+
+.custom-select {
+    position: relative;
+    /* Necessário para a posição absoluta das opções */
+    width: 100%;
+    text-align: center;
+}
+
+.select-selected {
+    background-color: #ffffff;
+    /* Cor de fundo */
+    padding: 10px;
+    /* Espaçamento interno */
+    border: none;
+    /* Borda */
+    border-radius: 5px;
+    /* Cantos arredondados */
+    cursor: pointer;
+    /* Cursor de ponteiro */
+    font-size: 1.2rem;
+    /* Aumenta o tamanho da fonte */
+    color: #246277;
+    /* Cor do texto */
+    transition: border-color 0.3s;
+    /* Transição suave */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="%23246277" stroke-width="2"><path d="M4 6l4 4 4-4" fill="none" /></svg>');
+    /* Seta personalizada */
+    background-repeat: no-repeat;
+    /* Evita repetição da imagem */
+    background-position: right 10px center;
+    /* Posiciona a seta à direita */
+    background-size: 12px;
+    /* Tamanho da seta */
+    text-align: center;
+}
+
+.select-selected:focus {
+    outline: none;
+    /* Remove o contorno padrão */
+    border-color: none;
+    /* Cor da borda ao focar */
+}
+
+.select-items {
+    position: absolute;
+    /* Para permitir sobreposição */
+    left: 50%;
+    /* Centraliza em relação ao pai */
+    transform: translateX(-50%);
+    /* Centraliza corretamente no eixo X */
+    align-items: center;
+    background-color: #ffffff;
+    /* Cor de fundo */
+    border: none;
+    /* Sem borda */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    z-index: 99;
+    /* Para garantir que as opções fiquem acima de outros elementos */
+    max-height: 200px;
+    /* Altura máxima do dropdown */
+    overflow-y: auto;
+    /* Adiciona rolagem vertical se necessário */
+    min-width: 200px;
+    /* Largura mínima opcional */
+    top: 0%;
+    /* Posiciona logo abaixo do seletor */
+    margin-top: 10px;
+    /* Espaçamento entre o seletor e o dropdown */
+}
+
+
+.select-items div {
+    padding: 10px;
+    /* Espaçamento interno */
+    cursor: pointer;
+    /* Cursor de ponteiro */
+    transition: background-color 0.3s;
+    /* Transição suave ao passar o mouse */
+    font-size: 1.2rem;
+    /* Aumenta o tamanho da fonte das opções */
+    color: #246277;
+    /* Cor do texto das opções */
+}
+
+.select-items div:hover {
+    background-color: #f1f1f1;
+    /* Cor de fundo ao passar o mouse */
+}
+
+.select-hide {
+    display: none;
+    /* Esconde as opções por padrão */
+}
+
+
+/* Estilo do modal */
+.modal-content {
+    background: #154959; 
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    animation: slideDown 0.7s ease;
+}
+
+/* Animação de deslizamento */
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+#modalFooterBtn {
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#openModalBtn {
+    width: 60px; 
+    height: 60px;
+    background-color: #0c3846;
+    border: none; 
+    color: #ffffff; 
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: none; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    position: relative; /* Necessário para a borda */
+    overflow: hidden; /* Para garantir que o contorno não ultrapasse o botão */
+}
+
+/* Efeito de hover */
+#openModalBtn:hover {
+    background-color: #d1d1d1; 
+    transform: scale(1.1); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+    z-index: -1; /* Coloca o contorno abaixo do botão */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Efeito de brilho sutil */
+}
+
+/* Efeito de explosão no clique */
+@keyframes explode {
+    0% {
+        transform: scale(1); /* Tamanho normal */
+    }
+    50% {
+        transform: scale(1.5); /* Expansão do botão */
+    }
+    100% {
+        transform: scale(1); /* Retorna ao tamanho normal */
+    }
+}
+
+/* Estilo do botão ao clicar */
+#openModalBtn:active {
+    animation: explode 0.3s ease; /* Aplica a animação de explosão */
+}
+
+#openModalBtn.active {
+    background-color: #0298ca;
+    color: #ffffff; 
+}
+
+#modalFooterBtn {
+    position: absolute;
+    bottom: 315px; 
+    left: 50%;
+    transform: translateX(-50%);  
+    margin-top: 5px;
+}
+
+#openModalBtn:focus {
+    outline: none; 
+}

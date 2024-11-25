@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 import codeplac.codeplac.Model.UsersModel;
 import codeplac.codeplac.Repository.UsersRepository;
 import codeplac.codeplac.Security.TokenService;
-import codeplac.codeplac.DTO.UserRequestRegister;
-import codeplac.codeplac.DTO.UserRequestUpdate;
 import codeplac.codeplac.DTO.ResponsesDTO.User.UserResponse;
 import codeplac.codeplac.Exception.Excecao;
 
@@ -30,7 +28,7 @@ public class UsersService {
     @Autowired
     private TokenService tokenService;
 
-    public UserResponse createUser(UserRequestRegister user) throws Excecao {
+    public UserResponse createUser(UsersModel user) throws Excecao {
         if (usersRepository.existsById(user.getMatricula())) {
             throw new Excecao("Usuário com matrícula já existe.");
         }
@@ -88,30 +86,45 @@ public class UsersService {
         }
     }
 
-    public UserResponse updateUser(String matricula, UserRequestUpdate user) throws Excecao {
+    public UserResponse updateUser(String matricula, UserRequestUpdate user, String field, String password)
+            throws Excecao {
         Optional<UsersModel> optionalUser = usersRepository.findByMatricula(matricula);
 
         if (optionalUser.isPresent()) {
             UsersModel existingUser = optionalUser.get();
 
-            if (user.getEmail() != null)
-                existingUser.setEmail(user.getEmail());
-            if (user.getNome() != null)
-                existingUser.setNome(user.getNome());
-            if (user.getSobrenome() != null)
-                existingUser.setSobrenome(user.getSobrenome());
-            if (user.getSenha() != null)
-                existingUser.setSenha(passwordEncoder.encode(user.getSenha()));
-            if (user.getSobrenome() != null)
-                existingUser.setSobrenome(user.getSobrenome());
-            if (user.getTelefone() != null)
-                existingUser.setTelefone(user.getTelefone());
+            if (!passwordEncoder.matches(password, existingUser.getSenha())) {
+                throw new Excecao("Senha incorreta.");
+            }
+
+            switch (field) {
+                case "email":
+                    if (user.getEmail() != null)
+                        existingUser.setEmail(user.getEmail());
+                    break;
+                case "nome":
+                    if (user.getNome() != null)
+                        existingUser.setNome(user.getNome());
+                    break;
+                case "sobrenome":
+                    if (user.getSobrenome() != null)
+                        existingUser.setSobrenome(user.getSobrenome());
+                    break;
+                case "telefone":
+                    if (user.getTelefone() != null)
+                        existingUser.setTelefone(user.getTelefone());
+                    break;
+                case "senha":
+                    if (user.getSenha() != null)
+                        existingUser.setSenha(passwordEncoder.encode(user.getSenha()));
+                    break;
+                default:
+                    throw new Excecao("Campo inválido: " + field);
+            }
 
             usersRepository.save(existingUser);
 
-            UserResponse userResponse = createUserResponse(existingUser);
-
-            return userResponse;
+            return createUserResponse(existingUser);
         } else {
             throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
         }
@@ -126,6 +139,7 @@ public class UsersService {
                 user.getSobrenome(),
                 user.getTelefone(),
                 user.getCpf(),
+                user.getTipoUsuario(),
                 user.getRefreshToken(),
                 user.getAccessToken());
 

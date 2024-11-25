@@ -54,5 +54,5 @@ document.getElementById("logout-button").addEventListener("click", () => {
 	localStorage.removeItem("matricula");
 	localStorage.removeItem("token");
 
-	location.replace("/index.html");
+	location.replace("https://www.codeplac.com.br/index");
 });

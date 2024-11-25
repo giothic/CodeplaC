@@ -17,7 +17,6 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 5%;
-    margin-bottom: 100px;
 }
 
 .btndestaque {
@@ -1177,7 +1176,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    height: 70vh; 
   }
   
   .video-container iframe {
@@ -1245,7 +1244,6 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
     width: 60px; 
     height: 60px;
     background-color: #0c3846;
-    border: none; 
     color: #ffffff; 
     border-radius: 50%; 
     display: flex;
