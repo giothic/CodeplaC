@@ -26,16 +26,16 @@ function cadastrar() {
 		return;
 	}
 
-	const dadosCadastro = {
-		matricula: String(matricula).padStart(7, "0"), // Garante que a matrícula seja uma string de 7 caracteres
-		nome: nome,
-		sobrenome: sobrenome,
-		tipo_usuario: "PARTICIPANT",
-		cpf: cpf, // CPF sem máscara
-		email: email,
-		telefone: telefone, // Telefone sem máscara
-		senha: senha,
-	};
+    const dadosCadastro = {
+    matricula: String(matricula).padStart(7, "0"), // Garante que a matrícula seja uma string de 7 caracteres
+    nome: nome,
+    sobrenome: sobrenome,
+    email: email,
+    telefone: telefone, // Telefone sem máscara
+    senha: senha,
+    tipoUsuario: "PARTICIPANT",
+    cpf: cpf // CPF sem máscara
+};
 
 	// Envio ao servidor
 	console.log("Dados de cadastro:", JSON.stringify(dadosCadastro));

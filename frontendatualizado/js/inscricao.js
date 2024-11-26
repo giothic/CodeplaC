@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM completamente carregado e analisado."); // Log inicial
+    console.log("DOM completamente carregado e analisado.");
 
     const form = document.getElementById('registrationForm');
     const submitButton = document.getElementById('submitButton');
@@ -8,21 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Formulário encontrado:", form);
     } else {
         console.error("Formulário não encontrado!");
-        return; // Não continuar se o formulário não existir
+        return; 
     }
 
     if (submitButton) {
         console.log("Botão de envio encontrado:", submitButton);
     } else {
         console.error("Botão de envio não encontrado!");
-        return; // Não continuar se o botão não existir
+        return; 
     }
 
     form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previne envio padrão
+        event.preventDefault();
         console.log("Evento de envio do formulário disparado.");
-
-        // Obtendo os valores das matrículas
+        
         const matriculas = [
             document.getElementById('leaderMatricula')?.value || "",
             document.getElementById('member2')?.value || "",
@@ -34,29 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log("Matrículas capturadas:", matriculas);
 
-        // Nome da equipe
         const nomeEquipe = document.getElementById('teamName')?.value || "";
         console.log("Nome da equipe capturado:", nomeEquipe);
 
-        // Validação dos campos
         if (matriculas.some(matricula => !matricula) || !nomeEquipe) {
             console.warn("Alguns campos estão incompletos. Matrículas ou nome da equipe estão faltando.");
             alert("Por favor, preencha todos os campos!");
             return;
         }
 
-        // Dados do time
         const dadosTime = {
-            membros: matriculas.slice(1), // Todos exceto o líder
+            membros: matriculas, 
             nomeEquipe: nomeEquipe,
-            nomeLider: matriculas[0] // O líder
+            nomeLider: matriculas[0] 
         };
         console.log("Dados formatados para envio:", dadosTime);
 
-        // Log do JSON enviado ao servidor
         console.log("JSON enviado ao backend:", JSON.stringify(dadosTime));
 
-        // Tentativa de envio para o servidor
         try {
             console.log("Preparando para enviar dados ao servidor...");
             const response = await fetch("https://codeplac-c7hy.onrender.com/group/create", {
@@ -73,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 console.log("Dados recebidos do servidor:", data);
                 alert("Equipe inscrita com sucesso!");
-                form.reset(); // Reseta o formulário após sucesso
+                form.reset();
                 console.log("Formulário resetado após sucesso.");
             } else {
                 const errorData = await response.json();
@@ -86,11 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Evento para rastrear cliques no botão de envio
     submitButton.addEventListener('click', (event) => {
-        event.preventDefault(); // Previne comportamento padrão
+        event.preventDefault();
         console.log("Botão de envio clicado.");
-        // Chamando a função principal (se necessário)
-        form.dispatchEvent(new Event('submit')); // Simula envio do formulário
+        form.dispatchEvent(new Event('submit'));
     });
 });

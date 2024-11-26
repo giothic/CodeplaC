@@ -17,6 +17,8 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 5%;
+        margin-bottom: 115px;
+
 }
 
 .btndestaque {
@@ -378,6 +380,7 @@ a {
 .social-icons a {
     display: inline-block;
 }
+
 
 /* Seção da galeria */
 .gallery-section {
