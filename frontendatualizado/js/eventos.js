@@ -1,34 +1,51 @@
+window.addEventListener("DOMContentLoaded", getEventData);
 
-    // Função para buscar eventos e atualizar o HTML
-    async function carregarEventos() {
-        try {
-            // Fazendo a requisição ao back-end
-            const response = await fetch('/api/eventos');
-            const eventos = await response.json();
+function getEventData() {
+	let eventData;
 
-            // Selecionando o container onde os eventos vão aparecer
-            const container = document.querySelector('.eventos-lista');
-            container.innerHTML = ''; // Limpa o conteúdo antes de adicionar os novos eventos
+	fetch("https://codeplac-c7hy.onrender.com/event/list", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				throw new Error("Falha na busca de eventos.");
+			}
+		})
+		.then((data) => (eventData = data))
+		.catch((error) => {
+			alert(error.message);
+		})
+		.finally(() => {
+			renderEvents(eventData);
+		});
+}
 
-            // Iterando sobre os eventos e criando os elementos HTML
-            eventos.forEach(evento => {
-                const eventoHTML = `
-                    <div class="evento-item">
-                        <h4>${evento.titulo}</h4>
-                        <p>Data: ${new Date(evento.data).toLocaleDateString('pt-BR')}</p>
-                        <p>${evento.descricao || 'Sem descrição disponível'}</p>
-                        <a href="inscricao.html" class="btn">${evento.status === 'aberto' ? 'Inscreva-se' : 'Fechado'}</a>
-                    </div>
-                `;
-                container.innerHTML += eventoHTML; // Adiciona o evento ao container
-            });
-        } catch (error) {
-            console.error('Erro ao carregar eventos:', error);
-            const container = document.querySelector('.eventos-lista');
-            container.innerHTML = '<p>Não foi possível carregar os eventos. Tente novamente mais tarde.</p>';
-        }
-    }
+function renderEvents(data = []) {
+	const eventList = document.querySelector("#eventos-lista");
 
-    // Carregar eventos ao abrir a página
-    window.onload = carregarEventos;
+	if (data.length == 0) {
+		return (eventList.innerHTML = `
+			<div class="evento-item">
+        <p>Não há eventos no momento!</p>
+			</div>
+		`);
+	}
 
+	data.forEach((event) => {
+		eventList.innerHTML += `
+      <div class="evento-item">
+        <h4>${event.nome}</h4>
+        <p>Data: ${new Date(event.dataEvento).toLocaleDateString("pt-BR")}</p>
+        <p>
+          Descrição: ${event.descricao}
+        </p>
+        <a href="https://www.codeplac.com.br/inscricao" class="btn">Inscreva sua equipe!</a>
+			</div>
+    `;
+	});
+}
