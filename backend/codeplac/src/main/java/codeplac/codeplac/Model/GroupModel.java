@@ -4,9 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import codeplac.codeplac.Utils.JsonListConverter;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -38,7 +36,7 @@ public class GroupModel {
   @Column(name = "data_inscricao")
   private LocalDateTime dataInscricao;
 
-  @Column(columnDefinition = "json")
+  @Column(name = "membros", columnDefinition = "JSON")
   @Convert(converter = JsonListConverter.class)
   private List<Member> membros;
 
