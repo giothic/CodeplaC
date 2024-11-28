@@ -13,7 +13,7 @@ public class EventResponse {
   private int idEvento;
   private String nome;
   private String descricao;
-  private int ano;
+  private Integer ano;
   private String bimestre;
   private LocalDate dataEvento;
   private String lugar;
