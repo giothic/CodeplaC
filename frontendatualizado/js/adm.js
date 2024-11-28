@@ -3,29 +3,45 @@ function showEventForm() {
     eventForm.style.display = eventForm.style.display === 'none' ? 'block' : 'none';
 }
 
-function createEvent() {
-    const eventDate = document.getElementById('event-date').value;
-    const eventDescription = document.getElementById('event-description').value;
-    
-    if (eventDate && eventDescription) {
-        const eventList = document.getElementById('event-list');
-        const eventItem = document.createElement('div');
-        eventItem.className = 'evento-item';
-        
-        eventItem.innerHTML = `
-            <h4>Em andamento</h4>
-            <p>Data: ${eventDate}</p>
-            <p>Descrição: ${eventDescription}</p>
-            <a href="inscricao.html" class="btn">fechado</a>
-        `;
-        
-        eventList.appendChild(eventItem);
-        
-        document.getElementById('event-date').value = '';
-        document.getElementById('event-description').value = '';
-    } else {
-        alert('Por favor, preencha todos os campos.');
+function createNewEvent() {
+    const eventTitle = document.getElementById('event-title')
+    const eventDate = document.getElementById('event-date')
+    const eventDescription = document.getElementById('event-description')
+    const eventLocal = document.getElementById('event-local')
+    const eventType = document.querySelector('input[name="event-type"]:checked')
+    const eventPeriod = document.querySelector('input[name="event-period"]:checked')
+
+    const newEventData = {
+        nome: eventTitle.value,
+        dataEvento: eventDate.value,
+        descricao: eventDescription.value,
+        lugar: eventLocal.value,
+        tipoEvento: eventType.id.toUpperCase(),
+        periodo: eventPeriod.id.toUpperCase()
     }
+
+    const userToken = localStorage.getItem('token')
+
+    fetch('https://codeplac-c7hy.onrender.com/event/create', {
+        method:'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${userToken}`
+        },
+        body: JSON.stringify(newEventData)
+    })
+    .then(response => {
+        if(!response.ok){
+            throw new Error('Erro ao criar evento!')
+        }
+        return response.json()
+    })
+    .then(data => {
+        console.log(data)
+    })
+    .catch(error => {
+        console.log(error.message)
+    })
 }
 
 function saveUser(button) {
