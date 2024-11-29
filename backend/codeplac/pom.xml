@@ -10,12 +10,12 @@
 		<relativePath />
 		<!-- lookup parent from repository -->
 	</parent>
-    <groupId>codeplac</groupId>
-    <artifactId>codeplac</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>codeplac</name>
-    <description>Demo project for Spring Boot</description>
-    <packaging>jar</packaging>
+	<groupId>codeplac</groupId>
+	<artifactId>codeplac</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>codeplac</name>
+	<description>Demo project for Spring Boot</description>
+	<packaging>jar</packaging>
 	<url />
 	<licenses>
 		<license />
@@ -51,10 +51,10 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
@@ -107,6 +107,16 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>3.5.1</version>
 		</dependency>
 	</dependencies>
 

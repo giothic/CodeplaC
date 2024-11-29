@@ -38,7 +38,7 @@ public class GroupModel {
 
   @Column(name = "membros", columnDefinition = "JSON")
   @Convert(converter = JsonListConverter.class)
-  private List<Member> membros;
+  private List<UsersModel> membros;
 
   @Column(name = "nome_equipe")
   private String nomeEquipe;

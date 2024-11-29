@@ -3,14 +3,16 @@ package codeplac.codeplac.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-// import java.util.UUID;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import codeplac.codeplac.Model.GroupModel;
 import codeplac.codeplac.Model.UsersModel;
+import codeplac.codeplac.Repository.GroupRepository;
 import codeplac.codeplac.Repository.UsersRepository;
 import codeplac.codeplac.Security.TokenService;
 import codeplac.codeplac.DTO.ResponsesDTO.User.UserResponse;
@@ -21,6 +23,9 @@ public class UsersService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private GroupRepository groupRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -129,6 +134,33 @@ public class UsersService {
             throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
         }
     }
+
+    @Transactional
+    public void addUserToGroup(String matricula, Integer groupId) throws Excecao {
+        Optional<UsersModel> optionalUser = usersRepository.findById(matricula);
+        if (!optionalUser.isPresent()) {
+            throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
+        }
+    
+        Optional<GroupModel> optionalGroup = groupRepository.findById(groupId);
+        if (!optionalGroup.isPresent()) {
+            throw new Excecao("Equipe não encontrada com ID: " + groupId);
+        }
+    
+        UsersModel user = optionalUser.get();
+        GroupModel group = optionalGroup.get();
+    
+        if (group.getMembros().contains(user)) {
+            throw new Excecao("Usuário já faz parte da equipe.");
+        }
+    
+        user.getEquipes().add(group);
+        group.getMembros().add(user);
+    
+        usersRepository.save(user);
+        groupRepository.save(group);
+    }
+    
 
     private UserResponse createUserResponse(UsersModel user) {
 

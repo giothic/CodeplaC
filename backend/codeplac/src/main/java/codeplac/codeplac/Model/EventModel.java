@@ -33,6 +33,7 @@ public class EventModel {
 
   private Integer ano;
   private String bimestre;
+  private String horario;
 
   @Column(name = "data_evento")
   private LocalDate dataEvento;
