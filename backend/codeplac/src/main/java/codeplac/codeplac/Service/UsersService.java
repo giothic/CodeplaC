@@ -150,16 +150,21 @@ public class UsersService {
         UsersModel user = optionalUser.get();
         GroupModel group = optionalGroup.get();
     
-        if (group.getMembros().contains(user)) {
+
+        if (group.getMembros().contains(user.getMatricula())) {
             throw new Excecao("Usuário já faz parte da equipe.");
         }
     
-        user.getEquipes().add(group);
-        group.getMembros().add(user);
+
+        group.getMembros().add(user.getMatricula());
     
-        usersRepository.save(user);
+
+        user.getEquipes().add(group);
+    
+        usersRepository.save(user);  
         groupRepository.save(group);
     }
+    
     
 
     private UserResponse createUserResponse(UsersModel user) {
