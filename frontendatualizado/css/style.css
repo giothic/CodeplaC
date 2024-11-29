@@ -1316,6 +1316,7 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
 
     .ul {
         display: none;
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -1324,7 +1325,7 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
         position: fixed;
         top: 0;
         left: 0;
-        background-color: #1594C1;
+        background-color: #134557;
         width: 100%;
         height: 100%;
         z-index: 9999;
@@ -1332,6 +1333,67 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
         border-radius: 10px;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     }
+
+  /* Estilo para o dropdown */
+.ul .dropdown {
+    position: relative;
+}
+
+/* Estilo do menu dropdown */
+.ul .dropdown-menu {
+    display: none; 
+    position: absolute;
+    left: 0; 
+    top: calc(100% + 10px); 
+    background-color: #122b36; 
+    border-radius: 10px;
+    padding: 10px 0;
+    z-index: 999;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); 
+    min-width: 180px; 
+    opacity: 0; 
+    visibility: hidden;
+    transform: translateY(-10px); 
+    transition: all 0.3s ease; 
+}
+
+/* Estilo de cada item do menu */
+.ul .dropdown-menu li {
+    margin: 0; 
+    padding: 8px 20px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ul .dropdown-menu li a {
+    color: #ffffff;
+    text-decoration: none; 
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.ul .dropdown-menu li:hover {
+    background-color: #1e4a5a; 
+    transform: translateX(5px); 
+}
+
+.ul .dropdown:hover .dropdown-menu,
+.ul .dropdown:focus-within .dropdown-menu {
+    display: flex; 
+    flex-direction: column;
+    opacity: 1; 
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Espaçamento entre os itens */
+.ul .dropdown-menu li + li {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+/* Efeito suave para os botões */
+.ul .dropdown-menu li:hover a {
+    color: #b3ecff; 
+}
 
     .ul.open {
         display: flex;
