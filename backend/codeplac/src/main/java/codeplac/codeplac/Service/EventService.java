@@ -62,6 +62,8 @@ public class EventService {
                 existingEvent.setDataEvento(eventModel.getDataEvento());
             if (eventModel.getLugar() != null)
                 existingEvent.setLugar(eventModel.getLugar());
+            if (eventModel.getHorario() != null) // Verifica e atualiza o horário
+                existingEvent.setHorario(eventModel.getHorario());
             if (eventModel.getPeriodo() != null)
                 existingEvent.setPeriodo(eventModel.getPeriodo());
             if (eventModel.getTipoEvento() != null)
@@ -85,7 +87,7 @@ public class EventService {
     }
 
     private EventResponse createEventResponse(EventModel event) {
-        EventResponse eventResponse = new EventResponse(
+        return new EventResponse(
                 event.getIdEvento(),
                 event.getNome(),
                 event.getDescricao(),
@@ -93,9 +95,8 @@ public class EventService {
                 event.getBimestre(),
                 event.getDataEvento(),
                 event.getLugar(),
+                event.getHorario(), 
                 event.getPeriodo(),
                 event.getTipoEvento());
-
-        return eventResponse;
     }
 }

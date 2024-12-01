@@ -17,6 +17,7 @@ public class EventResponse {
   private String bimestre;
   private LocalDate dataEvento;
   private String lugar;
+  private String horario;
   private EventPeriodo periodo;
   private EventTipo tipoEvento;
 }
