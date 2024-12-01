@@ -1217,9 +1217,6 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
 }
 }
 
-
-
-
 /* Estilo do modal */
 .modal-content {
     background: #154959; 
@@ -1304,6 +1301,11 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
     outline: none; 
 }
 
+.menu-icon,
+.close-icon {
+    display: none;
+}
+
 /* Exibição dos ícones de menu em dispositivos móveis */
 @media (max-width: 768px) {
     .menu-icon {
@@ -1316,6 +1318,7 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
 
     .ul {
         display: none;
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -1324,7 +1327,7 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
         position: fixed;
         top: 0;
         left: 0;
-        background-color: #1594C1;
+        background-color: #134557;
         width: 100%;
         height: 100%;
         z-index: 9999;
@@ -1332,6 +1335,67 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
         border-radius: 10px;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     }
+
+  /* Estilo para o dropdown */
+.ul .dropdown {
+    position: relative;
+}
+
+/* Estilo do menu dropdown */
+.ul .dropdown-menu {
+    display: none; 
+    position: absolute;
+    left: 0; 
+    top: calc(100% + 10px); 
+    background-color: #122b36; 
+    border-radius: 10px;
+    padding: 10px 0;
+    z-index: 999;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); 
+    min-width: 180px; 
+    opacity: 0; 
+    visibility: hidden;
+    transform: translateY(-10px); 
+    transition: all 0.3s ease; 
+}
+
+/* Estilo de cada item do menu */
+.ul .dropdown-menu li {
+    margin: 0; 
+    padding: 8px 20px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ul .dropdown-menu li a {
+    color: #ffffff;
+    text-decoration: none; 
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.ul .dropdown-menu li:hover {
+    background-color: #0C1F26; 
+    transform: translateX(5px); 
+}
+
+.ul .dropdown:hover .dropdown-menu,
+.ul .dropdown:focus-within .dropdown-menu {
+    display: flex; 
+    flex-direction: column;
+    opacity: 1; 
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Espaçamento entre os itens */
+.ul .dropdown-menu li + li {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+/* Efeito suave para os botões */
+.ul .dropdown-menu li:hover a {
+    color: #b3ecff; 
+}
 
     .ul.open {
         display: flex;
@@ -1373,145 +1437,68 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
     }
 }
 
-/* Para telas maiores que 768px (desktop) */
-@media (min-width: 769px) {
-    .fa-bars,
-    .fa-times-circle {
-        display: none;
+/* Adicione mais media queries para diferentes tamanhos de tela */
+@media (max-width: 1024px) {
+    
+    .codeplac1 .container {
+        flex-direction: column; 
+        align-items: center; 
+    }
+    .codeplac1 .codeplac1-text, .codeplac1 .codeplac1-img {
+        width: 100%; 
+        padding: 0; 
+    }
+}
+/* Media Query para telas menores */
+@media (max-width: 1024px) {
+    .banner-text h1 {
+        font-size: 28px; 
     }
 
-    .ul {
-        display: flex;
-        flex-direction: row;
-        position: static;
-        background-color: transparent;
-        width: auto;
-        height: auto;
-        z-index: auto;
-        padding-top: 0;
+    .banner-text p {
+        font-size: 16px; 
     }
 
-    nav .menu-icon,
-    nav .close-icon {
-        display: none;
+    header {
+        padding: 10px; 
     }
 }
 
-/* Estilos gerais para dispositivos móveis */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 2%;
-    }
-
+    /* Ajusta o tamanho do texto do banner para telas menores */
     .banner .banner-text {
-        margin: 50px;
-        padding: 0 20px;
+        margin: 50px; 
+        padding: 0 20px; 
     }
 
     .banner .banner-text h1 {
-        font-size: 48px;
+        font-size: 48px; 
     }
 
     .banner .banner-text p {
-        font-size: 16px;
+        font-size: 16px; 
     }
+}
 
-    .codeplac1, .Normas {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .codeplac1-img, .Normas .cards-item {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .codeplac1-img img, .Normas .cards-item img {
-        width: 100%;
-        max-width: 300px;
-        margin-bottom: 10px;
-    }
-
-    .codeplac1-text, .Normas .cards-item p {
-        text-align: center;
+/* Para dispositivos ainda menores (como smartphones muito pequenos) */
+@media (max-width: 480px) {
+    .banner .banner-text {
+        margin: 30px;
         padding: 0 10px;
     }
 
-    .Normas .cards-item {
-        width: 90%;
-        margin: 10px 0;
+    .banner .banner-text h1 {
+        font-size: 36px;
     }
 
-    .video-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin: 20px 0;
-    }
-
-    .video-container iframe {
-        width: 100%;
-        max-width: 560px;
-        height: auto;
-    }
-}
-
-/* Ajustes para dispositivos móveis com largura até 400px */
-@media (max-width: 400px) {
-    .codeplac1 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 20px;
-        padding: 10px;
-    }
-
-    .codeplac1-img, .codeplac2-img {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 15px;
-    }
-
-    .codeplac1-img img, .codeplac2-img img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-        border-radius: 8px;
-    }
-
-    .codeplac1-text, .codeplac2-text {
-        text-align: center;
-        font-size: 16px;
-        line-height: 1.6;
-        color: #333;
-        margin-bottom: 15px;
-    }
-
-    .codeplac1-text h3 {
-        font-size: 20px;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-
-    .codeplac1-text .btn, .codeplac2-text .btn {
-        background-color: #1594C1;
-        color: white;
+    .banner .banner-text p {
         font-size: 14px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        text-transform: uppercase;
-        margin-top: 10px;
-        transition: background-color 0.3s ease;
-    }
-
-    .codeplac1-text .btn:hover, .codeplac2-text .btn:hover {
-        background-color: #0a6f91;
     }
 }
+
+@media (min-width: 769px) {
+    .menu-icon, .close-icon {
+      display: none;   /* Esconde ambos os ícones no desktop */
+    }
+  }
+  
