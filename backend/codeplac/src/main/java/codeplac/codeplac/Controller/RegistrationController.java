@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import codeplac.codeplac.DTO.RequestsDTO.Registration.RegistrationRequest;
+import codeplac.codeplac.DTO.ResponsesDTO.Registration.RegistrationResponse;
 import codeplac.codeplac.Exception.Excecao;
-import codeplac.codeplac.Model.RegistrationModel;
 import codeplac.codeplac.Service.RegistrationService;
 
 @RestController
@@ -27,17 +28,17 @@ public class RegistrationController {
   RegistrationService registrationService;
 
   @PostMapping("/create")
-  public ResponseEntity<RegistrationModel> criarInscricao(@RequestBody RegistrationModel registration) {
+  public ResponseEntity<RegistrationResponse> criarInscricao(@RequestBody RegistrationRequest registration) {
     return new ResponseEntity<>(registrationService.createRegistration(registration), HttpStatus.CREATED);
   }
 
   @GetMapping("/list")
-  public ResponseEntity<List<RegistrationModel>> listarInscricoes() {
+  public ResponseEntity<List<RegistrationResponse>> listarInscricoes() {
     return new ResponseEntity<>(registrationService.getAllRegistrations(), HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<RegistrationModel> obterInscricao(@PathVariable int id) {
+  public ResponseEntity<RegistrationResponse> obterInscricao(@PathVariable int id) {
     try {
       return new ResponseEntity<>(registrationService.getRegistrationById(id), HttpStatus.OK);
     } catch (Excecao e) {
@@ -46,9 +47,9 @@ public class RegistrationController {
   }
 
   @PutMapping("/modify/{id}")
-  public ResponseEntity<RegistrationModel> modificarInscricao(
+  public ResponseEntity<RegistrationResponse> modificarInscricao(
       @PathVariable int id,
-      @RequestBody RegistrationModel registration) {
+      @RequestBody RegistrationRequest registration) {
     try {
       return new ResponseEntity<>(registrationService.updateRegistration(id, registration), HttpStatus.OK);
     } catch (Excecao e) {
