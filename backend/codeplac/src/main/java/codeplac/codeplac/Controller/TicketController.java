@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import codeplac.codeplac.DTO.RequestsDTO.Ticket.TicketRequest;
+import codeplac.codeplac.DTO.ResponsesDTO.Ticket.TicketResponse;
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Model.TicketModel;
 import codeplac.codeplac.Service.TicketService;
@@ -27,17 +29,17 @@ public class TicketController {
   private TicketService ticketService;
 
   @PostMapping("/generate")
-  public ResponseEntity<TicketModel> criarTicket(@RequestBody TicketModel ticket) {
+  public ResponseEntity<TicketResponse> criarTicket(@RequestBody TicketRequest ticket) {
     return new ResponseEntity<>(ticketService.createTicket(ticket), HttpStatus.CREATED);
   }
 
   @GetMapping("/list")
-  public ResponseEntity<List<TicketModel>> listarTickets() {
+  public ResponseEntity<List<TicketResponse>> listarTickets() {
     return new ResponseEntity<>(ticketService.getAllTickets(), HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<TicketModel> obterTicket(@PathVariable int id) {
+  public ResponseEntity<TicketResponse> obterTicket(@PathVariable int id) {
     try {
       return new ResponseEntity<>(ticketService.getTicketById(id), HttpStatus.OK);
     } catch (Excecao e) {
@@ -46,7 +48,7 @@ public class TicketController {
   }
 
   @PutMapping("/modify/{id}")
-  public ResponseEntity<TicketModel> modificarTicket(@PathVariable int id, @RequestBody TicketModel ticket) {
+  public ResponseEntity<TicketResponse> modificarTicket(@PathVariable int id, @RequestBody TicketModel ticket) {
     try {
       return new ResponseEntity<>(ticketService.updateTicket(id, ticket), HttpStatus.OK);
     } catch (Excecao e) {
