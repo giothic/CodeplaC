@@ -5,6 +5,4 @@ public class Excecao extends Exception {
         super(mensagem);
     }
 
-    
-
 }

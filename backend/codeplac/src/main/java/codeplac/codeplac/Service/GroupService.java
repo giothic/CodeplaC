@@ -1,11 +1,13 @@
 package codeplac.codeplac.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import codeplac.codeplac.DTO.ResponsesDTO.Group.GroupResponse;
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Model.GroupModel;
 import codeplac.codeplac.Repository.GroupRepository;
@@ -16,24 +18,33 @@ public class GroupService {
     @Autowired
     private GroupRepository groupRepository;
 
-    public GroupModel createGroup(GroupModel groupModel) {
-        return groupRepository.save(groupModel);
+    public GroupResponse createGroup(GroupModel groupModel) {
+        groupRepository.save(groupModel);
+
+        return createGroupResponse(groupModel);
     }
 
-    public List<GroupModel> getAllGroups() {
-        return groupRepository.findAll();
+    public List<GroupResponse> getAllGroups() {
+        List<GroupModel> groupsModelsList = groupRepository.findAll();
+        List<GroupResponse> groupsResponsesList = new ArrayList<>();
+
+        for (GroupModel group : groupsModelsList) {
+            groupsResponsesList.add(createGroupResponse(group));
+        }
+
+        return groupsResponsesList;
     }
 
-    public GroupModel getGroupById(int id) throws Excecao {
-        Optional<GroupModel> group = groupRepository.findById(id);
-        if (group.isPresent()) {
-            return group.get();
+    public GroupResponse getGroupById(int id) throws Excecao {
+        Optional<GroupModel> optionalGroup = groupRepository.findById(id);
+        if (optionalGroup.isPresent()) {
+            return createGroupResponse(optionalGroup.get());
         }
 
         throw new Excecao("Grupo não encontrado com id: " + id);
     }
 
-    public GroupModel updateGroup(int id, GroupModel groupModel) throws Excecao {
+    public GroupResponse updateGroup(int id, GroupModel groupModel) throws Excecao {
         Optional<GroupModel> optionalGroup = groupRepository.findById(id);
 
         if (optionalGroup.isPresent()) {
@@ -48,7 +59,9 @@ public class GroupService {
             if (groupModel.getNomeLider() != null)
                 existingGroup.setNomeLider(groupModel.getNomeLider());
 
-            return groupRepository.save(existingGroup);
+            groupRepository.save(existingGroup);
+
+            return createGroupResponse(existingGroup);
         } else {
             throw new Excecao("Grupo não encontrado com id: " + id);
         }
@@ -61,5 +74,12 @@ public class GroupService {
         }
 
         throw new Excecao("Grupo não encontrado com id: " + id);
+    }
+
+    private GroupResponse createGroupResponse(GroupModel group) {
+        GroupResponse groupResponse = new GroupResponse(group.getIdEquipe(), group.getNomeEquipe(),
+                group.getNomeLider(), group.getDataInscricao(), group.getMembros());
+
+        return groupResponse;
     }
 }

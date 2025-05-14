@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import codeplac.codeplac.DTO.RequestsDTO.Ranking.RankingRequest;
+import codeplac.codeplac.DTO.ResponsesDTO.Ranking.RankingResponse;
 import codeplac.codeplac.Exception.Excecao;
-import codeplac.codeplac.Model.RankingModel;
 import codeplac.codeplac.Service.RankingService;
 
 @RestController
@@ -27,17 +28,17 @@ public class RankingController {
   private RankingService rankingService;
 
   @PostMapping("/create")
-  public ResponseEntity<RankingModel> criarRanking(@RequestBody RankingModel ranking) {
+  public ResponseEntity<RankingResponse> criarRanking(@RequestBody RankingRequest ranking) {
     return new ResponseEntity<>(rankingService.createRanking(ranking), HttpStatus.CREATED);
   }
 
   @GetMapping("/list")
-  public ResponseEntity<List<RankingModel>> listarRankings() {
+  public ResponseEntity<List<RankingResponse>> listarRankings() {
     return new ResponseEntity<>(rankingService.getAllRankings(), HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<RankingModel> obterRanking(@PathVariable int id) {
+  public ResponseEntity<RankingResponse> obterRanking(@PathVariable int id) {
     try {
       return new ResponseEntity<>(rankingService.getRankingById(id), HttpStatus.OK);
     } catch (Excecao e) {
@@ -46,7 +47,7 @@ public class RankingController {
   }
 
   @PutMapping("/modify/{id}")
-  public ResponseEntity<RankingModel> modificarRanking(@PathVariable int id, @RequestBody RankingModel ranking) {
+  public ResponseEntity<RankingResponse> modificarRanking(@PathVariable int id, @RequestBody RankingRequest ranking) {
     try {
       return new ResponseEntity<>(rankingService.updateRanking(id, ranking), HttpStatus.OK);
     } catch (Excecao e) {
