@@ -1,6 +1,6 @@
 {
 
-    "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "interactive",
-    "liveServer.settings.port": 5502
+    "java.compile.nullAnalysis.mode": "automatic",  // Define o modo de análise de nulidade para "automático", permitindo que o VS Code analise e trate nulls com base nas anotações e configurações do projeto
+    "java.configuration.updateBuildConfiguration": "interactive", // Configura o comportamento da atualização da configuração de build para "interativa", ou seja, o VS Code perguntará antes de aplicar mudanças automáticas
+    "liveServer.settings.port": 5502 // Define a porta utilizada pelo Live Server (extensão do VS Code) para servir arquivos HTML/CSS/JS; aqui está definida como 5502
 }
