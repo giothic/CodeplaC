@@ -1,13 +1,13 @@
 {
 	"configurations": [
 		{
-			"type": "java",  // Define que o tipo de configuração é para um projeto Java
-			"name": "Spring Boot-CodeplacApplication<codeplac>", // Nome da configuração que aparecerá no menu de execução
-			"request": "launch", // Indica que esta configuração será usada para iniciar (launch) a aplicação
-			"cwd": "${workspaceFolder}", // Define o diretório de trabalho como a pasta raiz do workspace
-			"mainClass": "codeplac.codeplac.CodeplacApplication", // Classe principal do Spring Boot que contém o método main()
-			"projectName": "codeplac", // Nome do projeto, útil caso haja múltiplos projetos no workspace
-			"args": "" // Argumentos opcionais a serem passados para a aplicação na inicialização
+			"type": "java",
+			"name": "Spring Boot-CodeplacApplication<codeplac>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "codeplac.codeplac.CodeplacApplication",
+			"projectName": "codeplac",
+			"args": ""
 		}
 	]
 }
