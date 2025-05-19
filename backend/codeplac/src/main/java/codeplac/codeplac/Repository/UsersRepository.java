@@ -12,13 +12,13 @@ public interface UsersRepository extends JpaRepository<UsersModel, String> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE UsersModel u SET u.refreshToken = :refreshToken WHERE u.matricula = :matricula")
-    void updateRefreshToken(String matricula, String refreshToken);
+    @Query("UPDATE UsersModel u SET u.refreshToken = :refreshToken WHERE u.cpf = :cpf")
+    void updateRefreshToken(String cpf, String refreshToken);
 
-    Optional<UsersModel> findByMatricula(String matricula);
+    Optional<UsersModel> findByCpf(String cpf);
 
     @Modifying
     @Transactional
-    @Query("UPDATE UsersModel u SET u.accessToken = :accessToken WHERE u.matricula = :matricula")
-    void updateAccessToken(String matricula, String accessToken);
+    @Query("UPDATE UsersModel u SET u.accessToken = :accessToken WHERE u.cpf = :cpf")
+    void updateAccessToken(String cpf, String accessToken);
 }
