@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class LoginResponse {
-    private String matricula;
+    private String cpf;
     private String token;
 }
