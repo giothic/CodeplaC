@@ -14,7 +14,8 @@ import codeplac.codeplac.DTO.ResponsesDTO.Auth.LoginResponse; // Importa a class
 import codeplac.codeplac.Exception.Excecao; // Importa a exceção personalizada Excecao, que pode ser usada para sinalizar falhas de autenticação
 import codeplac.codeplac.Service.AuthService; // Importa o serviço AuthService, responsável por realizar a lógica de autenticação
 
-@RestController // Indica que essa classe é um controlador REST, e que os métodos retornam respostas JSON
+@RestController // Indica que essa classe é um controlador REST, e que os métodos retornam
+                // respostas JSON
 @RequestMapping("/auth") // Define o prefixo "/auth" para todas as rotas desta classe
 public class AuthController {
 
@@ -25,11 +26,17 @@ public class AuthController {
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
     try {
       // Chama o método de autenticação do serviço, passando matrícula e senha
-      String token = authService.authenticate(loginRequest.getMatricula(), loginRequest.getPassword()); // Retorna uma resposta HTTP 200 OK com o LoginResponse contendo a matrícula e o token
+      String token = authService.authenticate(loginRequest.getCpf(), loginRequest.getPassword()); // Retorna uma
+                                                                                                  // resposta HTTP 200
+                                                                                                  // OK com o
+                                                                                                  // LoginResponse
+                                                                                                  // contendo a
+                                                                                                  // matrícula e o token
 
-      return ResponseEntity.ok(new LoginResponse(loginRequest.getMatricula(), token));
+      return ResponseEntity.ok(new LoginResponse(loginRequest.getCpf(), token));
     } catch (Excecao e) {
-      // Se ocorrer uma exceção de autenticação, retorna erro 401 UNAUTHORIZED com a mensagem da exceção
+      // Se ocorrer uma exceção de autenticação, retorna erro 401 UNAUTHORIZED com a
+      // mensagem da exceção
       throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage(), e);
     }
   }
