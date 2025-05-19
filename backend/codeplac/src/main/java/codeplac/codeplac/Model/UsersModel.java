@@ -27,12 +27,12 @@ import lombok.Setter;
 public class UsersModel {
 
     @Id
-    @Column(name = "matricula", length = 7)
-    private String matricula;
+    @Column(name = "cpf", length = 11)
+    private String cpf;
 
     private String nome;
     private String sobrenome;
-    private String cpf;
+    private String matricula;
     private String email;
     private String telefone;
     private String senha;

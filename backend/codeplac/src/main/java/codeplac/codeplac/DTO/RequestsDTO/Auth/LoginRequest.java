@@ -6,6 +6,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class LoginRequest {
-    private String matricula;
+    private String cpf;
     private String password;
 }
