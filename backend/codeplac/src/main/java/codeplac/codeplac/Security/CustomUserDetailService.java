@@ -23,21 +23,21 @@ public class CustomUserDetailService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String matricula) throws UsernameNotFoundException {
-        logger.debug("Tentando carregar usuário com matrícula: {}", matricula);
+    public UserDetails loadUserByUsername(String cpf) throws UsernameNotFoundException {
+        logger.debug("Tentando carregar usuário com matrícula: {}", cpf);
 
         // Tenta encontrar o usuário pela matrícula
-        UsersModel user = repository.findByMatricula(matricula)
+        UsersModel user = repository.findByCpf(cpf)
                 .orElseThrow(() -> {
-                    logger.warn("Usuário não encontrado com matrícula: {}", matricula);
-                    return new UsernameNotFoundException("Usuário não encontrado com matrícula: " + matricula);
+                    logger.warn("Usuário não encontrado com matrícula: {}", cpf);
+                    return new UsernameNotFoundException("Usuário não encontrado com matrícula: " + cpf);
                 });
 
-        logger.debug("Usuário encontrado: {}", user.getMatricula());
+        logger.debug("Usuário encontrado: {}", user.getCpf());
 
         // Retorna o UserDetails com a senha e as roles/authorities
         return new org.springframework.security.core.userdetails.User(
-                user.getMatricula(),
+                user.getCpf(),
                 user.getSenha(),
                 user.getTipoUsuario().getAuthorities() // Assumindo que tipoUser tem authorities mapeadas
         );
