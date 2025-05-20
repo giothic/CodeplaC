@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import codeplac.codeplac.DTO.ResponsesDTO.Group.GroupResponse;
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Model.GroupModel;
 import codeplac.codeplac.Service.GroupService;
@@ -27,17 +28,17 @@ public class GroupController {
     GroupService groupService;
 
     @PostMapping("/create")
-    public ResponseEntity<GroupModel> criarGrupo(@RequestBody GroupModel group) {
+    public ResponseEntity<GroupResponse> criarGrupo(@RequestBody GroupModel group) {
         return new ResponseEntity<>(groupService.createGroup(group), HttpStatus.CREATED);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<GroupModel>> listarGrupos() {
+    public ResponseEntity<List<GroupResponse>> listarGrupos() {
         return new ResponseEntity<>(groupService.getAllGroups(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GroupModel> obterGrupo(@PathVariable int id) {
+    public ResponseEntity<GroupResponse> obterGrupo(@PathVariable int id) {
         try {
             return new ResponseEntity<>(groupService.getGroupById(id), HttpStatus.OK);
         } catch (Excecao e) {
@@ -46,7 +47,7 @@ public class GroupController {
     }
 
     @PutMapping("/modify/{id}")
-    public ResponseEntity<GroupModel> modificarGrupo(@PathVariable int id,
+    public ResponseEntity<GroupResponse> modificarGrupo(@PathVariable int id,
             @RequestBody GroupModel group) {
         try {
             return new ResponseEntity<>(groupService.updateGroup(id, group), HttpStatus.OK);

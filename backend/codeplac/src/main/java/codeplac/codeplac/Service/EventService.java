@@ -95,7 +95,7 @@ public class EventService {
                 event.getBimestre(),
                 event.getDataEvento(),
                 event.getLugar(),
-                event.getHorario(), 
+                event.getHorario(),
                 event.getPeriodo(),
                 event.getTipoEvento());
     }
