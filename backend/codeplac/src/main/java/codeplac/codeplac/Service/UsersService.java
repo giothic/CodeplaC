@@ -29,8 +29,8 @@ public class UsersService {
     private TokenService tokenService;
 
     public UserResponse createUser(UsersModel user) throws Excecao {
-        if (usersRepository.existsById(user.getMatricula())) {
-            throw new Excecao("Usuário com matrícula já existe.");
+        if (usersRepository.existsById(user.getCpf())) {
+            throw new Excecao("Usuário com CPF já existe.");
         }
 
         UsersModel newUser = new UsersModel();
@@ -42,7 +42,6 @@ public class UsersService {
         newUser.setTelefone(user.getTelefone());
         newUser.setSenha(passwordEncoder.encode(user.getSenha()));
         newUser.setTipoUsuario(user.getTipoUsuario());
-        newUser.setMatricula(user.getMatricula());
 
         String refreshToken = UUID.randomUUID().toString();
         newUser.setRefreshToken(refreshToken);
@@ -66,29 +65,29 @@ public class UsersService {
         return usersResponseList;
     }
 
-    public UserResponse getUserByMatricula(String matricula) throws Excecao {
-        Optional<UsersModel> optionalUser = usersRepository.findById(matricula);
+    public UserResponse getUserByMatricula(String cpf) throws Excecao {
+        Optional<UsersModel> optionalUser = usersRepository.findByCpf(cpf);
         if (optionalUser.isPresent()) {
             UserResponse userResponse = createUserResponse(optionalUser.get());
 
             return userResponse;
         } else {
-            throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
+            throw new Excecao("Usuário não encontrado com CPF: " + cpf);
         }
     }
 
-    public boolean deleteUser(String matricula) throws Excecao {
-        if (usersRepository.existsById(matricula)) {
-            usersRepository.deleteById(matricula);
+    public boolean deleteUser(String cpf) throws Excecao {
+        if (usersRepository.existsById(cpf)) {
+            usersRepository.deleteById(cpf);
             return true;
         } else {
-            throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
+            throw new Excecao("Usuário não encontrado com CPF: " + cpf);
         }
     }
 
-    public UserResponse updateUser(String matricula, UsersModel user, String field, String password)
+    public UserResponse updateUser(String cpf, UsersModel user, String field, String password)
             throws Excecao {
-        Optional<UsersModel> optionalUser = usersRepository.findByMatricula(matricula);
+        Optional<UsersModel> optionalUser = usersRepository.findByCpf(cpf);
 
         if (optionalUser.isPresent()) {
             UsersModel existingUser = optionalUser.get();
@@ -126,14 +125,13 @@ public class UsersService {
 
             return createUserResponse(existingUser);
         } else {
-            throw new Excecao("Usuário não encontrado com matrícula: " + matricula);
+            throw new Excecao("Usuário não encontrado com CPF: " + cpf);
         }
     }
 
     private UserResponse createUserResponse(UsersModel user) {
 
         UserResponse userResponse = new UserResponse(
-                user.getMatricula(),
                 user.getEmail(),
                 user.getNome(),
                 user.getSobrenome(),

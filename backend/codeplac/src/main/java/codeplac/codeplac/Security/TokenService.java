@@ -45,7 +45,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("CodeplaC")
-                    .withSubject(user.getMatricula())
+                    .withSubject(user.getCpf())
                     .withExpiresAt(generateAccessExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException e) {
@@ -59,7 +59,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("CodeplaC")
-                    .withSubject(String.valueOf(user.getMatricula()))
+                    .withSubject(String.valueOf(user.getCpf()))
                     .withExpiresAt(generateRefreshExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException e) {
@@ -91,8 +91,8 @@ public class TokenService {
 
     // Atualiza o refresh token no banco de dados
     @Transactional
-    public void updateRefreshToken(String matricula, String refreshToken) {
-        userRepository.updateRefreshToken(matricula, refreshToken);
+    public void updateRefreshToken(String cpf, String refreshToken) {
+        userRepository.updateRefreshToken(cpf, refreshToken);
     }
 
     // Gera a data de expiração para o token de acesso
@@ -109,12 +109,12 @@ public class TokenService {
     @Transactional
     public String generateAndStoreAccessToken(UsersModel user) {
         String accessToken = generateToken(user);
-        updateAccessToken(user.getMatricula(), accessToken);
+        updateAccessToken(user.getCpf(), accessToken);
         return accessToken;
     }
 
     // Atualiza o token de acesso no banco de dados
-    private void updateAccessToken(String matricula, String accessToken) {
-        userRepository.updateAccessToken(matricula, accessToken);
+    private void updateAccessToken(String cpf, String accessToken) {
+        userRepository.updateAccessToken(cpf, accessToken);
     }
 }
