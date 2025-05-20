@@ -32,7 +32,6 @@ public class UsersModel {
 
     private String nome;
     private String sobrenome;
-    private String matricula;
     private String email;
     private String telefone;
     private String senha;

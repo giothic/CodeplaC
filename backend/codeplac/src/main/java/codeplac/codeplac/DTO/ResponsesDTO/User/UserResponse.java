@@ -7,7 +7,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class UserResponse {
-  private String matricula;
   private String email;
   private String nome;
   private String sobrenome;
