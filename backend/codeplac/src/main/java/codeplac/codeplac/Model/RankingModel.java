@@ -25,11 +25,8 @@ public class RankingModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int idClassificacao;
 
+  @Column(name = "pontuacao", columnDefinition = "FLOAT")
   private float pontuacao;
-
-  @ManyToOne
-  @JoinColumn(name = "equipe_id_Equipe")
-  private GroupModel equipe;
 
   @ManyToOne
   @JoinColumn(name = "evento_id_Evento")

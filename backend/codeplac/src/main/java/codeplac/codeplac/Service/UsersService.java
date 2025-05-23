@@ -36,7 +36,6 @@ public class UsersService {
         UsersModel newUser = new UsersModel();
         newUser.setCpf(user.getCpf());
         newUser.setEmail(user.getEmail());
-        newUser.setEquipes(new ArrayList<>());
         newUser.setNome(user.getNome());
         newUser.setSobrenome(user.getSobrenome());
         newUser.setTelefone(user.getTelefone());
@@ -65,7 +64,7 @@ public class UsersService {
         return usersResponseList;
     }
 
-    public UserResponse getUserByMatricula(String cpf) throws Excecao {
+    public UserResponse getUserByCpf(String cpf) throws Excecao {
         Optional<UsersModel> optionalUser = usersRepository.findByCpf(cpf);
         if (optionalUser.isPresent()) {
             UserResponse userResponse = createUserResponse(optionalUser.get());
