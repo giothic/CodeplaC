@@ -37,34 +37,34 @@ public class UsersController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/{matricula}")
-    public ResponseEntity<UserResponse> obterUsuario(@PathVariable String matricula) {
+    @GetMapping("/{cpf}")
+    public ResponseEntity<UserResponse> obterUsuario(@PathVariable String cpf) {
         try {
-            UserResponse user = usersService.getUserByMatricula(matricula);
+            UserResponse user = usersService.getUserByCpf(cpf);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
     }
 
-    @PutMapping("/modify/{matricula}")
+    @PutMapping("/modify/{cpf}")
     public ResponseEntity<UserResponse> modificarUsuario(
-            @PathVariable String matricula,
+            @PathVariable String cpf,
             @RequestParam String field,
             @RequestParam String password,
             @RequestBody UsersModel user) {
         try {
-            UserResponse updatedUser = usersService.updateUser(matricula, user, field, password);
+            UserResponse updatedUser = usersService.updateUser(cpf, user, field, password);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
 
-    @DeleteMapping("/destroy/{matricula}")
-    public ResponseEntity<Void> apagarUsuario(@PathVariable String matricula) {
+    @DeleteMapping("/destroy/{cpf}")
+    public ResponseEntity<Void> apagarUsuario(@PathVariable String cpf) {
         try {
-            boolean deleted = usersService.deleteUser(matricula);
+            boolean deleted = usersService.deleteUser(cpf);
             if (deleted) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {

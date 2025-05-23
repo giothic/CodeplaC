@@ -64,7 +64,7 @@ public class UsersService {
         return usersResponseList;
     }
 
-    public UserResponse getUserByMatricula(String cpf) throws Excecao {
+    public UserResponse getUserByCpf(String cpf) throws Excecao {
         Optional<UsersModel> optionalUser = usersRepository.findByCpf(cpf);
         if (optionalUser.isPresent()) {
             UserResponse userResponse = createUserResponse(optionalUser.get());

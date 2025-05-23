@@ -18,7 +18,7 @@ import jakarta.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component    
+@Component
 public class SecurityFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityFilter.class);
@@ -31,25 +31,25 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @SuppressWarnings("null")
     @Override
-    protected void doFilterInternal(@NotNull HttpServletRequest request, 
-                                     @NotNull HttpServletResponse response, 
-                                     @NotNull FilterChain filterChain) 
+    protected void doFilterInternal(@NotNull HttpServletRequest request,
+            @NotNull HttpServletResponse response,
+            @NotNull FilterChain filterChain)
             throws ServletException, IOException {
 
         String token = recoverToken(request);
         if (token != null) {
-            String matricula = tokenService.validateToken(token, false); // Ajuste aqui para tratar tokens de acesso
+            String cpf = tokenService.validateToken(token, false); // Ajuste aqui para tratar tokens de acesso
 
-            if (matricula != null) {
+            if (cpf != null) {
                 if (SecurityContextHolder.getContext().getAuthentication() == null) {
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(matricula);
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(cpf);
                     if (userDetails != null) {
                         var authentication = new UsernamePasswordAuthenticationToken(
                                 userDetails, null, userDetails.getAuthorities());
                         SecurityContextHolder.getContext().setAuthentication(authentication);
-                        logger.info("Usuário autenticado com sucesso: {}", matricula);
+                        logger.info("Usuário autenticado com sucesso: {}", cpf);
                     } else {
-                        logger.warn("Usuário não encontrado: {}", matricula);
+                        logger.warn("Usuário não encontrado: {}", cpf);
                     }
                 }
             } else {
