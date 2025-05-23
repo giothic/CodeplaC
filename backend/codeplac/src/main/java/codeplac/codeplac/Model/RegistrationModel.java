@@ -26,7 +26,7 @@ public class RegistrationModel {
   @Column(name = "id_inscricao")
   private int idInscricao;
 
-  @Column(name = "codigo_grupo")
+  @Column(name = "codigo_grupo", length = 80)
   private String codigoGrupo;
 
   @ManyToOne
@@ -34,6 +34,6 @@ public class RegistrationModel {
   private EventModel evento;
 
   @ManyToOne
-  @JoinColumn(name = "usuario_matricula")
+  @JoinColumn(name = "usuario_cpf")
   private UsersModel usuario;
 }

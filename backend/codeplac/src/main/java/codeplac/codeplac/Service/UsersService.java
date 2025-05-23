@@ -36,7 +36,6 @@ public class UsersService {
         UsersModel newUser = new UsersModel();
         newUser.setCpf(user.getCpf());
         newUser.setEmail(user.getEmail());
-        newUser.setEquipes(new ArrayList<>());
         newUser.setNome(user.getNome());
         newUser.setSobrenome(user.getSobrenome());
         newUser.setTelefone(user.getTelefone());

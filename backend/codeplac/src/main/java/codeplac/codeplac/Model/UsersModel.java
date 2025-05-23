@@ -8,9 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -30,29 +27,31 @@ public class UsersModel {
     @Column(name = "cpf", length = 11)
     private String cpf;
 
+    @Column(name = "nome", length = 100)
     private String nome;
+
+    @Column(name = "sobrenome", length = 100)
     private String sobrenome;
+
+    @Column(name = "email", length = 100, nullable = false, unique = true)
     private String email;
+
+    @Column(name = "telefone", length = 19)
     private String telefone;
+
+    @Column(name = "nome", length = 80)
     private String senha;
 
-    @Column(name = "refresh_token")
+    @Column(name = "refresh_token", length = 150)
     private String refreshToken;
 
-    @Column(name = "access_token")
+    @Column(name = "access_token", length = 150)
     private String accessToken;
 
-    @Column(name = "tipo_usuario")
     @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_usuario", columnDefinition = "ENUM('ADMIN', 'PARTICIPANT')")
     private UserTipo tipoUsuario;
 
     @OneToMany(mappedBy = "usuario")
-    private List<TicketModel> ingressos;
-
-    @OneToMany(mappedBy = "usuario")
     private List<RegistrationModel> inscricoes;
-
-    @ManyToMany
-    @JoinTable(name = "usuario_equipe", joinColumns = @JoinColumn(name = "usuario_matricula"), inverseJoinColumns = @JoinColumn(name = "equipe_id_Equipe"))
-    private List<GroupModel> equipes;
 }
