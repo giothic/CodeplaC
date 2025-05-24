@@ -31,18 +31,29 @@ public class EventModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int idEvento;
 
+  @Column(name = "ano", columnDefinition = "YEAR")
   private Integer ano;
+
+  @Column(name = "bimestre", length = 2)
   private String bimestre;
+
+  @Column(name = "horario", length = 5)
   private String horario;
 
-  @Column(name = "data_evento")
+  @Column(name = "data_evento", columnDefinition = "DATE")
   private LocalDate dataEvento;
 
-  private String nome;
+  @Column(name = "nome_evento", length = 100)
+  private String nomeEvento;
+
+  @Column(name = "descricao", columnDefinition = "TEXT")
   private String descricao;
+
+  @Column(name = "lugar")
   private String lugar;
 
   @Enumerated(EnumType.STRING)
+  @Column(name = "periodo")
   private EventPeriodo periodo;
 
   @Enumerated(EnumType.STRING)
