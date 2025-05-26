@@ -33,7 +33,7 @@ public class EquipeService {
 
     private EquipeModel dtoToModel(EquipeDTO dto) {
         EquipeModel model = new EquipeModel();
-        model.setId_equipe(dto.getId_equipe());
+        model.setIdEquipe(dto.getId_equipe());
         model.setNome_equipe(dto.getNome_equipe());
         model.setNome_lider(dto.getNome_lider());
         model.setMembro2(dto.getMembro2());
@@ -46,7 +46,7 @@ public class EquipeService {
 
     private EquipeDTO modelToDTO(EquipeModel model) {
         EquipeDTO dto = new EquipeDTO();
-        dto.setId_equipe(model.getId_equipe());
+        dto.setId_equipe(model.getIdEquipe());
         dto.setData_inscricao(model.getData_inscricao());
         dto.setNome_equipe(model.getNome_equipe());
         dto.setNome_lider(model.getNome_lider());

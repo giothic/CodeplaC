@@ -18,7 +18,8 @@ import lombok.Setter;
 public class EquipeModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id_equipe;
+    @Column(name = "id_equipe")
+    private Long idEquipe;
 
     @Column(name = "data_inscricao")
     private LocalDateTime data_inscricao;

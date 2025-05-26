@@ -50,8 +50,8 @@ public class EventService {
         if (optionalEvent.isPresent()) {
             EventModel existingEvent = optionalEvent.get();
 
-            if (eventModel.getNome() != null)
-                existingEvent.setNome(eventModel.getNome());
+            if (eventModel.getNomeEvento() != null)
+                existingEvent.setNomeEvento(eventModel.getNomeEvento());
             if (eventModel.getDescricao() != null)
                 existingEvent.setDescricao(eventModel.getDescricao());
             if (eventModel.getAno() != null)
@@ -62,7 +62,7 @@ public class EventService {
                 existingEvent.setDataEvento(eventModel.getDataEvento());
             if (eventModel.getLugar() != null)
                 existingEvent.setLugar(eventModel.getLugar());
-            if (eventModel.getHorario() != null) // Verifica e atualiza o horário
+            if (eventModel.getHorario() != null)
                 existingEvent.setHorario(eventModel.getHorario());
             if (eventModel.getPeriodo() != null)
                 existingEvent.setPeriodo(eventModel.getPeriodo());
@@ -89,7 +89,7 @@ public class EventService {
     private EventResponse createEventResponse(EventModel event) {
         return new EventResponse(
                 event.getIdEvento(),
-                event.getNome(),
+                event.getNomeEvento(),
                 event.getDescricao(),
                 event.getAno(),
                 event.getBimestre(),

@@ -27,11 +27,11 @@ public class RankingModel {
 
   private float pontuacao;
 
-  @ManyToOne
-  @JoinColumn(name = "equipe_id_Equipe")
-  private EquipeModel equipe;
+@ManyToOne
+@JoinColumn(name = "equipe_id_equipe", referencedColumnName = "id_equipe")
+private EquipeModel equipe;
 
   @ManyToOne
-  @JoinColumn(name = "evento_id_Evento")
+  @JoinColumn(name = "evento_id_evento", referencedColumnName = "id_evento")
   private EventModel evento;
 }
