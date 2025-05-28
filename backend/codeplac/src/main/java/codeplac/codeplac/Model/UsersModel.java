@@ -42,10 +42,10 @@ public class UsersModel {
     @Column(name = "senha", length = 80)
     private String senha;
 
-    @Column(name = "refresh_token", length = 150)
+    @Column(name = "refresh_token", length = 1124)
     private String refreshToken;
 
-    @Column(name = "access_token", length = 150)
+    @Column(name = "access_token", length = 1124)
     private String accessToken;
 
     @Enumerated(EnumType.STRING)
