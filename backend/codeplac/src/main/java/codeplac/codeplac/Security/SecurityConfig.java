@@ -30,7 +30,7 @@ public class SecurityConfig {
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
     @Autowired
-    private SecurityFilter securityFilter; // Injeta seu filtro de segurança
+    private SecurityFilter securityFilter; 
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -47,7 +47,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/JuizCodigo").permitAll()
                         .requestMatchers(HttpMethod.GET, "/teste").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/group/create").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/equipes/inscricao").permitAll()
                         .requestMatchers(HttpMethod.POST, "/event/create").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/registration/create").hasAnyRole("ADMIN", "PARTICIPANT")
                         .requestMatchers(HttpMethod.GET, "/users/list").hasRole("ADMIN")
